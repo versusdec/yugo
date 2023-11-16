@@ -1,0 +1,7 @@
+<tr>
+  <td title="Категория">{{category}}</td>
+  <td title="Кол-во звонков">{{calls}}</td>
+  <td title="Кол-во целевых">{{calls}}</td>
+  <td title="CTR">{{ctr}}</td>
+  <td title="Сумма">{{amount}} ₽</td>
+</tr>

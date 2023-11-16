@@ -1,0 +1,7 @@
+<a class="item">
+  <div class="hover">
+    <b>{{title}}</b>
+  </div>
+  <time>{{date}}</time>
+  <p>{{description}}</p>
+</a>

@@ -1,0 +1,153 @@
+<h1><a class="back mdi mdi-arrow-left-circle-outline" href="/users/"></a>{{title}}</h1>
+<ul class="tabs">
+    <li class="active"><a href="#tab=common">Общая информация</a></li>
+    <li{{#if id 'new'}} class="disabled"{{/if}}><a href="#tab=settings">Настройки</a></li>
+    <li{{#if id 'new'}} class="disabled"{{/if}}><a href="#tab=notifications">Уведомления</a></li>
+    <li{{#if id 'new'}} class="disabled"{{/if}}><a href="#tab=grants">Разрешения</a></li>
+</ul>
+<hr>
+<div class="block" id="common">
+    <header>
+        <h2>Общая информация</h2>
+    </header>
+
+    <label>E-mail</label>
+    <input autocapitalize="off" autocomplete="false" autocorrect="off" spellcheck="false" aria-autocomplete="false" type="text" name="email" onchange="___mc.events.push('user.email.check', this)" value="{{item.email}}">
+
+    <label>Телефон</label>
+    <input autocapitalize="off" autocomplete="false" autocorrect="off" spellcheck="false" aria-autocomplete="false" type="text" name="phone" value="{{item.phone}}" placeholder="79991234567">
+
+    <label>Telegram</label>
+    <input autocapitalize="off" autocomplete="false" autocorrect="off" spellcheck="false" aria-autocomplete="false" type="text" name="telegram" value="{{item.settings.telegram}}">
+
+    <label>Имя</label>
+    <input autocapitalize="off" autocomplete="false" autocorrect="off" spellcheck="false" aria-autocomplete="false" type="text" name="name" value="{{item.name}}">
+
+    <label>Фамилия</label>
+    <input autocapitalize="off" autocomplete="false" autocorrect="off" spellcheck="false" aria-autocomplete="false" type="text" name="surname" value="{{item.surname}}">
+
+    <label>Отчество</label>
+    <input autocapitalize="off" autocomplete="false" autocorrect="off" spellcheck="false" aria-autocomplete="false" type="text" name="patronymic" value="{{item.patronymic}}">
+
+    <label>Пол</label>
+    {{#select options=genders value=item.gender onchange=gender_change}}{{/select}}
+
+    <label>Валюта</label>
+    {{#select options=currencies value=item.currency onchange=currency_change}}{{/select}}
+
+    <footer>
+        {{#unless id 'new'}}
+        <button data-type="update">сохранить</button>
+        {{/unless}}
+        {{#if id 'new'}}
+            <button data-type="next">далее</button>
+        {{/if}}
+    </footer>
+</div>
+
+<div class="block hide" id="settings">
+    <header>
+        <h2>Настройки</h2>
+    </header>
+
+    <h3>Роль и статус</h3>
+    <hr />
+
+    <label>Роль</label>
+    {{#select options=roles value=item.role onchange=role_change}}{{/select}}
+
+    <label>Статус</label>
+    {{#select options=statuses value=item.status onchange=status_change}}{{/select}}
+    <br>
+    <h3>Менеджер</h3>
+    <hr>
+    {{#autocomplete name='manager' value=item.settings.manager.id onset=manager_set onsuggest='admins.suggest' min=0 label='Менеджер' onchange=manager_change}}{{/autocomplete}}
+    <br>
+    {{#unless id 'new'}}
+        <h3>Сменить пароль</h3>
+        <hr />
+
+        <label>Старый пароль</label>
+        <input type="password" name="old_password" autocapitalize="off" autocomplete="false" autocorrect="off" spellcheck="false" aria-autocomplete="false">
+
+        <label>Новый пароль</label>
+        <input type="password" name="new_password" autocapitalize="off" autocomplete="false" autocorrect="off" spellcheck="false" aria-autocomplete="false">
+
+        <label>Повторите пароль</label>
+        <input type="password" name="repeat_password" autocapitalize="off" autocomplete="false" autocorrect="off" spellcheck="false" aria-autocomplete="false">
+    {{/unless}}
+
+    {{#if id 'new'}}
+        <label>Пароль</label>
+        <input type="password" name="password" autocapitalize="off" autocomplete="false" autocorrect="off" spellcheck="false" aria-autocomplete="false">
+    {{/if}}
+
+    <footer>
+        {{#unless id 'new'}}
+            <button data-type="update">сохранить</button>
+        {{/unless}}
+        {{#if id 'new'}}
+            <button data-type="next">далее</button>
+        {{/if}}
+    </footer>
+</div>
+
+<div class="block hide" id="notifications">
+    <header>
+        <h2>Уведомления</h2>
+    </header>
+
+    <label>новые лиды</label>
+    <input type="checkbox" name="notifications_new_leads" {{#if item.settings.notifications.new_leads '1'}}checked{{/if}}>
+
+    <label>апелляции</label>
+    <input type="checkbox" name="notifications_appeals" {{#if item.settings.notifications.appeals '1'}}checked{{/if}}>
+
+    <label>автоподтверждение</label>
+    <input type="checkbox" name="notifications_autoapprove" {{#if item.settings.notifications.autoapprove '1'}}checked{{/if}}>
+
+    <label>сверка</label>
+    <input type="checkbox" name="notifications_review" {{#if item.settings.notifications.review '1'}}checked{{/if}}>
+
+    <footer>
+        {{#unless id 'new'}}
+            <button data-type="update">сохранить</button>
+        {{/unless}}
+        {{#if id 'new'}}
+            <button data-type="next">далее</button>
+        {{/if}}
+    </footer>
+</div>
+
+<div class="block hide" id="grants">
+    <header>
+        <h2>Разрешения</h2>
+    </header>
+
+    <label></label>
+    <table id="user_grants">
+        <thead>
+        <tr>
+            <th>Название</th>
+            <th>Разрешено</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each item.grants}}
+            <tr data-name="{{name}}" data-method="{{method}}">
+                <td>{{name}}</td>
+                <td><input type="checkbox" {{#if granted '1'}}checked{{/if}}></td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+
+    <footer>
+        {{#unless id 'new'}}
+            <button data-type="update">сохранить</button>
+        {{/unless}}
+        {{#if id 'new'}}
+            <button data-type="add">создать</button>
+        {{/if}}
+    </footer>
+</div>

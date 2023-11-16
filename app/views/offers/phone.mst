@@ -1,0 +1,22 @@
+<div class="phone-item columns">
+    <div class="col">
+        <label>ID</label>
+        <input type="text" class="col-1-1 phone-item-id" value="{{remote_id}}">
+    </div>
+    <div class="col">
+        <label>{{#i18n}}table.name{{/i18n}}</label>
+        <input type="text" class="col-1-1 phone-item-name" value="{{label}}">
+    </div>
+    <div class="col">
+        <label>{{#i18n}}table.phone{{/i18n}}</label>
+        <input type="text" class="col-1-1 phone-item-phone" value="{{phone}}">
+    </div>
+    <div class="col">
+        <label>{{#i18n}}table.status{{/i18n}}</label>
+        {{#select class='phone-item-status' options=statuses value=status}}{{/select}}
+    </div>
+    <div class="col">
+        <label for="">&nbsp;</label>
+        <a class="mdi mdi-close hover" style="line-height: 32px" title="{{#i18n}}button.delete{{/i18n}}" onclick="this.closest('.phone-item').remove()"></a>
+    </div>
+</div>

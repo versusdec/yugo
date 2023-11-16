@@ -1,0 +1,12 @@
+<tr>
+    <td title="ID">{{id}}</td>
+    <td title="E-mail">{{email}}</td>
+    <td title="ФИО">{{surname}} {{name}}</td>
+    <td title="Баланс">{{balance.RUB}}₽ / {{balance.USD}}$ / {{balance.EUR}}€</td>
+    <td title="Роль">{{role}}</td>
+    <td title="Статус">{{status}}</td>
+    <td class="actions">
+        <a href="/users/edit/{{id}}" class="mdi mdi-account-edit" title="Редактировать"></a>
+        <a class="mdi mdi-login" title="Логин под {{surname}} {{name}}" onclick="___mc.events.push('users.switch', {{id}})"></a>
+    </td>
+</tr>

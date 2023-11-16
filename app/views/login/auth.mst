@@ -1,0 +1,22 @@
+<header>
+    <h1>Авторизация</h1>
+    <div class="error invisible"> Ошибка авторизации </div>
+</header>
+
+<label>Логин:</label>
+<span class="mdi mdi-email-outline">
+    <input type="text" name="login">
+</span>
+
+<label>Пароль:</label>
+<span class="mdi mdi-lock-outline">
+    <input type="password" name="password">
+</span>
+
+<a href="/forgot">Забыли пароль?</a>
+<br>
+<button class="login" onclick="___mc.events.push('login')">Войти</button>
+
+<p>Проблемы со входом? <a href="mailto:support@yugo.ru">Техническая поддержка</a></p>
+
+<div class="copy"> © 2021 Yugo Platform. Все права защищены. </div>

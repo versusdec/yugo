@@ -1,0 +1,337 @@
+<h1>Рабочий стол</h1>
+<hr>
+<div class="dashboard">
+  <div class="block wallet device">
+    <header>
+      <h2>Ваш баланс</h2>
+      <sub><a href="/billing/" class="link">Смотреть историю баланса</a></sub>
+    </header>
+    <h1>{{user.balance}} ₽</h1>
+    <hr>
+    <div>
+      <a href="/billing/payments">заказать выплату</a>
+    </div>
+  </div>
+  <div class="columns reverse ">
+    <aside>
+      <div class="block wallet desktop">
+        <header>
+          <h2>Ваш баланс</h2>
+          <sub><a href="/billing/" class="link">Смотреть историю баланса</a></sub>
+        </header>
+        <h1>{{user.balance}} ₽</h1>
+        <hr>
+        <div>
+          <a class="btn" href="/billing/payments">заказать выплату</a>
+        </div>
+      </div>
+
+        <div class="block manager">
+            <header>
+                <h2>Ваш менеджер</h2>
+            </header>
+            <div class="image square">
+                <img src="{{user.settings.manager.avatar}}{{#unless user.settings.manager.avatar}}/img/ava.png{{/unless}}" alt="">
+            </div>
+            <div class="name">
+                {{user.settings.manager.name}} {{user.settings.manager.surname}}
+            </div>
+
+            <div class="flex">
+                <div class="">
+                    <div class="">
+                        <b>e-mail:</b>
+                    </div>
+                    {{#if user.settings.manager.telegram}}
+                        <div>
+                            <b>telegram:</b>
+                        </div>
+                    {{/if}}
+                    {{#unless user.settings.manager.telegram}}
+                        <div>
+                            <b>телефон:</b>
+                        </div>
+                    {{/unless}}
+                </div>
+                <div class="">
+                    <div><a class="link external" href="mailto:{{user.settings.manager.email}}">{{user.settings.manager.email}}</a></div>
+                    {{#if user.settings.manager.telegram}}
+                        <div>
+                            <a class="link external" href="https://t.me/{{user.settings.manager.telegram}}" target="_blank">
+                                {{user.settings.manager.telegram}}
+                            </a>
+                        </div>
+                    {{/if}}
+                    {{#unless user.settings.manager.telegram}}
+                        <div><a class="link external" href="tel:{{user.settings.manager.phone}}">{{user.settings.manager.phone}}</a></div>
+                    {{/unless}}
+                </div>
+            </div>
+            {{#if user.settings.manager.telegram}}
+                <div>
+                    <a class="btn external" href="tg://resolve?domain={{user.settings.manager.telegram}}" target="_blank">
+                    Написать
+                    </a>
+                </div>
+            {{/if}}
+            {{#unless user.settings.manager.telegram}}
+                <a class="btn external" href="tel:{{user.settings.manager.phone}}">Позвонить</a>
+            {{/unless}}
+        </div>
+
+
+      <div class="block dash-news" handler="controllers/dashboard/news/handler">
+        <header>
+          <h2>Новости</h2>
+        </header>
+        <div class="list">
+          <div class="loader">
+            <span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <div class="aside-wrapper">
+        <div handler="controllers/dashboard/webmaster/graph/handler" id="graph">
+          <div class="block">
+              <header>
+                  <h2>Заработано</h2>
+              </header>
+              <div class="row">
+                  <div class="col">
+                      {{#datetimepicker type='date' label='Период с' onchange='dashboard:webmaster.graph.filter.range.start'}}{{/datetimepicker}}
+                  </div>
+                  <div class="col">
+                      {{#datetimepicker type='date' label='Период по' onchange='dashboard:webmaster.graph.filter.range.finish'}}{{/datetimepicker}}
+                  </div>
+                  <div class="col" id="graph-stats">
+                      <label>&nbsp;</label>
+                      <br><br>
+                      <b style="min-width: 100px;display:inline-block;">Всего: </b><span data-total></span><br><br>
+                  </div>
+              </div>
+              <footer>
+                  <button type="button" onclick="___mc.events.push('dashboard:webmaster.graph.filter', $('#graph')[0])">фильтровать</button>
+              </footer>
+              <div class="chart-wrapper">
+                <div class="no-data-placeholder hide"><p>Недостаточно данных для построения графика</p></div>
+              <canvas id="chart"></canvas>
+            </div>
+          </div>
+        </div>
+
+      <div handler="controllers/dashboard/webmaster/sales/handler" id="sales">
+        <div class="block ">
+          <header style="margin-bottom: 0;">
+            <h2>Продажи</h2>
+          </header>
+          <div class="row">
+            <div class="col">
+              {{#datetimepicker type='date' label='Период с' onchange='dashboard:webmaster.sales.filter.range.start'}}{{/datetimepicker}}
+            </div>
+            <div class="col">
+              {{#datetimepicker type='date' label='Период по' onchange='dashboard:webmaster.sales.filter.range.finish'}}{{/datetimepicker}}
+            </div>
+            <div class="col" id="webmasters-stats">
+              <label>&nbsp; </label>
+              <br><br>
+              <b style="min-width: 100px;display:inline-block;">Всего: </b><span data-total></span><br><br>
+            </div>
+          </div>
+          <footer>
+            <button onclick="___mc.events.push('dashboard:webmaster.sales.filter', $('#sales')[0])">
+              фильтровать
+            </button>
+          </footer>
+          <br>
+          <div class="table ">
+            <table>
+              <thead>
+              <tr>
+                <th>Дата</th>
+                <th>Лидов</th>
+                <th>Продажи звонки</th>
+                <th>CR</th>
+                  <th>Продажи лиды</th>
+                  <th>CR</th>
+                  <th>Денег по продажам</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td colspan="8">
+                  <div class="loader">
+                    <span></span><span></span><span></span><span></span>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+        <div handler="controllers/dashboard/webmaster/rejects/handler" id="rejects">
+            <div class="block">
+                <header style="margin-bottom: 0;">
+                    <h2>Последние отклонения</h2>
+                </header>
+                <br>
+                <div class="table">
+                    <table>
+                    <thead>
+                        <tr>
+                           <th>ID</th>
+                            <th>Дата/время</th>
+                            <th>Источник</th>
+                            <th>Регион</th>
+                            <th>Категория</th>
+                            <th>Телефон</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="6">
+                                <div class="loader">
+                                    <span></span><span></span><span></span><span></span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--
+      <div handler="controllers/dashboard/webmaster/conversion/handler" id="conversion">
+        <div class="block ">
+          <header style="margin-bottom: 0;">
+            <h2>Конверсия</h2>
+          </header>
+          <div class="row">
+            <div class="col">
+              {{#datetimepicker type='date' label='Период с' onchange='dashboard:webmaster.conversion.filter.range.start'}}{{/datetimepicker}}
+            </div>
+            <div class="col">
+              {{#datetimepicker type='date' label='Период по' onchange='dashboard:webmaster.conversion.filter.range.end'}}{{/datetimepicker}}
+            </div>
+            <div class="col" id="webmasters-stats">
+              <label>Найдено: </label>
+              <br><br>
+              <b style="min-width: 100px;display:inline-block;">Всего: </b><span data-total></span><br><br>
+            </div>
+          </div>
+          <footer>
+            <button onclick="___mc.events.push('dashboard:webmaster.conversion.filter', $('#conversion')[0])">
+              фильтровать
+            </button>
+          </footer>
+          <br>
+          <div class="table ">
+            <table>
+              <thead>
+              <tr>
+                <th>Категория</th>
+                <th>Кол-во лидов</th>
+                <th>Кол-во конверсий</th>
+                <th>CTR</th>
+                <th>Средняя цена конверсии</th>
+                <th>Сумма</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td colspan="6">
+                  <div class="loader">
+                    <span></span><span></span><span></span><span></span>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div handler="controllers/dashboard/webmaster/calls/handler" id="calls">
+        <div class="block ">
+          <header style="margin-bottom: 0;">
+            <h2>Звонки</h2>
+          </header>
+          <div class="row">
+            <div class="col">
+              {{#datetimepicker type='date' label='Период с' onchange='dashboard:webmaster.calls.filter.range.start'}}{{/datetimepicker}}
+            </div>
+            <div class="col">
+              {{#datetimepicker type='date' label='Период по' onchange='dashboard:webmaster.calls.filter.range.end'}}{{/datetimepicker}}
+            </div>
+            <div class="col" id="webmasters-stats">
+              <label>Найдено: </label>
+              <br><br>
+              <b style="min-width: 100px;display:inline-block;">Всего: </b><span data-total></span><br><br>
+            </div>
+          </div>
+          <footer>
+            <button onclick="___mc.events.push('dashboard:webmaster.calls.filter', $('#calls')[0])">
+              фильтровать
+            </button>
+          </footer>
+          <br>
+          <div class="table ">
+            <table>
+              <thead>
+              <tr>
+                <th>Категория</th>
+                <th>Кол-во звонков</th>
+                <th>Кол-во целевых</th>
+                <th>CTR</th>
+                <th>Сумма</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td colspan="5">
+                  <div class="loader">
+                    <span></span><span></span><span></span><span></span>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+        -->
+      <div handler="controllers/dashboard/support/handler">
+        <div class="block ">
+          <header>
+            <h2>Обращения</h2>
+          </header>
+          <div class="table ">
+            <table>
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>Создан</th>
+                <th>Название</th>
+                <th>Тип</th>
+                <th>Статус</th>
+                <th>Действия</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td colspan="6">
+                  <div class="loader">
+                    <span></span><span></span><span></span><span></span>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

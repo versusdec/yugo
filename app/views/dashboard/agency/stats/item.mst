@@ -1,0 +1,13 @@
+<tr>
+    <td title="{{#i18n}}table.date{{/i18n}}">{{timestamp}}</td>
+    <td title="{{#i18n}}table.shows{{/i18n}}">{{shows}}</td>
+    <td title="{{#i18n}}table.clicks{{/i18n}}">{{clicks}}</td>
+    <td title="{{#i18n}}table.conversions{{/i18n}}">{{conversions}}</td>
+    <td title="{{#i18n}}table.confirmed{{/i18n}}">{{confirmed}}</td>
+    <td title="{{#i18n}}table.pending{{/i18n}}">{{pending}}</td>
+    <td title="CR">{{cr}}</td>
+    <td title="{{#i18n}}table.spent{{/i18n}}">{{spent}}</td>
+    <td title="{{#i18n}}table.income{{/i18n}}">{{income}}</td>
+    <td title="{{#i18n}}dashboard.agency.net_income{{/i18n}}">{{net_income}}</td>
+    <td title="HOLD">{{hold}}</td>
+</tr>

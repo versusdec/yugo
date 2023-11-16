@@ -1,0 +1,45 @@
+<div class="heading">
+    <h1><a class="back mdi mdi-arrow-left-circle-outline" href="/"></a>{{title}}</h1>
+    <span class="buttons-wrapper">
+    <a class="btn green" href="/offers/edit/new"><span class="mdi mdi-book-plus-multiple-outline"></span>{{#i18n}}button.create{{/i18n}}</a>
+</span>
+</div>
+<hr>
+<div class="columns">
+    <div style="overflow: auto">
+        <div id="offers" class="" handler="controllers/offers/handler">
+            {{#pagination}}{{/pagination}}
+            <div class="list">
+                <div class="block skeleton"></div>
+                <div class="block skeleton"></div>
+                <div class="block skeleton"></div>
+            </div>
+            {{#pagination}}{{/pagination}}
+        </div>
+    </div>
+    <aside>
+        <div class="block filters">
+            <header>
+                <h2>{{#i18n}}filter.title{{/i18n}}</h2>
+            </header>
+            <!--            {{#datetimepicker type='period' name='period' value=period onchange='offers.filter.period.change'}}{{/datetimepicker}}-->
+
+            <label>{{#i18n}}table.name{{/i18n}}</label>
+            <input class="col-1-1" type="text" name="name" value="{{filter.name}}" onchange="___mc.events.push('offers.filter.name.change', this)">
+            <label>{{#i18n}}table.type{{/i18n}}</label>
+            {{#select name='type' value=filter.type options=types onchange='offers.filter.type.change'}}{{/select}}
+            <label>{{#i18n}}status.title{{/i18n}}</label>
+            {{#select name='status' value=filter.status options=statuses onchange='offers.filter.status.change'}}{{/select}}
+
+            {{#autocomplete name='category' value=filter.category onset=category_set onsuggest='categories.suggest' min=0 label='filter.category' onchange='offers.filter.category.change'}}{{/autocomplete}}
+            {{#if role 'admin'}}
+                {{#autocomplete name='user_id' value=filter.user_id onset=merchant_set onsuggest='merchants.suggest' min=0 label='Рекламодатель' onchange='offers.filter.merchants.change'}}{{/autocomplete}}
+            {{/if}}
+            <footer>
+                <button type="button" onclick="___mc.events.push('offers.filter.filter', $('#offers')[0])"><span class="mdi mdi-clipboard-check-outline"></span> {{#i18n}}button.apply{{/i18n}}</button>
+                <button type="button" class="secondary" onclick="___mc.events.push('offers.filter.reset', $('#offers')[0])">{{#i18n}}button.reset{{/i18n}}</button>
+            </footer>
+        </div>
+    </aside>
+</div>
+

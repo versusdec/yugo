@@ -1,0 +1,62 @@
+<h1>
+    <a class="back mdi mdi-arrow-left-circle-outline" href="/campaigns/"></a>{{title}}
+</h1>
+
+<ul class="tabs">
+    <li class="active"><a href="#tab=common">Общая информация</a></li>
+</ul>
+
+<hr>
+
+<div class="block" id="common">
+    <header>
+        <h2>{{title}}</h2>
+    </header>
+
+    <label>Название</label>
+    <input type="text" name="name" value="{{item.name}}">
+
+    {{#autocomplete name="region_id" value=item.region_id onset=region_set onsuggest='regions.suggest' min=0 label='Регион' onchange='campaign.region.change'}}{{/autocomplete}}
+    {{#autocomplete name="category_id" value=item.category_id onset=category_set onsuggest='categories.suggest' min=0 label='Категория' onchange='campaign.category.change'}}{{/autocomplete}}
+    {{#autocomplete name="source_id" value=item.source_id onset=source_set onsuggest='sources.suggest' min=0 label='Источник' onchange='campaign.source.change'}}{{/autocomplete}}
+
+    {{#if profile.role 'admin'}}
+        {{#autocomplete name="merchant" value=item.merchant onset=merchant_set onsuggest='merchants.suggest' min=0 label='Рекламодатель' onchange='campaign.merchant.change'}}{{/autocomplete}}
+        {{#autocomplete name="offer_id" value=item.offer_id onset=offer_set onsuggest='offers.suggest' min=0 label='Оффер' onchange='campaign.offer.change'}}{{/autocomplete}}
+
+        {{#autocomplete name="webmaster_id" value=item.webmaster_id onset=webmaster_set onsuggest='webmasters.suggest' min=0 label='Вебмастер' onchange='campaign.webmaster.change'}}{{/autocomplete}}
+    {{/if}}
+    {{#if profile.role 'webmaster'}}
+        <input type="hidden" name="merchant" value="{{item.merchant}}">
+        {{#autocomplete name="offer_id" value=item.offer_id onset=offer_set onsuggest='offers.suggest' min=0 label='Оффер' onchange='campaign.offer.change'}}{{/autocomplete}}
+    {{/if}}
+    <label>Номер А (Исходящий)</label>
+    <input type="text" name="outbound" value="{{item.outbound}}">
+
+    <label>Номер Б (Входящий)</label>
+    <!--<input type="text" name="inbound" value="{{item.inbound}}">-->
+    <div class="inbound-container">
+        {{> campaigns/inbound}}
+    </div>
+
+    {{#if profile.role 'admin'}}
+        <label>Статус</label>
+        {{#select options=statuses value=item.status onchange=status_change}}{{/select}}
+    {{/if}}
+
+    {{#autocomplete classlist='tags' onsuggest=tag_suggest min=0 label='Тэги' onchange=tag_select onset=tag_set}}{{/autocomplete}}
+    <div id="campaign-tags" style="padding: 20px 0">
+        {{#each item.tags}}
+            {{> leads/edit/tag}}
+        {{/each}}
+    </div>
+
+    <footer>
+        {{#unless id 'new'}}
+            <button data-type="update">сохранить</button>
+        {{/unless}}
+        {{#if id 'new'}}
+            <button data-type="create">создать</button>
+        {{/if}}
+    </footer>
+</div>

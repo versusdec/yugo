@@ -1,0 +1,9 @@
+<tr data-id="{{id}}">
+    <td title="ID">{{id}}</td>
+    <td title="E-mail">{{email}}</td>
+    <td title="ФИО">{{surname}} {{name}}</td>
+    <td title="Статус">{{status}}</td>
+    <td class="actions">
+        <a onclick="this.closest('tr').remove()" class="mdi mdi-delete" title="Удалить"></a>
+    </td>
+</tr>

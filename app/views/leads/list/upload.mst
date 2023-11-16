@@ -1,0 +1,39 @@
+<div class="block upload" handler="controllers/leads/list/upload">
+    <header>
+        <h2>Загрузка</h2>
+    </header>
+
+    {{#dropzone onupload='leads.upload.file'}}{{/dropzone}}
+
+    <div class="hide" id="upload">
+        <div class="row">
+            <div class="col-1-3">
+                {{#autocomplete name='upload.region' onsuggest='regions.suggest' min=0 label='Регион' onchange='leads.upload.region.change'}}{{/autocomplete}}
+                {{#autocomplete name='upload.category' onsuggest='categories.suggest' min=0 label='Категория' onchange='leads.upload.category.change'}}{{/autocomplete}}
+                {{#autocomplete name='upload.source' onsuggest='sources.suggest' min=0 label='Источник' onchange='leads.upload.source.change'}}{{/autocomplete}}
+            </div>
+            <div class="col-1-3">
+                {{#autocomplete onsuggest='webmasters.suggest' min=0 label='Вебмастер' onchange='leads.upload.webmaster.change'}}{{/autocomplete}}
+                {{#autocomplete onsuggest='tags.suggest' min=0 label='Тэг' onchange='leads.upload.tag.change'}}{{/autocomplete}}
+            </div>
+            <div class="col-1-3">
+                <div>
+                    <label>Разделитель</label>
+                    <input class="col-1-1" id="separator" type="text" value="," onchange="___mc.events.push('leads.upload.separator.change', this)">
+                </div>
+                <div>
+                    <label>Файл содержит заголовок</label>
+                    <input type="checkbox" id="headed" onchange="___mc.events.push('leads.upload.headed.change', this)">
+                </div>
+            </div>
+        </div>
+
+        <div id="previews">
+
+        </div>
+
+        <footer>
+            <button data-type="upload" onclick="___mc.events.push('leads.upload')">загрузить</button>
+        </footer>
+    </div>
+</div>

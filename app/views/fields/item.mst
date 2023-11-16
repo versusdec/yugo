@@ -1,0 +1,10 @@
+<tr>
+    <td title="ID">{{id}}</td>
+    <td title="Название">{{label}}</td>
+    <td title="Переменная">{{name}}</td>
+    <td title="Тип">{{type}}</td>
+    <td class="actions">
+        <a href="/fields/edit/{{id}}" class="mdi mdi-pencil" title="Редактировать"></a>
+        <a class="mdi mdi-delete" title="Удалить" onclick="___mc.events.push('fields.remove', {id: {{id}}, name:'{{name}}' })"></a>
+    </td>
+</tr>

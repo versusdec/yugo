@@ -1,0 +1,186 @@
+<h1>
+    <a class="back mdi mdi-arrow-left-circle-outline" href="/agencies/"></a>{{title}}
+</h1>
+
+<ul class="tabs">
+    <li class="active"><a href="#tab=common">Общая информация</a></li>
+    <li{{#if id 'new'}} class="disabled"{{/if}}><a href="#tab=admins">Администраторы</a></li>
+    <li{{#if id 'new'}} class="disabled"{{/if}}><a href="#tab=managers">Менеджеры</a></li>
+    <li{{#if id 'new'}} class="disabled"{{/if}}><a href="#tab=merchants">Рекламодатели</a></li>
+    <li{{#if id 'new'}} class="disabled"{{/if}}><a href="#tab=webmasters">Вебмастеры</a></li>
+</ul>
+
+<hr>
+
+<div class="block" id="common">
+    <header>
+        <h2>Общая информация</h2>
+    </header>
+
+    <label>Название</label>
+    <input type="text" name="name" value="{{item.name}}">
+
+    {{#autocomplete name='network_id' value=item.network_id onset=network_set onsuggest='networks.suggest' min=0 label='Сеть' onchange='agency.network.change'}}{{/autocomplete}}
+
+    {{#autocomplete name='master_id' value=item.master_id onset=master_set onsuggest='agency_admins.suggest' min=0 label='Владелец агентства' onchange='agency.master.change'}}{{/autocomplete}}
+
+    <label>Статус</label>
+    {{#select options=statuses value=item.status onchange=status_change}}{{/select}}
+
+    <footer>
+        {{#unless id 'new'}}
+            <button data-type="update">сохранить</button>
+        {{/unless}}
+        {{#if id 'new'}}
+            <button data-type="next">далее</button>
+        {{/if}}
+    </footer>
+</div>
+
+<div class="block hide" id="admins">
+    <header>
+        <h2>Администраторы</h2>
+    </header>
+
+    <div>
+        {{#autocomplete onsuggest='agency_admins.suggest' min=0 label='Администратор агентства' onchange='agency.admin.change'}}{{/autocomplete}}
+    </div>
+
+    <label></label>
+    <table id="agency_admins">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>E-mail</th>
+            <th>ФИО</th>
+            <th>Статус</th>
+            <th>Действие</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each item.admins.items}}
+            {{> agencies/record}}
+        {{/each}}
+        </tbody>
+    </table>
+
+    <footer>
+        {{#unless id 'new'}}
+            <button data-type="update">сохранить</button>
+        {{/unless}}
+        {{#if id 'new'}}
+            <button data-type="next">далее</button>
+        {{/if}}
+    </footer>
+</div>
+
+<div class="block hide" id="managers">
+    <header>
+        <h2>Менеджеры</h2>
+    </header>
+
+    <div>
+        {{#autocomplete onsuggest='agency_managers.suggest' min=0 label='Менеджер агентства' onchange='agency.manager.change'}}{{/autocomplete}}
+    </div>
+
+    <label></label>
+    <table id="agency_managers">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>E-mail</th>
+            <th>ФИО</th>
+            <th>Статус</th>
+            <th>Действие</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each item.managers.items}}
+            {{> agencies/record}}
+        {{/each}}
+        </tbody>
+    </table>
+
+    <footer>
+        {{#unless id 'new'}}
+            <button data-type="update">сохранить</button>
+        {{/unless}}
+        {{#if id 'new'}}
+            <button data-type="next">далее</button>
+        {{/if}}
+    </footer>
+</div>
+
+<div class="block hide" id="merchants">
+    <header>
+        <h2>Рекламодатели</h2>
+    </header>
+
+    <div>
+        {{#autocomplete onsuggest='merchants.suggest' min=0 label='Рекламодатель' onchange='agency.merchant.change'}}{{/autocomplete}}
+    </div>
+
+    <label></label>
+    <table id="agency_merchants">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>E-mail</th>
+            <th>ФИО</th>
+            <th>Статус</th>
+            <th>Действие</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each item.merchants.items}}
+            {{> agencies/record}}
+        {{/each}}
+        </tbody>
+    </table>
+
+    <footer>
+        {{#unless id 'new'}}
+            <button data-type="update">сохранить</button>
+        {{/unless}}
+        {{#if id 'new'}}
+            <button data-type="next">далее</button>
+        {{/if}}
+    </footer>
+</div>
+
+<div class="block hide" id="webmasters">
+    <header>
+        <h2>Вебмастеры</h2>
+    </header>
+
+    <div>
+        {{#autocomplete onsuggest='webmasters.suggest' min=0 label='Вебмастер' onchange='agency.webmaster.change'}}{{/autocomplete}}
+    </div>
+
+    <label></label>
+    <table id="agency_webmasters">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>E-mail</th>
+            <th>ФИО</th>
+            <th>Статус</th>
+            <th>Действие</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each item.webmasters.items}}
+            {{> agencies/record}}
+        {{/each}}
+        </tbody>
+    </table>
+
+    <footer>
+        {{#unless id 'new'}}
+            <button data-type="update">сохранить</button>
+        {{/unless}}
+        {{#if id 'new'}}
+            <button data-type="add">создать</button>
+        {{/if}}
+    </footer>
+</div>

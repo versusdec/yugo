@@ -1,0 +1,80 @@
+<h1><a class="back mdi mdi-arrow-left-circle-outline" href="/"></a>Поддержка</h1>
+<ul class="tabs">
+  <li {{#if tab 'tech'}} class="active" {{/if}}>
+    <a href="/support/">Технические</a>
+  </li>
+  <li {{#if tab 'finance'}} class="active" {{/if}}>
+    <a href="/support/finance" >Финансовые</a>
+  </li>
+  <li {{#if tab 'archived'}} class="active" {{/if}}>
+    <a href="/support/archived">Архив</a>
+  </li>
+</ul>
+<hr>
+
+<div class="block">
+    <header>
+        <h2>Фильтры</h2>
+    </header>
+    <div class="row">
+        <div class="col-1-3">
+            {{#datetimepicker type='date' name='start' value=filter.start label='Период с' onchange='support.filter.range.start'}}{{/datetimepicker}}
+            {{#datetimepicker type='date' name='finish' value=filter.finish label='Период по' onchange='support.filter.range.finish'}}{{/datetimepicker}}
+        </div>
+        <div class="col-1-3">
+            {{#if user.role 'admin'}}
+                {{#autocomplete name='user_id' value=filter.user_id onset=user_set onsuggest='support.users.suggest' min=0 label='Пользователь' onchange='support.filter.user.change'}}{{/autocomplete}}
+            {{/if}}
+            {{#if tab 'IN' 'tech' 'finance'}}
+                <label>Статус</label>
+                {{#select options=statuses onchange='support.filter.status.change' value=filter.status}}{{/select}}
+            {{/if}}
+        </div>
+        <div class="col-1-3">
+            <label>Найдено: </label>
+            <br><br>
+            <b style="min-width: 100px;display:inline-block;">Всего: </b><span data-total></span><br><br>
+        </div>
+    </div>
+    <div class="buttons-wrapper">
+        <button onclick="___mc.events.push('support.filter.filter', $('#support_list')[0])">фильтровать</button>
+        <button onclick="___mc.events.push('support.filter.reset', this)">сбросить</button>
+    </div>
+</div>
+
+<div class="block" id="support_list" handler="controllers/support/list/handler" data-tab="{{tab}}">
+  <header>
+      <h2>{{#if user.role 'IN' 'webmaster' 'merchant'}}Мои обращения{{/if}}
+          {{#if user.role 'admin'}}Обращения{{/if}}</h2>
+    <a href="/support/add/" class="btn">Создать</a>
+  </header>
+  {{#pagination}}{{/pagination}}
+  <div class="table ">
+    <table>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Создан</th>
+          {{#if user.role 'admin'}}<th>Пользователь</th>{{/if}}
+        <th>Название</th>
+        <th>Тип</th>
+        <th>Статус</th>
+        <th>Действия</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td colspan="7">
+          <div class="loader">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  {{#pagination}}{{/pagination}}
+</div>

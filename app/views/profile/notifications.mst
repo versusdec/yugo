@@ -1,0 +1,21 @@
+<div class="block hide" id="notifications">
+    <header>
+        <h2>Уведомления</h2>
+    </header>
+
+    <label>новые лиды</label>
+    <input type="checkbox" name="notifications_new_leads" {{#if user.notifications.new_leads '1'}}checked{{/if}}>
+
+    <label>апелляции</label>
+    <input type="checkbox" name="notifications_appeals" {{#if user.notifications.appeals '1'}}checked{{/if}}>
+
+    <label>автоподтверждение</label>
+    <input type="checkbox" name="notifications_autoapprove" {{#if user.notifications.autoapprove '1'}}checked{{/if}}>
+
+    <label>сверка</label>
+    <input type="checkbox" name="notifications_review" {{#if user.notifications.review '1'}}checked{{/if}}>
+
+    <footer>
+        <button type="button">сохранить</button>
+    </footer>
+</div>

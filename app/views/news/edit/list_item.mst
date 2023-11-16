@@ -1,0 +1,7 @@
+<div class="block">
+    <header>
+        <h2><a class="hover" href="/news/details/{{id}}">{{title}}</a> </h2>
+        <span>{{date}}</span>
+    </header>
+    {{description}}
+</div>

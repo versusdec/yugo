@@ -1,0 +1,24 @@
+<div class=" col-1-4 d-col-1-2">
+    <div class="block stats-block">
+        <div class=""> Лиды</div>
+        <div class="val leads"> {{leads}}</div>
+    </div>
+</div>
+<div class=" col-1-4 d-col-1-2">
+    <div class="block stats-block">
+        <div class=""> Конверсии</div>
+        <div class="val calls"> {{calls}}</div>
+    </div>
+</div>
+<div class=" col-1-4 d-col-1-2">
+    <div class="block stats-block">
+        <div class=""> В работе</div>
+        <div class="val inwork"> {{inwork}}</div>
+    </div>
+</div>
+<div class=" col-1-4 d-col-1-2">
+    <div class="block stats-block">
+        <div class=""> Расходы</div>
+        <div class="val outcome"> {{outcome}} ₽</div>
+    </div>
+</div>

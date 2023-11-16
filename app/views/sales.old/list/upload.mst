@@ -1,0 +1,24 @@
+<div class="block upload" handler="controllers/sales/list/upload">
+    <header>
+        <h2>Загрузка</h2>
+    </header>
+
+    {{#dropzone onupload='sales.upload.file'}}{{/dropzone}}
+
+    <div class="hide" id="upload">
+        <div class="row">
+            <div class="col-1-2">
+                {{#autocomplete onsuggest='webmasters.suggest' min=0 label='Вебмастер' onchange='sales.upload.webmaster.change'}}{{/autocomplete}}
+                {{#autocomplete onsuggest='regions.suggest' min=0 label='Регион' onchange='sales.upload.region.change'}}{{/autocomplete}}
+            </div>
+            <div class="col-1-2">
+                {{#autocomplete onsuggest='categories.suggest' min=0 label='Категория' onchange='sales.upload.category.change'}}{{/autocomplete}}
+                {{#autocomplete onsuggest='sources.suggest' min=0 label='Источник' onchange='sales.upload.source.change'}}{{/autocomplete}}
+            </div>
+        </div>
+
+        <footer>
+            <button data-type="upload" onclick="___mc.events.push('sales.upload')">загрузить</button>
+        </footer>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="block" handler="controllers/dashboard/agency/stats/list" style="">
+    <header>
+        <h2>{{#i18n}}reports.period{{/i18n}}</h2>
+    </header>
+    <hr>
+    <div class="table">
+        <table>
+            <thead>
+            <tr>
+                <th>{{#i18n}}table.date{{/i18n}}</th>
+                <th>{{#i18n}}table.shows{{/i18n}}</th>
+                <th>{{#i18n}}table.clicks{{/i18n}}</th>
+                <th>{{#i18n}}table.conversions{{/i18n}}</th>
+                <th>{{#i18n}}table.confirmed{{/i18n}}</th>
+                <th>{{#i18n}}table.pending{{/i18n}}</th>
+                <th>CR</th>
+                <th>{{#i18n}}table.spent{{/i18n}}</th>
+                <th>{{#i18n}}table.income{{/i18n}}</th>
+                <th>{{#i18n}}dashboard.agency.net_income{{/i18n}}</th>
+                <th>HOLD</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td colspan="11">
+                    <div class="loader"><span></span><span></span><span></span><span></span></div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+   <footer>
+       <button class="round select_bg">{{#i18n}}export.report.full_report{{/i18n}}</button>
+   </footer>
+</div>

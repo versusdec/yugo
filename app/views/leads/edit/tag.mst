@@ -1,0 +1,4 @@
+<div class="tag" data-id="{{#if id}}{{id}}{{/if}}{{#unless id}}{{tag_id}}{{/unless}}">
+    <span>{{name}}</span>
+    <span class="mdi mdi-close" onclick="this.closest('.tag').remove()"></span>
+</div>

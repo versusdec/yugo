@@ -1,0 +1,73 @@
+<div class="block" handler="controllers/dashboard/merchant/calls">
+    <header class="flex flex-space-between-center">
+        <h2>{{#i18n}}dashboard.calls{{/i18n}}</h2>
+        <span onclick="document.querySelector('main').scrollTo(0,0)">{{period}}</span>
+    </header>
+    <hr>
+    <div class="flex flex-center-start">
+        <div class="col-1-2">
+            <div class="flex flex-space-between-center">
+                <h3>{{#i18n}}table.amount{{/i18n}}</h3>
+                <h3>CR,%</h3>
+            </div>
+
+            <div class="chart">
+
+            </div>
+            <div class="flex flex-center-center">
+                <button class="round blue3 btn_toggle_series" onclick="___mc.events.push('dashboard.merchant.stats.calls.toggle.series', this.innerText)">{{#i18n}}table.conversion{{/i18n}}</button>
+                <button class="round light_blue btn_toggle_series" onclick="___mc.events.push('dashboard.merchant.stats.calls.toggle.series', this.innerText)">{{#i18n}}table.targeted{{/i18n}}</button>
+                <button class="round select_bg btn_toggle_series" onclick="___mc.events.push('dashboard.merchant.stats.calls.toggle.series', this.innerText)">{{#i18n}}table.not_targeted{{/i18n}}</button>
+            </div>
+        </div>
+        <div class="col-1-2">
+            <table>
+                <thead>
+                <tr>
+                    <th>{{#i18n}}table.date{{/i18n}}</th>
+                    <th class="js_sortable">
+                        <div>
+                            <div>
+                                {{#i18n}}dashboard.calls{{/i18n}}
+                            </div>
+                            <div>
+                                <span class="mdi mdi-menu-up" onclick="___mc.events.push('dashboard.merchant.stats.calls.sort', [this, 'asc'])"></span>
+                                <span class="mdi mdi-menu-down" onclick="___mc.events.push('dashboard.merchant.stats.calls.sort', [this, 'desc'])"></span>
+                            </div>
+                        </div>
+                    </th>
+                    <th class="js_sortable">
+                        <div>
+                            <div>
+                                {{#i18n}}table.targeted{{/i18n}}
+                            </div>
+                            <div>
+                                <span class="mdi mdi-menu-up" onclick="___mc.events.push('dashboard.merchant.stats.calls.sort', [this, 'asc'])"></span>
+                                <span class="mdi mdi-menu-down" onclick="___mc.events.push('dashboard.merchant.stats.calls.sort', [this, 'desc'])"></span>
+                            </div>
+                        </div>
+                    </th>
+                    <th class="js_sortable">
+                        <div>
+                            <div>
+                                CR,%
+                            </div>
+                            <div>
+                                <span class="mdi mdi-menu-up" onclick="___mc.events.push('dashboard.merchant.stats.calls.sort', [this, 'asc'])"></span>
+                                <span class="mdi mdi-menu-down" onclick="___mc.events.push('dashboard.merchant.stats.calls.sort', [this, 'desc'])"></span>
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td colspan="4">
+                        <div class="loader"><span></span><span></span><span></span><span></span></div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

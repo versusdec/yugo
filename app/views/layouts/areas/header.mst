@@ -1,0 +1,48 @@
+<header class="mobile" handler="modules/header">
+    <span class="mdi mdi-dots-horizontal"></span>
+    <img src="/img/logo.svg" class="logo">
+    {{#lang}}{{/lang}}
+</header>
+<header handler="modules/header">
+    <div>
+        <span class="mdi mdi-menu"></span>
+        <a href="/notifications" class="notifications"><b>{{#i18n}}system.notifications{{/i18n}}: </b><span class="text"></span></a>
+    </div>
+    <div>
+        <!--
+    {{#unless user.role 'admin'}}
+      <button class="small">Пополнить баланс</button>
+      <span class="balance"> 0.00 ₽</span>
+    {{/unless}}
+     -->
+        {{#if user.role 'admin'}}
+            <a href="/support/" class="mdi mdi-chat-alert unanswered" title="Ожидают ответа">2</a>
+        {{/if}}
+        <div>
+            <a>
+                <span class="mdi mdi-currency-rub balance_sign"></span>
+                <span class="balance"> 0.00</span>
+            </a>
+        </div>
+        {{#lang}}{{/lang}}
+        <a href="/notifications" class="mdi mdi-bell-outline bell">
+            <!--      <i class="mdi mdi-numeric-1-circle"></i>-->
+        </a>
+        <div class="email"></div>
+        <img class="avatar" src="/img/ava.png" alt="avatar">
+        <div class="user-menu block">
+            <div class="user-info">
+                <img src="/img/ava.png" class="avatar" alt="">
+                <div>
+                    <div class="email"></div>
+                    <div class="name"></div>
+                </div>
+            </div>
+            <div class="user-actions">
+                <a href="/profile/" class="mdi mdi-wrench">Настройки профиля</a>
+                <a onclick="___mc.auth.logout()" class="mdi mdi-login-variant">Выйти</a>
+            </div>
+        </div>
+        <span class="mdi mdi-chevron-down" style="margin-left: -5px"></span>
+    </div>
+</header>

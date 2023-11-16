@@ -1,0 +1,11 @@
+<tr>
+    <!--  <td title="ID" style="width: 99px">{{id}}</td>-->
+    <td title="{{#i18n}}table.date{{/i18n}}" style="white-space: nowrap;width: 150px">{{timestamp}}</td>
+    <td title="{{#i18n}}billing.transactions.balance.before{{/i18n}}" class="text-right">{{pre_balance}}</td>
+    <td title="{{#i18n}}billing.transactions.balance.sum{{/i18n}}" class="text-right">
+        <span style="font-size: 10px;" class="mdi mdi-checkbox-blank-circle {{classname}}"></span>
+        {{amount}}
+    </td>
+    <td title="{{#i18n}}billing.transactions.balance.after{{/i18n}}" class="text-right">{{post_balance}}</td>
+    <td title="{{#i18n}}billing.transactions.event{{/i18n}}">{{comment}}</td>
+</tr>

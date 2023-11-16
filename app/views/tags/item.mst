@@ -1,0 +1,7 @@
+<tr>
+    <td title="ID">{{id}}</td>
+    <td title="Название">{{name}}</td>
+    <td class="actions">
+        <a class="mdi mdi-delete" title="Удалить" onclick="___mc.events.push('tags.remove', {id: {{id}}, name:'{{name}}' })"></a>
+    </td>
+</tr>

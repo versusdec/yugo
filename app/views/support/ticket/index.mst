@@ -1,0 +1,42 @@
+<h1><a class="back mdi mdi-arrow-left-circle-outline" href="/support/"></a>Поддержка</h1>
+<hr>
+
+<div class="block">
+  <header>
+    <h2>
+      Обращение #{{ticket.id}}
+    </h2>
+  </header>
+
+  <div class="chat">
+    {{#each ticket.messages}}
+        {{> support/ticket/item}}
+    {{/each}}
+  </div>
+    {{#if ticket.status 'active'}}
+      <label>Ваш ответ</label>
+      <textarea name="text"></textarea>
+      {{#dropzone}}{{/dropzone}}
+    {{/if}}
+
+  <div class="buttons-wrapper">
+    {{#if ticket.status 'closed'}}
+        <button type="button" onclick="___mc.events.push('support.ticket.reopen', {{ticket.id}})">Открыть</button>
+        <button type="button" onclick="___mc.events.push('support.ticket.archive', {{ticket.id}})">Архировать</button>
+    {{/if}}
+    {{#if ticket.status 'active'}}
+        <button type="button" onclick="___mc.events.push('support.answer.add')">Ответить</button>
+        <button type="button" onclick="___mc.events.push('support.ticket.close', {{ticket.id}})">Закрыть</button>
+    {{/if}}
+    {{#if ticket.status 'archived'}}
+        {{#if profile.role 'admin'}}
+        <button type="button" onclick="___mc.events.push('support.ticket.unarchive', {{ticket.id}})">Разархивировать
+        </button>
+        {{/if}}
+    {{/if}}
+  </div>
+
+</div>
+
+
+

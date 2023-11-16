@@ -1,0 +1,8 @@
+<tr data-name="{{name}}" data-method="{{method}}">
+    <td>{{name}}</td>
+    <td>{{method}}</td>
+    <td><input type="checkbox" {{#if granted '1'}}checked{{/if}}></td>
+    <td>
+        <a onclick="this.closest('tr').remove()" class="mdi mdi-delete" title="Удалить"></a>
+    </td>
+</tr>

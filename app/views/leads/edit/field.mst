@@ -1,0 +1,29 @@
+{{#if type 'IN' 'string' 'phone'}}
+    <label>{{label}}</label>
+    <input type="text" class="col-1-1" name="{{id}}" value="{{value}}" {{#if disabled}}disabled{{/if}}>
+{{/if}}
+{{#if type 'int'}}
+    <label>{{label}}</label>
+    <input type="number" class="col-1-1" name="{{id}}" value="{{value}}" {{#if disabled}}disabled{{/if}}>
+{{/if}}
+{{#if type 'email'}}
+    <label>{{label}}</label>
+    <input type="email" class="col-1-1" name="{{id}}" value="{{value}}" {{#if disabled}}disabled{{/if}}>
+{{/if}}
+{{#if type 'boolean'}}
+    <label>{{label}}</label>
+    <input type="checkbox" class="col-1-1" name="{{id}}" value="{{value}}" {{#if value 'true'}}checked{{/if}} {{#if disabled}}disabled{{/if}}>
+{{/if}}
+{{#if type 'date'}}
+    {{#datetimepicker type=type label=label name=id value=value disabled=disabled onchange='leads.field.date.change'}}{{/datetimepicker}}
+{{/if}}
+{{#if type 'time'}}
+    {{#datetimepicker type=type label=label name=id value=value disabled=disabled onchange='leads.field.time.change'}}{{/datetimepicker}}
+{{/if}}
+{{#if type 'datetime'}}
+    {{#datetimepicker type=type label=label name=id value=value disabled=disabled onchange='leads.field.datetime.change'}}{{/datetimepicker}}
+{{/if}}
+{{#if type 'select'}}
+    <label>{{label}}</label>
+    {{#select class=id name=id value=value options=options disabled=disabled}}{{/select}}
+{{/if}}

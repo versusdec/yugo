@@ -1,0 +1,55 @@
+<h1>{{title}}</h1>
+<ul class="tabs">
+    <li class="{{#if tab 'common'}}active{{/if}}"><a href="/reports/general/">{{#i18n}}reports.tabs.general{{/i18n}}</a></li>
+    <li class="{{#if tab 'daily'}}active{{/if}}"><a href="/reports/daily/">{{#i18n}}reports.tabs.daily{{/i18n}}</a></li>
+    <li class="{{#if tab 'weekly'}}active{{/if}}"><a href="/reports/weekly/">{{#i18n}}reports.tabs.weekly{{/i18n}}</a></li>
+    <li class="{{#if tab 'monthly'}}active{{/if}}"><a href="/reports/monthly/">{{#i18n}}reports.tabs.monthly{{/i18n}}</a></li>
+    <li class="{{#if tab 'yearly'}}active{{/if}}"><a href="/reports/yearly/">{{#i18n}}reports.tabs.yearly{{/i18n}}</a></li>
+    <li class="{{#if tab 'offers'}}active{{/if}}"><a href="/reports/offers/">{{#i18n}}reports.tabs.offers{{/i18n}}</a></li>
+</ul>
+<hr>
+<div class="columns">
+    <div style="overflow: auto;">
+        <div class="block" handler="controllers/reports/merchant/expenses" style="">
+            <header>
+                <h2>{{#i18n}}reports.expenses.title{{/i18n}}</h2>
+            </header>
+            <hr>
+            <div class="content">
+                <div style="width: 100%;">
+                    <div class="loader"><span></span><span></span><span></span><span></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="block" handler="controllers/reports/merchant/calls" style="">
+            <header>
+                <h2>{{#i18n}}reports.calls.title{{/i18n}}</h2>
+            </header>
+            <hr>
+            <div class="content">
+                <div style="width: 100%;">
+                    <div class="loader"><span></span><span></span><span></span><span></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <aside>
+        <div class="block filters">
+            <header><h2>{{#i18n}}filter.title{{/i18n}}</h2></header>
+            <hr>
+            {{#datetimepicker type='period' value=period onchange='reports.filter.period.change'}}{{/datetimepicker}}
+
+            {{#autocomplete name='region' value=reports_filter.region onset=region_set onsuggest='regions.suggest' min=0 label='table.region' onchange='reports.filter.region.change'}}{{/autocomplete}}
+            {{#autocomplete name='offer' value=reports_filter.offer onset=source_set onsuggest='offers.suggest' min=0 label='table.source' onchange='reports.filter.offers.suggest'}}{{/autocomplete}}
+            {{#autocomplete name='category' value=reports_filter.category onset=category_set onsuggest='categories.suggest' min=0 label='table.category' onchange='reports.filter.category.change'}}{{/autocomplete}}
+
+            <label>Метод приемки</label>
+            {{#select name='method' value=reports_filter.method options=method.options onchange='reports.filter.method.change'}}{{/select}}
+
+            <footer>
+                <button onclick="___mc.events.push('reports.filter.apply')"><span class="mdi mdi-clipboard-check-outline"></span>{{#i18n}}button.apply{{/i18n}}</button>
+                <button class="secondary" onclick="___mc.events.push('reports.filter.reset')">{{#i18n}}button.reset{{/i18n}}</button>
+            </footer>
+        </div>
+    </aside>
+</div>

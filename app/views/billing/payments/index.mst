@@ -1,0 +1,101 @@
+<div class="columns">
+    <div class="aside-wrapper">
+        {{#pagination}}{{/pagination}}
+        <div class="block list" handler="controllers/billing/payments/handler">
+            <header>
+                <h2>{{#i18n}}billing.payments.title{{/i18n}}</h2>
+                {{#if role 'IN' 'admin' 'agency_admin' 'agency_manager'}}
+                    <a onclick="___mc.events.push('payments.show')" class="btn">
+                        {{#i18n}}button.create{{/i18n}}
+                    </a>
+                {{/if}}
+                {{#if role 'webmaster'}}
+                    <a onclick="___mc.events.push('payments.show')" class="btn">
+                        {{#i18n}}billing.payments.order{{/i18n}}
+                    </a>
+                {{/if}}
+            </header>
+            <div class="hide" id="payment">
+                <h3>
+                    {{#if role 'IN' 'admin' 'agency_admin' 'agency_manager'}}{{#i18n}}button.create{{/i18n}}{{/if}}
+                    {{#if role 'IN' 'admin' 'webmaster'}}{{#i18n}}billing.payments.order{{/i18n}}{{/if}}
+                </h3>
+                {{#if role 'IN' 'admin' 'agency_admin' 'agency_manager'}}
+                    {{#autocomplete name='webmaster_id' onsuggest='webmasters.suggest' min=0 label='table.webmaster' onchange='payments.user.change'}}{{/autocomplete}}
+                {{/if}}
+                <label>{{#i18n}}table.total{{/i18n}}</label>
+                <input type="number" name="amount" placeholder="" class="col-1-1">
+                {{#if role 'IN' 'admin'  'agency_admin' 'agency_manager'}}
+                    <label>{{#i18n}}table.comment{{/i18n}}</label>
+                    <textarea name="comment" class="col-1-1"></textarea>
+                {{/if}}
+                <br>
+                <footer>
+                    <button onclick="___mc.events.push('payments.accept', '{{role}}')">
+                        {{#if role 'IN' 'admin' 'agency_admin' 'agency_manager'}}{{#i18n}}button.create{{/i18n}} {{/if}}
+                        {{#if role 'webmaster'}}{{#i18n}}billing.payments.order{{/i18n}} {{/if}}
+                    </button>
+                </footer>
+            </div>
+            <div class="table">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>{{#i18n}}table.date{{/i18n}}</th>
+                        {{#if role 'IN' 'admin' 'agency_admin' 'agency_manager'}}
+                            <th>{{#i18n}}table.user{{/i18n}}</th>
+                        {{/if}}
+                        <th>{{#i18n}}table.total{{/i18n}}</th>
+                        <th>{{#i18n}}table.description{{/i18n}}</th>
+                        <th>{{#i18n}}table.status{{/i18n}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td colspan="100%">
+                            <div class="loader">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {{#pagination}}{{/pagination}}
+    </div>
+    <aside>
+        <div class="block filters">
+            <header>
+                <h2>{{#i18n}}filter.title{{/i18n}}</h2>
+            </header>
+
+            {{#datetimepicker type='period' name='start' value=filter.start onchange='payments.filter.range.change'}}{{/datetimepicker}}
+
+            {{#if role 'IN' 'admin'}}
+                {{#autocomplete name='network_id' value=filter.network_id onset=network_set onsuggest='networks.suggest' min=0 label='table.network' onchange='transactions.filter.change'}}{{/autocomplete}}
+            {{/if}}
+
+            {{#if role 'IN' 'admin' 'network_manager'}}
+                {{#autocomplete name='agency_id' value=filter.agency_id onset=agency_set onsuggest='agencies.suggest' min=0 label='table.agency' onchange='transactions.filter.change'}}{{/autocomplete}}
+            {{/if}}
+
+            {{#if role 'IN' 'admin' 'network_manager' 'agency_manager' 'agency_admin'}}
+                {{#autocomplete name='user_id' value=filter.user_id onset=user_set onsuggest='users.suggest' min=0 label='user.title' onchange='transactions.filter.change'}}{{/autocomplete}}
+            {{/if}}
+
+
+            <label>{{#i18n}}table.status{{/i18n}}</label>
+            {{#select options=statuses onchange='payments.filter.status.change' value=filter.status}}{{/select}}
+
+            <footer class="">
+                <button onclick="___mc.events.push('payments.filter.filter', $('div.list[handler]')[0])"><span class="mdi mdi-clipboard-check-outline"></span>{{#i18n}}button.apply{{/i18n}}</button>
+                <button class="secondary" onclick="___mc.events.push('payments.reset', this)">{{#i18n}}button.reset{{/i18n}}</button>
+            </footer>
+        </div>
+    </aside>
+</div>

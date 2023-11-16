@@ -1,0 +1,80 @@
+<h1><a class="back mdi mdi-arrow-left-circle-outline" href="/"></a>{{title}}</h1>
+<ul class="tabs hide">
+    <li class="{{#if tab 'leads'}}active{{/if}}"><a href="/leads/">{{#i18n}}leads.title{{/i18n}}</a></li>
+    <li class="{{#if tab 'calls'}}active{{/if}}"><a href="/calls/">{{#i18n}}calls.title{{/i18n}}</a></li>
+</ul>
+<hr>
+
+
+{{#if profile.role 'admin'}}
+    {{> leads/list/upload}}
+{{/if}}
+
+
+<div class="columns">
+    <div style="overflow: auto">
+        {{#pagination}}{{/pagination}}
+        <div class="block list" handler="controllers/sales/list/handler">
+            <header>
+                <h2>{{#i18n}}calls.title{{/i18n}}</h2>
+            </header>
+            <div class="table">
+                <table>
+                    <thead>
+                    <tr>
+                        <th style="max-width: 100px">ID</th>
+                        <th>{{#i18n}}table.date{{/i18n}}</th>
+                        <th>{{#i18n}}leads.offer{{/i18n}}</th>
+                        <th>{{#i18n}}leads.record{{/i18n}}</th>
+                        <th>{{#i18n}}leads.phone{{/i18n}}</th>
+                        <th>{{#i18n}}leads.status{{/i18n}}</th>
+                        <th>{{#i18n}}leads.comment{{/i18n}}</th>
+                        <th style="width: 100px;"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td colspan="8">
+                            <div class="loader">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {{#pagination}}{{/pagination}}
+    </div>
+    <aside>
+        <div class="block filters">
+            <header>
+                <h2>{{#i18n}}filter.title{{/i18n}}</h2>
+            </header>
+            {{#datetimepicker type='period' name='period' value=period onchange='sales.filter.period.change'}}{{/datetimepicker}}
+
+            {{#if user.role 'admin'}}
+                {{#autocomplete name="merchant" value=sales_filter.user_id onset=user_set onsuggest='merchants.suggest' min=0 label='table.merchant' onchange='sales.filter.merchant.changed'}}{{/autocomplete}}
+                {{#autocomplete name='category' value=sales_filter.category onset=category_set onsuggest='categories.suggest' min=0 label='table.category' onchange='sales.filter.category.changed'}}{{/autocomplete}}
+                {{#autocomplete name='webmaster' value=sales_filter.webmaster_id onset=user_set onsuggest='webmasters.suggest' min=0 label='table.webmaster' onchange='sales.filter.webmaster.changed'}}{{/autocomplete}}
+                {{#autocomplete name='tag' value=sales_filter.tag onset=tag_set onsuggest='tags.suggest' min=0 label='Тэг' onchange='sales.filter.tag.change'}}{{/autocomplete}}
+            {{/if}}
+            {{#if user.role 'merchant'}}
+                <input type="hidden" name="merchant" value="{{user.id}}" data-value="{{user.id}}">
+            {{/if}}
+            {{#autocomplete name='offer_id' value=sales_filter.offer_id onset=offer_set onsuggest='sales.filter.offers.suggest' min=0 label='table.offer' onchange='sales.filter.offer.changed'}}{{/autocomplete}}
+            <label>{{#i18n}}table.status{{/i18n}}</label>
+            {{#select name='status' value=sales_filter.status options=statuses_options onchange='sales.filter.status.change'}}{{/select}}
+            <label>{{#i18n}}sales.phone_search{{/i18n}}</label>
+            <textarea name="phones" style="width: 99%;height: 32px; padding: 3px 12px;overflow: hidden;resize: vertical" onchange="___mc.events.push('sales.filter.phones', this.value)">{{sales_filter.phones}}</textarea>
+
+            <footer>
+                <button onclick="___mc.events.push('sales.filter.filter', $('div.list[handler]')[0])"><span class="mdi mdi-clipboard-check-outline"></span>{{#i18n}}button.apply{{/i18n}}</button>
+                <button class="secondary" onclick="___mc.events.push('sales.filter.reset', $('div.list[handler]')[0])">{{#i18n}}button.reset{{/i18n}}</button>
+            </footer>
+        </div>
+    </aside>
+</div>

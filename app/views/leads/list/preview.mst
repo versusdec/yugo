@@ -1,0 +1,21 @@
+<div class="preview " data-file="{{file}}" style="margin: 20px 0">
+    <p>Предпросмотр файла {{file}} <span style="cursor: pointer" class="mdi mdi-close remove" onclick="___mc.events.push('leads.upload.preview.remove', this)"></span></p>
+    <div>
+        <table>
+            <tr>
+                {{#each cols}}
+                    <td data-col="{{col}}">
+                        {{#select class='field' name='field' options=fields onchange=field_change}}{{/select}}
+                    </td>
+                {{/each}}
+            </tr>
+            {{#each rows}}
+                <tr>
+                    {{#each .}}
+                        <td>{{.}}</td>
+                    {{/each}}
+                </tr>
+            {{/each}}
+        </table>
+    </div>
+</div>

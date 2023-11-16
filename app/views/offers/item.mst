@@ -1,0 +1,44 @@
+<div class="block item">
+    <header>
+        <h2>{{name}}</h2>
+        <span>
+            <span class="mdi mdi-checkbox-blank-circle {{#if status 'active'}}success{{/if}}{{#if status 'blocked'}}danger{{/if}}"></span>
+            {{status|status}}
+        </span>
+    </header>
+    <div class="columns flex-wrap flex-space-between-center">
+        <div>
+            <div>
+                <span class="dash_stat_headings">id:</span> {{id}}
+            </div>
+            <div>
+                <span class="dash_stat_headings">{{#i18n}}offers.merchant{{/i18n}}:</span> {{merchant.name}} {{merchant.surname}}
+            </div>
+        </div>
+        <div>
+            <div>
+                <span class="dash_stat_headings">{{#i18n}}table.price{{/i18n}}:</span> {{tarification.merchant_price}}
+            </div>
+            <!--<div>
+                <span class="dash_stat_headings">{{#i18n}}table.conversion{{/i18n}}:</span> {{conversion}} %
+            </div>-->
+        </div>
+        <div>
+            <div>
+                <span class="dash_stat_headings">{{#i18n}}offers.autoapprove{{/i18n}}:</span> {{tarification.autoapprove}} {{#numdecl tarification.autoapprove}}["{{#i18n}}numdecl.days.n1{{/i18n}}", "{{#i18n}}numdecl.days.n2{{/i18n}}", "{{#i18n}}numdecl.days.n5{{/i18n}}"]{{/numdecl}}
+            </div>
+            <div>
+                <span class="dash_stat_headings">{{#i18n}}table.type{{/i18n}}:</span> {{tarification.type|status}}
+            </div>
+        </div>
+        <div class="buttons-wrapper">
+            <a href="/offers/edit/{{id}}" class="btn icon">
+                <span class="mdi mdi-file-document-edit-outline"></span>
+            </a>
+            <a href="/offers/details/{{id}}" class="btn icon">
+                <span class="mdi mdi-dots-horizontal"></span>
+            </a>
+
+        </div>
+    </div>
+</div>

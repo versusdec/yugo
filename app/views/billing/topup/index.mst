@@ -1,0 +1,97 @@
+<div class="columns">
+    <div class="aside-wrapper">
+        {{#pagination}}{{/pagination}}
+        <div class="block list" handler="controllers/billing/topup/handler">
+            <header>
+                <h2>{{#i18n}}billing.topup.title{{/i18n}}</h2>
+                {{#if role 'IN' 'admin' 'agency_admin' 'agency_manager'}}
+                    <a onclick="___mc.events.push('topup.show')" class="btn">
+                        {{#i18n}}billing.topup.topup{{/i18n}}
+                    </a>
+                {{/if}}
+            </header>
+            <div class="hide" id="topup">
+                <h3>
+                    {{#i18n}}billing.topup.topup{{/i18n}}
+                </h3>
+                {{#if role 'IN' 'admin' 'agency_admin' 'agency_manager'}}
+                    {{#autocomplete name='merchant_id' onsuggest='merchants.suggest' min=0 label='Рекламодатель' onchange='payments.user.change'}}{{/autocomplete}}
+                {{/if}}
+                <label>{{#i18n}}billing.topup.amount{{/i18n}}</label>
+                <input type="number" name="amount" placeholder="" class="col-1-1">
+                {{#if role 'IN' 'admin' 'agency_admin' 'agency_manager'}}
+                    <label>{{#i18n}}table.comment{{/i18n}}</label>
+                    <textarea name="comment" class="col-1-1"></textarea>
+                {{/if}}
+                <br>
+                <footer>
+                    <button onclick="___mc.events.push('topup.accept', '{{role}}')">
+                        {{#i18n}}billing.topup.topup{{/i18n}}
+                    </button>
+                </footer>
+            </div>
+
+            <div class="table">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>{{#i18n}}table.date{{/i18n}}</th>
+                        {{#if role 'IN' 'admin' 'agency_admin' 'agency_manager'}}
+                            <th>{{#i18n}}table.user{{/i18n}}</th>
+                        {{/if}}
+                        <th>{{#i18n}}table.total{{/i18n}}</th>
+                        <th>{{#i18n}}table.description{{/i18n}}</th>
+                        <th>{{#i18n}}table.status{{/i18n}}</th>
+                        {{#unless role 'IN' 'admin' 'agency_admin' 'agency_manager'}}
+                            <th>{{#i18n}}actions.title{{/i18n}}</th>
+                        {{/unless}}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td colspan="100%">
+                            <div class="loader">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {{#pagination}}{{/pagination}}
+    </div>
+    <aside>
+        <div class="block filters">
+            <header>
+                <h2>{{#i18n}}filter.title{{/i18n}}</h2>
+            </header>
+            {{#datetimepicker type='period' name='period' value=filter.start label='Период с' onchange='topup.filter.range.start'}}{{/datetimepicker}}
+
+            {{#if role 'IN' 'admin'}}
+                {{#autocomplete name='network_id' value=filter.network_id onset=network_set onsuggest='networks.suggest' min=0 label='table.network' onchange='transactions.filter.change'}}{{/autocomplete}}
+            {{/if}}
+
+            {{#if role 'IN' 'admin' 'network_manager'}}
+                {{#autocomplete name='agency_id' value=filter.agency_id onset=agency_set onsuggest='agencies.suggest' min=0 label='table.agency' onchange='transactions.filter.change'}}{{/autocomplete}}
+            {{/if}}
+
+            {{#if role 'IN' 'admin' 'network_manager' 'agency_manager' 'agency_admin'}}
+                {{#autocomplete name='user_id' value=filter.user_id onset=user_set onsuggest='users.suggest' min=0 label='user.title' onchange='transactions.filter.change'}}{{/autocomplete}}
+            {{/if}}
+
+            <label>{{#i18n}}table.status{{/i18n}}</label>
+            {{#select options=statuses onchange='topup.filter.status.change' value=filter.status}}{{/select}}
+
+            <footer class="buttons-wrapper">
+                <button onclick="___mc.events.push('topup.filter.filter', $('div.list[handler]')[0])"><span class="mdi mdi-clipboard-check-outline"></span>{{#i18n}}button.apply{{/i18n}}</button>
+                <button onclick="___mc.events.push('topup.reset', this)">{{#i18n}}button.reset{{/i18n}}</button>
+            </footer>
+        </div>
+
+    </aside>
+</div>

@@ -1,0 +1,28 @@
+<h1>
+    <a class="back mdi mdi-arrow-left-circle-outline" href="/regions/"></a>{{title}}
+</h1>
+
+<div class="block">
+    <header>
+        <h2>{{title}}</h2>
+    </header>
+
+    <label>Название</label>
+    <input type="text" name="name" value="{{item.name}}">
+
+    <label>Статус</label>
+    {{#select options=statuses value=item.status onchange=status_change}}{{/select}}
+
+    {{#autocomplete name='network_id' value=item.network_id onset=network_set onsuggest='networks.suggest' min=0 label='Сеть' onchange='region.network.change'}}{{/autocomplete}}
+
+    {{#autocomplete name='agency_id' value=item.agency_id onset=network_set onsuggest='agencies.suggest' min=0 label='Агентство' onchange='region.agency.change'}}{{/autocomplete}}
+
+    <footer>
+        {{#unless id 'new'}}
+        <button data-type="update">сохранить</button>
+        {{/unless}}
+        {{#if id 'new'}}
+            <button data-type="add">создать</button>
+        {{/if}}
+    </footer>
+</div>

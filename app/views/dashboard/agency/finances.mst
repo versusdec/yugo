@@ -1,0 +1,18 @@
+<div class="block" handler="controllers/dashboard/agency/finances">
+    <header class="flex flex-space-between-center">
+        <h2>{{#i18n}}dashboard.finances{{/i18n}}</h2>
+        <span onclick="document.querySelector('main').scrollTo(0,0)">с 2021-11-22 по 2021-11-25</span>
+    </header>
+    <hr>
+    <div class="">
+        <h3>{{#i18n}}table.expenses{{/i18n}}</h3>
+
+        <div class="finances_chart"></div>
+        <div class="flex ">
+            <button class="round  btn_toggle_series" onclick="___mc.events.push('dashboard.agency.stats.finances.toggle.series', {btn: this, name: this.innerText})">{{#i18n}}dashboard.agency.spent{{/i18n}}</button>
+            <button class="round blue3 btn_toggle_series" onclick="___mc.events.push('dashboard.agency.stats.finances.toggle.series', {btn: this, name: this.innerText})">{{#i18n}}dashboard.agency.profit{{/i18n}}</button>
+            <button class="round light_blue btn_toggle_series" onclick="___mc.events.push('dashboard.agency.stats.finances.toggle.series', {btn: this, name: this.innerText})">{{#i18n}}dashboard.agency.web_income{{/i18n}}</button>
+            <button class="round select_bg btn_toggle_series" onclick="___mc.events.push('dashboard.agency.stats.finances.toggle.series', {btn: this, name: this.innerText})">HOLD</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="block" handler="controllers/dashboard/merchant/expenses">
+    <header class="flex flex-space-between-center">
+        <h2>{{#i18n}}table.expenses{{/i18n}}</h2>
+        <span onclick="document.querySelector('main').scrollTo(0,0)">{{period}}</span>
+    </header>
+    <hr>
+    <div class="flex flex-center-start">
+        <div class="col-1-2">
+            <h3>{{#i18n}}table.total{{/i18n}}</h3>
+            <div class="chart">
+
+            </div>
+            <div class="flex flex-center-center">
+                <button class="round btn_toggle_series" onclick="___mc.events.push('dashboard.merchant.stats.expenses.toggle.series', this.innerText)">{{#i18n}}table.total{{/i18n}}</button>
+                <button class="round light_blue btn_toggle_series" onclick="___mc.events.push('dashboard.merchant.stats.expenses.toggle.series', this.innerText)">{{#i18n}}table.expenses{{/i18n}}</button>
+                <button class="round select_bg btn_toggle_series" onclick="___mc.events.push('dashboard.merchant.stats.expenses.toggle.series', this.innerText)">{{#i18n}}table.returns{{/i18n}}</button>
+            </div>
+        </div>
+        <div class="col-1-2">
+            <table>
+                <thead>
+                <tr>
+                    <th>{{#i18n}}table.date{{/i18n}}</th>
+                    <th class="js_sortable">
+                        <div>
+                            <div>
+                                {{#i18n}}table.amount{{/i18n}}
+                            </div>
+                            <div>
+                                <span class="mdi mdi-menu-up" onclick="___mc.events.push('dashboard.merchant.stats.expenses.sort', [this, 'asc'])"></span>
+                                <span class="mdi mdi-menu-down" onclick="___mc.events.push('dashboard.merchant.stats.expenses.sort', [this, 'desc'])"></span>
+                            </div>
+                        </div>
+                    </th>
+                    <th class="js_sortable">
+                        <div>
+                            <div>
+                                {{#i18n}}table.returns{{/i18n}}
+                            </div>
+                            <div>
+                                <span class="mdi mdi-menu-up" onclick="___mc.events.push('dashboard.merchant.stats.expenses.sort', [this, 'asc'])"></span>
+                                <span class="mdi mdi-menu-down" onclick="___mc.events.push('dashboard.merchant.stats.expenses.sort', [this, 'desc'])"></span>
+                            </div>
+                        </div>
+                    </th>
+                    <th class="js_sortable">
+                        <div>
+                            <div>
+                                {{#i18n}}table.cost{{/i18n}}
+                            </div>
+                            <div>
+                                <span class="mdi mdi-menu-up" onclick="___mc.events.push('dashboard.merchant.stats.expenses.sort', [this, 'asc'])"></span>
+                                <span class="mdi mdi-menu-down" onclick="___mc.events.push('dashboard.merchant.stats.expenses.sort', [this, 'desc'])"></span>
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td colspan="4">
+                        <div class="loader">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<tr>
+  <td title="Категория"><a class="link" href="/categories/edit/{{category.id}}">{{category.name}}</a></td>
+  <td title="Веб-мастер"><a class="link" href="/users/edit/{{webmaster.id}}">{{webmaster.surname}} {{webmaster.name}} {{webmaster.second_name}}</a></td>
+  <td title="Новые"><a class="link" href="/sales/#category={{category.id}}&webmaster_id={{webmaster.id}}&status=new{{#if filter.start}}&start={{filter.start}}{{/if}}{{#if filter.finish}}&finish={{filter.finish}}{{/if}}">{{new}}</a></td>
+  <td title="В работе"><a class="link" href="/sales/#category={{category.id}}&webmaster_id={{webmaster.id}}&status=inwork{{#if filter.start}}&start={{filter.start}}{{/if}}{{#if filter.finish}}&finish={{filter.finish}}{{/if}}">{{inwork}}</a></td>
+  <td title="Hold"><a class="link" href="/sales/#category={{category.id}}&webmaster_id={{webmaster.id}}&status=hold{{#if filter.start}}&start={{filter.start}}{{/if}}{{#if filter.finish}}&finish={{filter.finish}}{{/if}}">{{hold}}</a></td>
+  <td title="Отказ"><a class="link" href="/sales/#category={{category.id}}&webmaster_id={{webmaster.id}}&status=rejected{{#if filter.start}}&start={{filter.start}}{{/if}}{{#if filter.finish}}&finish={{filter.finish}}{{/if}}">{{rejected}}</td></td>
+  <td title="Приняты"><a class="link" href="/sales/#category={{category.id}}&webmaster_id={{webmaster.id}}&status=approved{{#if filter.start}}&start={{filter.start}}{{/if}}{{#if filter.finish}}&finish={{filter.finish}}{{/if}}">{{approved}}</td></td>
+  <td title="% принятия">{{asd}}</td>
+  <td title="Денег вебу"><a class="link" href="/billing/#user_id={{webmaster.id}}{{#if filter.start}}&start={{filter.start}}{{/if}}{{#if filter.finish}}&finish={{filter.finish}}{{/if}}">{{amount}}</a> ₽</td>
+  <td title="Комиссия">{{commission}} ₽</td>
+  <td title="Дата последней отгрузки">{{last_upload}}</td>
+</tr>

@@ -1,0 +1,140 @@
+<h1><a class="back mdi mdi-arrow-left-circle-outline" href="/"></a>{{title}}</h1>
+<!--
+<h2 style="text-align: right">
+    <a href="/sales/stats">Статистика</a><a class="forward mdi mdi-arrow-right-circle-outline" href="/sales/stats"></a>
+</h2>
+-->
+<hr>
+
+{{#if user.role 'admin'}}
+  <div class="block sell">
+    <header>
+      <h2>Продать</h2>
+    </header>
+    <div class="row">
+      <div class="col-1-4">
+          {{#datetimepicker type='date' name='start' label='Период с' onchange='sell.filter.range.start'}}{{/datetimepicker}}
+          {{#datetimepicker type='date' name='finish' label='Период по' onchange='sell.filter.range.finish'}}{{/datetimepicker}}
+      </div>
+      <div class="col-1-4">
+        {{#autocomplete onsuggest='regions.suggest' min=0 label='Регион' onchange='sales.filter.region.change'}}{{/autocomplete}}
+        {{#autocomplete onsuggest='categories.suggest' min=0 label='Категория' onchange='sales.filter.category.change'}}{{/autocomplete}}
+        {{#autocomplete onsuggest='sources.suggest' min=0 label='Источник' onchange='sales.filter.source.change'}}{{/autocomplete}}
+      </div>
+      <div class="col-1-4">
+        {{#autocomplete onsuggest='webmasters.suggest' min=0 label='Вебмастер' onchange='sales.filter.webmaster.change'}}{{/autocomplete}}
+        {{#autocomplete name="merchant" onsuggest='merchants.suggest' min=0 label='Рекламодатель' onchange='sales.filter.merchant.change'}}{{/autocomplete}}
+        {{#autocomplete onsuggest='sell.offers.suggest' min=0 label='Оффер' onchange='sell.filter.offer.change'}}{{/autocomplete}}
+      </div>
+      <div class="col-1-4">
+        {{#autocomplete onsuggest='tags.suggest' min=0 label='Тэг' onchange='sell.filter.tag.change'}}{{/autocomplete}}
+        <div style="margin-top: 65px">
+        <b style="min-width: 200px;display:inline-block;">Доступно для продажи: </b>
+        <span data-available></span>
+        <br><br>
+        <label>Кол-во</label>
+        <input type="number" value="0" name="quantity"
+               onchange="___mc.events.push('sales.quantity.change', this.value)">
+        <button id="leads_sell" onclick="___mc.events.push('leads.sell')" disabled>отправить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/if}}
+
+<div class="block filters">
+  <header>
+    <h2>Фильтры</h2>
+  </header>
+  <div class="row">
+    <div class="col-1-4">
+      {{#datetimepicker type='date' name='start' value=sales_filter.start label='Период с' onchange='sales.filter.range.start'}}{{/datetimepicker}}
+      {{#datetimepicker type='date' name='finish' value=sales_filter.finish label='Период по' onchange='sales.filter.range.finish'}}{{/datetimepicker}}
+    </div>
+    <div class="col-1-4">
+      {{#if user.role 'admin'}}
+        {{#autocomplete name="merchant" value=sales_filter.user_id onset=user_set onsuggest='merchants.suggest' min=0 label='Рекламодатель' onchange='sales.filter.merchant.changed'}}{{/autocomplete}}
+      {{/if}}
+      {{#if user.role 'merchant'}}
+          <input type="hidden" name="merchant" value="{{user.id}}" data-value="{{user.id}}">
+      {{/if}}
+      {{#autocomplete name='offer_id' value=sales_filter.offer_id onset=offer_set onsuggest='sales.filter.offers.suggest' min=0 label='Оффер' onchange='sales.filter.offer.changed'}}{{/autocomplete}}
+        <label>Статус</label>
+        {{#select name='status' value=sales_filter.status options=statuses_options onchange='sales.filter.status.change'}}{{/select}}
+    </div>
+    <div class="col-1-4">
+        {{#if user.role 'admin'}}
+            {{#autocomplete name='category' value=sales_filter.category onset=category_set onsuggest='categories.suggest' min=0 label='Категория' onchange='sales.filter.category.changed'}}{{/autocomplete}}
+            {{#autocomplete name='webmaster' value=sales_filter.webmaster_id onset=user_set onsuggest='webmasters.suggest' min=0 label='Вебмастер' onchange='sales.filter.webmaster.changed'}}{{/autocomplete}}
+        {{/if}}
+        <label>Поиск по номеру (один на строку)</label>
+        <textarea name="phones" style="width: 99%;height: 32px; padding: 3px 12px;overflow: hidden;resize: vertical" onchange="___mc.events.push('sales.filter.phones', this.value)">{{sales_filter.phones}}</textarea>
+    </div>
+    <div class="col-1-4" id="sales-stats">
+      {{#if user.role 'admin'}}
+      {{#autocomplete name='tag' value=sales_filter.tag onset=tag_set onsuggest='tags.suggest' min=0 label='Тэг' onchange='sales.filter.tag.change'}}{{/autocomplete}}
+      {{/if}}
+      <label>Найдено: </label>
+      <br><br>
+      <b style="min-width: 100px;display:inline-block;">Всего: </b><span data-total></span><br><br>
+    </div>
+  </div>
+  <br><br>
+  <div class="buttons-wrapper">
+    <button onclick="___mc.events.push('sales.filter.filter', $('div.list[handler]')[0])">фильтровать</button>
+    <button onclick="___mc.events.push('sales.filter.reset', $('div.list[handler]')[0])">сбросить</button>
+    <button onclick="___mc.events.push('sales.export')">экспорт</button>
+  </div>
+</div>
+
+<div class="block">
+  <header>
+    <h2>Применить для отмеченных</h2>
+  </header>
+  <div class="row">
+      <label>Статус</label>
+    {{#select options=actions_options onchange='sales.action.change'}}{{/select}}
+  </div>
+  <br><br>
+  <div class="buttons-wrapper">
+    <button onclick="___mc.events.push('sales.apply')">применить</button>
+  </div>
+</div>
+
+<div class="block list" handler="controllers/sales/list/handler">
+  <header>
+    <h2>{{title}}</h2>
+  </header>
+  {{#pagination}}{{/pagination}}
+  <table>
+    <thead>
+    <tr>
+      <th style="max-width: 100px">
+        <input type="checkbox" onchange="___mc.events.push('sales.check.all', this)">
+      </th>
+      <th style="max-width: 100px">ID</th>
+      <th>Дата/время</th>
+      <th>Оффер</th>
+      <th>Телефон</th>
+      <th>Запись</th>
+      <th>Статус</th>
+      <th>Комментарий</th>
+      <th>Вложения</th>
+      <th style="width: 100px;">Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td colspan="10">
+        <div class="loader">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  {{#pagination}}{{/pagination}}
+</div>

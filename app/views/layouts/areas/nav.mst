@@ -1,0 +1,227 @@
+<nav handler="controllers/nav">
+    <div class="mobile">
+        <div class="mdi mdi-close"></div>
+        <div>
+            <span class="mdi mdi-credit-card-multiple"></span>
+        </div>
+    </div>
+    <img src="/img/logo.svg" class="logo">
+    <div class="mobile">
+        <hr>
+    </div>
+    {{#if user.role 'admin'}}
+
+    {{/if}}
+    {{#if user.role 'IN' 'merchant' 'agency_admin' 'agency_manager' 'webmaster'}}
+        <div class="menu_block">
+            <h5>{{#i18n}}nav.common{{/i18n}}</h5>
+            <ul>
+                <li>
+                    <a href="/" title="{{#i18n}}dashboard.title{{/i18n}}">
+                        <span class="mdi mdi-remote-desktop"></span>{{#i18n}}dashboard.title{{/i18n}}
+                    </a>
+                </li>
+                {{#if user.role 'merchant'}}
+                    <li>
+                        <a href="/sales/">
+                            <span class="mdi mdi-clipboard-check-outline"></span>{{#i18n}}sales.title{{/i18n}}
+                        </a>
+                    </li>
+                {{/if}}
+            </ul>
+        </div>
+    {{/if}}
+
+    {{#if user.role 'IN' 'agency_admin' 'agency_manager'}}
+        <div class="menu_block">
+            <h5>{{#i18n}}nav.agency{{/i18n}}</h5>
+            <ul>
+                <li>
+                    <a href="/offers/" title="{{#i18n}}offers.title{{/i18n}}">
+                        <span class="mdi mdi-briefcase"></span>{{#i18n}}offers.title{{/i18n}}
+                    </a>
+                </li>
+                <li>
+                    <a href="/merchants/" title="{{#i18n}}merchants.title{{/i18n}}">
+                        <span class="mdi mdi-text-box-outline"></span>{{#i18n}}merchants.title{{/i18n}}
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    {{/if}}
+
+    {{#if user.role 'merchant'}}
+        <div class="menu_block">
+            <h5>{{#i18n}}reports.title{{/i18n}}</h5>
+            <ul>
+                <li>
+                    <a href="/reports/daily/">
+                        <span class="mdi mdi-chart-bar"></span>{{#i18n}}reports.tabs.daily{{/i18n}}
+                    </a>
+                </li>
+                <li>
+                    <a href="/reports/offers/">
+                        <span class="mdi mdi-chart-bar"></span>{{#i18n}}reports.tabs.offers{{/i18n}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="menu_block">
+            <h5>{{#i18n}}billing.title{{/i18n}}</h5>
+            <ul>
+                <li>
+                    <a href="/billing/transactions/">
+                        <span class="mdi mdi-credit-card-wireless"></span>{{#i18n}}billing.transactions.title{{/i18n}}
+                    </a>
+                </li>
+                <li>
+                    <a href="/billing/payments/">
+                        <span class="mdi mdi-credit-card-plus"></span>{{#i18n}}billing.payments.title{{/i18n}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- <div class="menu_block">
+             <h5>Инфо</h5>
+             <ul>
+                 <li>
+                     <a href="/">
+                         <span class="mdi mdi-chart-bar"></span>Help Center
+                     </a>
+                 </li>
+             </ul>
+         </div>-->
+    {{/if}}
+    {{#if user.role 'admin'}}
+        <ul>
+            <li>
+                <a href="/acl/">
+                    <span class="mdi mdi-shield-account"></span>Шаблоны ACL
+                </a>
+            </li>
+            <li>
+                <a href="/networks/">
+                    <span class="mdi mdi-network"></span>Сети
+                </a>
+            </li>
+            <li>
+                <a href="/agencies/">
+                    <span class="mdi mdi-shopping"></span>Агентства
+                </a>
+            </li>
+            <li>
+                <a href="/">
+                    <span class="mdi mdi-chart-bar"></span>Статистика
+                </a>
+            </li>
+            <li>
+                <a href="/sales/">
+                    <span class="mdi mdi-cash-multiple"></span>Продажи
+                </a>
+            </li>
+            <li>
+                <a href="/sales/stats/offers">
+                    <span class="mdi mdi-chart-histogram"></span>Стат. продаж
+                </a>
+            </li>
+            <li>
+                <a href="/offers/">
+                    <span class="mdi mdi-briefcase"></span>Офферы
+                </a>
+            </li>
+
+            <li>
+                <a href="/leads/">
+                    <span class="mdi mdi-contacts"></span>Хаб
+                </a>
+            </li>
+            <li>
+                <a href="/categories/">
+                    <span class="mdi mdi-card-text"></span>Категории
+                </a>
+            </li>
+            <li>
+                <a href="/regions/">
+                    <span class="mdi mdi-globe-model"></span>Регионы
+                </a>
+            </li>
+            <li>
+                <a href="/sources/">
+                    <span class="mdi mdi-source-branch"></span>Источники
+                </a>
+            </li>
+            <li>
+                <a href="/fields/">
+                    <span class="mdi mdi-format-align-left"></span>Поля
+                </a>
+            </li>
+            <li>
+                <a href="/tags/">
+                    <span class="mdi mdi-tag-multiple"></span>Тэги
+                </a>
+            </li>
+            <li>
+                <a href="/campaigns/">
+                    <span class="mdi mdi-routes"></span>Кампании
+                </a>
+            </li>
+            <li>
+                <a href="/phones/">
+                    <span class="mdi mdi-phone-classic"></span>Номера
+                </a>
+            </li>
+            <li>
+                <a href="/users/">
+                    <span class="mdi mdi-account"></span>Пользователи
+                </a>
+            </li>
+            <li>
+                <a href="/billing/">
+                    <span class="mdi mdi-credit-card"></span>Финансы
+                </a>
+            </li>
+
+        </ul>
+    {{/if}}
+    {{#if user.role 'webmaster'}}
+        <ul>
+            <li>
+                <a href="/">
+                    <span class="mdi mdi-chart-bar"></span>Статистика
+                </a>
+            </li>
+            <li>
+                <a href="/leads/">
+                    <span class="mdi mdi-contacts"></span>Хаб
+                </a>
+            </li>
+            <li>
+                <a href="/campaigns/">
+                    <span class="mdi mdi-routes"></span>Кампании
+                </a>
+            </li>
+            <li>
+                <a href="/phones/">
+                    <span class="mdi mdi-phone-classic"></span>Номера
+                </a>
+            </li>
+        </ul>
+    {{/if}}
+
+
+    <!--<ul>
+        <li>
+            <a href="/billing/">
+                <span class="mdi mdi-credit-card-multiple"></span>Финансы
+            </a>
+        </li>
+        {{#if user.role 'IN' 'admin' 'merchant' 'webmaster'}}
+            <li>
+                <a href="/support/">
+                    <span class="mdi mdi-timeline-help"></span>Поддержка
+                </a>
+            </li>
+        {{/if}}
+    </ul>-->
+</nav>

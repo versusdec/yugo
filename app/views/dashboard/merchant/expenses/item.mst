@@ -1,0 +1,6 @@
+<tr>
+    <td title="{{#i18n}}table.date{{/i18n}}">2021-11-25</td>
+    <td title="{{#i18n}}table.amount{{/i18n}}">14</td>
+    <td title="{{#i18n}}table.returns{{/i18n}}">13</td>
+    <td title="{{#i18n}}table.cost{{/i18n}}">2843 RUB</td>
+</tr>

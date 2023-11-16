@@ -1,0 +1,87 @@
+<div>
+    <h1><a class="back mdi mdi-arrow-left-circle-outline" href="/sales/"></a>Лид ID: {{item.id}}</h1>
+    <h1 style="float: right"><a class="mdi mdi-phone" style="font-size: 28px" href="tel:+{{item.phone}}">{{item.phone}}</a></h1>
+</div>
+<hr>
+
+<div class="columns">
+    <div class="block">
+        <div style="text-align: right">
+            <button class="mdi mdi-check" onclick="___mc.events.push('sales.change.status', {id: {{item.id}}, status: 'approved'})">Принять</button>
+            {{#if item.status 'IN' 'inwork' 'approved'}}
+            <button class="mdi mdi-bookmark-remove" onclick="___mc.events.push('sales.change.status', {id: {{item.id}}, status: 'rejected'})">Отклонить</button>
+            {{/if}}
+        </div>
+    </div>
+</div>
+
+{{#if item.calls}}
+    <div class="columns">
+        <div class="block">
+            <header>
+                <h2>Записи</h2>
+            </header>
+            {{#each item.calls}}
+                <div class="record-row">
+                    <span class="col-1-5"><span class="mdi mdi-phone-outgoing"></span>&nbsp;{{timestamp}}</span>
+                    <audio controls class="col-4-5" preload="none">
+                        <source src="https://broker.botto.ru{{record}}" type="audio/mpeg">
+                    </audio>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+{{/if}}
+
+<div class="columns lead-wrapper">
+  <div class="block " id="lead-fields">
+    <header>
+      <h2>Основные</h2>
+    </header>
+
+      <div id="lead-fields-list">
+          {{#each item.fields}}
+              {{> leads/edit/field}}
+          {{/each}}
+      </div>
+      <label>Комментарий</label>
+      <textarea rows="5" style="resize: vertical" disabled>{{item.comment}}</textarea>
+    <footer>
+      <!--<button type="button" class="btn" onclick="___mc.events.push('sales.update')">Сохранить</button>-->
+    </footer>
+  </div>
+
+  <div class="block" handler="controllers/sales/edit/handler" data-lead="{{item.id}}">
+    <header>
+      <h2>История</h2>
+    </header>
+    <div class="table">
+    {{#pagination}}{{/pagination}}
+      <table>
+        <thead>
+        <tr>
+          <th>Дата</th>
+          {{#if profile.role 'admin'}}<th>Рекламодатель</th>{{/if}}
+          <th>Оффер</th>
+          <th>Комментарий</th>
+          <th>Вложения</th>
+          <th>Статус</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td colspan="{{#if profile.role 'admin'}}6{{/if}}{{#if profile.role 'merchant'}}5{{/if}}">
+            <div class="loader">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    {{#pagination}}{{/pagination}}
+    </div>
+  </div>
+</div>

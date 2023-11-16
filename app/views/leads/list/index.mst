@@ -1,0 +1,77 @@
+<h1><a class="back mdi mdi-arrow-left-circle-outline" href="/"></a>{{title}}</h1>
+<ul class="tabs">
+    <li class="{{#if tab 'leads'}}active{{/if}}"><a href="/leads/">{{#i18n}}leads.title{{/i18n}}</a></li>
+    <li class="{{#if tab 'calls'}}active{{/if}}"><a href="/calls/">{{#i18n}}calls.title{{/i18n}}</a></li>
+</ul>
+<hr>
+
+
+{{#if profile.role 'admin'}}
+    {{> leads/list/upload}}
+{{/if}}
+
+
+<div class="columns">
+    <div style="overflow: auto">
+        {{#pagination}}{{/pagination}}
+        <div class="block list" handler="controllers/leads/list/handler">
+            <header>
+                <h2>{{#i18n}}calls.title{{/i18n}}</h2>
+            </header>
+            <div class="table">
+                <table>
+                    <thead>
+                    <tr>
+                        <th style="max-width: 100px">ID</th>
+                        <th>{{#i18n}}table.date{{/i18n}}</th>
+                        <th>{{#i18n}}leads.offer{{/i18n}}</th>
+                        <th>{{#i18n}}leads.record{{/i18n}}</th>
+                        <th>{{#i18n}}leads.phone{{/i18n}}</th>
+                        <th>{{#i18n}}leads.status{{/i18n}}</th>
+                        <th>{{#i18n}}leads.comment{{/i18n}}</th>
+                        <th style="width: 100px;"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td colspan="8">
+                            <div class="loader">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {{#pagination}}{{/pagination}}
+    </div>
+    <aside>
+        <div class="block filters">
+            <header>
+                <h2>{{#i18n}}filter.title{{/i18n}}</h2>
+            </header>
+            {{#datetimepicker type='period' name='period' value=period onchange='leads.filter.period.change'}}{{/datetimepicker}}
+
+            {{#autocomplete name='region' value=leads_filter.region onset=region_set onsuggest='regions.suggest' min=0 label='Регион' onchange='leads.filter.change'}}{{/autocomplete}}
+            {{#autocomplete name='offer' value=leads_filter.offer onset=source_set onsuggest='offers.suggest' min=0 label='Источник' onchange='leads.filter.change'}}{{/autocomplete}}
+            {{#autocomplete name='category' value=leads_filter.category onset=category_set onsuggest='categories.suggest' min=0 label='Категория' onchange='leads.filter.change'}}{{/autocomplete}}
+
+            {{#if profile.role 'admin'}}
+                {{#autocomplete name='webmaster' value=leads_filter.user_id onset=webmaster_set onsuggest='webmasters.suggest' min=0 label='Вебмастер' onchange='leads.filter.change'}}{{/autocomplete}}
+            {{/if}}
+            {{#if profile.role 'webmaster'}}
+                <input type="hidden" name="webmaster" value="{{profile.id}}">
+            {{/if}}
+            {{#autocomplete name='tag' value=leads_filter.tag onset=tag_set onsuggest='tags.suggest' min=0 label='Тэг' onchange='leads.filter.change'}}{{/autocomplete}}
+
+            <footer>
+                <button onclick="___mc.events.push('leads.filter.filter', $('div.list[handler]')[0])"><span class="mdi mdi-clipboard-check-outline"></span>{{#i18n}}button.apply{{/i18n}}</button>
+                <button class="secondary" onclick="___mc.events.push('leads.filter.reset', $('div.list[handler]')[0])">{{#i18n}}button.reset{{/i18n}}</button>
+            </footer>
+        </div>
+    </aside>
+</div>

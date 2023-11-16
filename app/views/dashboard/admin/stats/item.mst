@@ -1,0 +1,41 @@
+<div class="item col-1-2">
+    <div class="block stats-block">
+        <div class="">Лидов всего</div>
+        <div class="val leads"> {{cnt}}</div>
+    </div>
+</div>
+
+<div class="item col-1-2">
+    <div class="block stats-block">
+        <div class="">В работе</div>
+        <div class="val payment"> {{leads}}</div>
+    </div>
+</div>
+
+<div class="item col-1-2">
+    <div class="block stats-block">
+        <div class="">Конверсий</div>
+        <div class="val conv"> {{calls}}</div>
+    </div>
+</div>
+
+<div class="item col-1-2">
+    <div class="block stats-block">
+        <div class="">Цена конверсии</div>
+        <div class="val payment"> {{avg_cost_calls}} ₽</div>
+    </div>
+</div>
+
+<div class="item col-1-2">
+    <div class="block stats-block">
+        <div class="">Цена за лид</div>
+        <div class="val payment"> {{avg_cost}} ₽</div>
+    </div>
+</div>
+
+<div class="item col-1-2">
+    <div class="block stats-block">
+        <div class="">Сумма всего</div>
+        <div class="val calls"> {{outcome}} ₽</div>
+    </div>
+</div>

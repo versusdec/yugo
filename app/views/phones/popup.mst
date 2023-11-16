@@ -1,0 +1,6 @@
+<h3>Привязать вебмастера?</h3>
+<p>Обязательно укажите вебмастера</p>
+{{#autocomplete name='user_id' onsuggest='webmasters.suggest' min=0 label='Вебмастер' onchange='phones.popup.webmaster.change'}}{{/autocomplete}}
+<footer>
+    <button class="" onclick="___mc.events.push('phones.webmaster.apply', this)">Применить</button>
+</footer>

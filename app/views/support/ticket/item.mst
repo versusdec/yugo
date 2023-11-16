@@ -1,0 +1,35 @@
+<div class="message">
+  <div class="columns">
+    <div class="message-text">
+      <p>
+        {{text}}
+      </p>
+      {{#if attachments}}
+        <li class="text-warning">Вложения</li>
+        <br>
+        <div class="row">
+          {{#each attachments}}
+            <a href="{{path}}" target="_blank" class="attachment">
+              <img src="{{path}}" alt="{{name}}">
+            </a>
+          {{/each}}
+        </div>
+      {{/if}}
+    </div>
+    <aside class="message-info">
+      <div class="columns">
+        <div class="">
+          <div class="name">
+            {{user.name}} {{user.surname}}
+          </div>
+          <time class="time">
+            {{created}}
+          </time>
+          <hr class="margin">
+        </div>
+        <img class="avatar" src="{{#if user.avatar}}{{user.avatar}}{{/if}}{{#unless user.avatar}}/img/ava.png{{/unless}}" alt="">
+      </div>
+    </aside>
+  </div>
+</div>
+

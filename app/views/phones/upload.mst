@@ -1,0 +1,18 @@
+<div class="block upload" handler="controllers/phones/upload">
+    <header>
+        <h2>Загрузка</h2>
+    </header>
+
+    {{#dropzone onupload='phones.upload.file'}}{{/dropzone}}
+
+    <div class="" id="upload">
+        <div class="row">
+            <label>Номера (один на строку)</label>
+            <textarea style="width:100%; resize:auto" id="phones" rows="3"></textarea>
+        </div>
+
+        <footer>
+            <button data-type="upload" onclick="___mc.events.push('phones.upload')">загрузить</button>
+        </footer>
+    </div>
+</div>

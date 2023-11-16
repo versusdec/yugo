@@ -1,0 +1,59 @@
+<h1><a class="back mdi mdi-arrow-left-circle-outline" href="/"></a>{{title}}</h1>
+<hr>
+
+<div class="columns">
+    <div style="overflow: auto">
+        {{#pagination}}{{/pagination}}
+        <div class="block list" handler="controllers/merchants/handler">
+            <header>
+                <h2>{{#i18n}}merchants.subtitle{{/i18n}}</h2>
+            </header>
+            <div class="table">
+                <table>
+                    <thead>
+                    <tr>
+                        <th style="max-width: 100px">ID</th>
+                        <th>{{#i18n}}user.name{{/i18n}}</th>
+                        <th>{{#i18n}}user.email{{/i18n}}</th>
+                        <th>{{#i18n}}table.balance{{/i18n}}</th>
+                        <th>{{#i18n}}user.registered{{/i18n}}</th>
+                        <th>{{#i18n}}status.title{{/i18n}}</th>
+                        <th style="width: 100px;"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td colspan="7">
+                            <div class="loader">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {{#pagination}}{{/pagination}}
+    </div>
+    <aside>
+        <div class="block filters">
+            <header>
+                <h2>{{#i18n}}filter.title{{/i18n}}</h2>
+            </header>
+            {{#datetimepicker type='date' name='registered' value=filter.registered onchange=date_change}}{{/datetimepicker}}
+
+            <label>{{#i18n}}status.title{{/i18n}}</label>
+            {{#select value=filter.status onchange=status_change options=statuses}}{{/select}}
+
+            {{#autocomplete name='merchant' value=filter.user_id onset=merchant_set onsuggest='agencies.merchants.suggest' min=0 label='table.merchant' onchange='merchants.user.change'}}{{/autocomplete}}
+
+            <footer>
+                <button onclick="___mc.events.push('merchants.filter.filter', $('div.list[handler]')[0])"><span class="mdi mdi-clipboard-check-outline"></span>{{#i18n}}button.apply{{/i18n}}</button>
+                <button class="secondary" onclick="___mc.router.go(location.pathname)">{{#i18n}}button.reset{{/i18n}}</button>
+            </footer>
+        </div>
+    </aside>
+</div>

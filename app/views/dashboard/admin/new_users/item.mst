@@ -1,0 +1,10 @@
+<tr>
+  <td title="ID"><a class="link" href="/users/edit/{{id}}">{{id}}</a></td>
+  <td title="E-mail"><a class="link" href="/users/edit/{{id}}">{{email}}</a></td>
+  <td title="ФИО"><a class="link" href="/users/edit/{{id}}">{{surname}} {{name}} {{second_name}}</a></td>
+  <td title="Баланс" style="white-space: nowrap"><a class="link" href="/users/edit/{{id}}">{{balance}} ₽</a></td>
+  <td title="Статус"><a class="link" href="/users/edit/{{id}}">{{#locale status}}{{/locale}}</a></td>
+  <!--<td title="Действие">-->
+
+  </td>
+</tr>

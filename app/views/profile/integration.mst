@@ -1,0 +1,18 @@
+<div class="block hide" id="integration">
+    <header>
+        <h2>Интеграция</h2>
+    </header>
+
+    <div>
+        <button type="button" onclick="___mc.events.push('profile.integration.token.generate', this)">Сгенерировать токен</button>
+        <button type="button" onclick="___mc.events.push('profile.integration.token.copy', this)">Скопировать токен</button>
+    </div>
+
+    <div id="integration_token" style="background:#e1e1e1;word-break:break-all;margin:20px;padding:10px;border-radius:10px;width:auto;display:none">
+
+    </div>
+
+    <footer>
+        <button type="button">сохранить</button>
+    </footer>
+</div>

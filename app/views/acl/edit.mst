@@ -1,0 +1,73 @@
+<h1>
+    <a class="back mdi mdi-arrow-left-circle-outline" href="/acl/"></a>{{title}}
+</h1>
+
+<ul class="tabs">
+    <li class="active"><a href="#tab=common">Общая информация</a></li>
+    <li{{#if item.role 'new'}} class="disabled"{{/if}}><a href="#tab=grants">Права доступа</a></li>
+</ul>
+
+<hr>
+
+<div class="block" id="common">
+    <header>
+        <h2>{{title}}</h2>
+    </header>
+
+    <label>Роль</label>
+    {{#select options=roles value=item.role onchange=role_change}}{{/select}}
+
+    <footer>
+        {{#unless item.role 'new'}}
+            <button data-type="update">сохранить</button>
+        {{/unless}}
+        {{#if item.role 'new'}}
+            <button data-type="next">далее</button>
+        {{/if}}
+    </footer>
+</div>
+
+<div class="block hide" id="grants">
+    <header>
+        <h2>Возможные права доступа</h2>
+    </header>
+
+
+    <div class="flex flex-space-between-end">
+        <div class="col-1-3">
+            <label>Название</label>
+            <input type="text" name="name">
+        </div>
+        <div class="col-1-3">
+            <label>Метод</label>
+            <input type="text" name="method">
+        </div>
+        <button class="btn" onclick="___mc.events.push('acl.grants.add', this)">Добавить</button>
+    </div>
+
+    <label></label>
+    <table id="acl_grants">
+        <thead>
+        <tr>
+            <th>Название</th>
+            <th>Метод</th>
+            <th>Разрешено</th>
+            <th>Действие</th>
+        </tr>
+        </thead>
+        <tbody>
+            {{#each item.grants}}
+                {{> acl/record}}
+            {{/each}}
+        </tbody>
+    </table>
+
+    <footer>
+        {{#unless item.role 'new'}}
+            <button data-type="update">сохранить</button>
+        {{/unless}}
+        {{#if item.role 'new'}}
+            <button data-type="add">создать</button>
+        {{/if}}
+    </footer>
+</div>

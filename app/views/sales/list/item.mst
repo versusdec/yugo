@@ -1,0 +1,49 @@
+<tr class="row_hover">
+    <td title="ID">{{item.id}}</td>
+    <td title="{{#i18n}}table.date{{/i18n}}">{{item.timestamp}}</td>
+    <td title="{{#i18n}}leads.offer{{/i18n}}">
+        {{#if user.role 'webmaster'}}
+            {{item.offer.name}}
+        {{/if}}
+        {{#if user.role 'merchant'}}
+            {{item.offer.name}}
+        {{/if}}
+
+        {{#if user.role 'admin'}}
+            <a class="link" href="/sources/edit/{{item.source.id}}">{{item.offer.name}}</a>
+        {{/if}}
+    </td>
+    <td title="{{#i18n}}leads.record{{/i18n}}">
+        {{#if record}}
+            {{#player file=record classlist='mini'}}{{/player}}
+        {{/if}}
+    </td>
+    <td title="{{#i18n}}leads.phone{{/i18n}}">{{item.phone|phone}}</td>
+    <td title="{{#i18n}}leads.status{{/i18n}}">
+        {{item.status|status}}
+    </td>
+    <td title="{{#i18n}}leads.comment{{/i18n}}">
+        <div style="width: 130px;" class="text-ellipsis" title="{{item.notes}}">
+            {{item.notes}}
+        </div>
+    </td>
+    <td class="actions">
+        {{#if user.role 'IN' 'admin' 'merchant'}}
+            <a href="/sales/details/{{item.id}}" class="mdi mdi-database-edit-outline" title="{{#i18n}}button.details{{/i18n}}"></a>
+        {{/if}}
+        {{#if user.role 'merchant'}}
+            {{#if item.status 'new'}}
+                <a class="mdi mdi-lock-open" title="{{#i18n}}actions.inwork{{/i18n}}"
+                   onclick="___mc.events.push('sales.set.status', {item: { lead_id: {{item.id}}, offer_id: {{item.offer.id}}, user_id: {{item.user_id}} }, status: 'inwork'})"></a>
+            {{/if}}
+            {{#if item.status 'inwork'}}
+                <a class="mdi mdi-check" title="{{#i18n}}actions.accept{{/i18n}}"
+                   onclick="___mc.events.push('sales.set.status', {item: { lead_id: {{item.id}}, offer_id: {{item.offer.id}}, user_id: {{item.user_id}} }, status: 'approved'})"></a>
+                <a class="mdi mdi-bookmark-remove-outline" title="{{#i18n}}actions.decline{{/i18n}}"
+                   onclick="___mc.events.push('sales.set.status', {item: { lead_id: {{item.id}}, offer_id: {{item.offer.id}}, user_id: {{item.user_id}} }, status: 'rejected'})"></a>
+            {{/if}}
+        {{/if}}
+        <a class="mdi mdi-lock" title="Hold"
+           onclick="___mc.events.push('sales.set.status', {item: { lead_id: {{item.id}}, offer_id: {{item.offer.id}}, user_id: {{item.user_id}} }, status: 'hold'})"></a>
+    </td>
+</tr>

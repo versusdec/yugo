@@ -1,0 +1,116 @@
+#login header {
+    margin-top: auto;
+}
+
+#login h1 {
+    font-weight: normal;
+    padding-left: 30px;
+    border-left: 3px solid var(--color__yellow);
+}
+
+#login a {
+    margin-top: 10px;
+    color: var(--color__yellow);
+}
+
+#login article {
+    max-width: 375px;
+    min-height: fit-content;
+    margin: 0 auto;
+    justify-content: flex-start;
+    display: flex;
+    flex-flow: column;
+}
+
+#login button {
+    margin: 10px 0 5px;
+    width: fit-content;
+}
+
+#login {
+    display: flex;
+    flex-flow: row;
+}
+
+#login .login {
+    margin: 30px 0 50px;
+}
+
+#login .register + sup {
+    margin-bottom: 50px;
+}
+
+.social {
+    display: flex;
+    justify-content: center;
+    max-width: max-content;
+}
+
+.social.vk {
+    background-color: #467FC2;
+}
+
+@media only screen and (min-width: 960px) {
+    #login:after {
+        content: '';
+        width: 66%;
+        height: 100vh;
+        min-height: 650px;
+        background-color: var(--color__blue_bg);
+        background-image: url("/img/logo.svg");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 365px auto;
+    }
+
+    #login.open article {
+        transition: all 1s ease-in;
+        opacity: 0;
+        width: 0;
+        padding: 0;
+    }
+
+    #login.open:after {
+        transition: all 1s ease-in;
+        transition-delay: 0.25s;
+        width: 100vw;
+        background-size: 500px auto;
+    }
+}
+
+@media only screen and (max-width: 959px) {
+    #login:before {
+        content: '';
+        height: 130px;
+        min-height: 130px;
+        width: 100%;
+        background-color: var(--color__blue_bg);
+        background-image: url("/img/logo.svg");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 130px auto;
+    }
+    #login {
+        flex-flow: column;
+    }
+
+    #login.open article {
+        transition: all 1s ease-in;
+        opacity: 0;
+        padding: 0;
+        height: 0;
+    }
+
+    #login.open:before {
+        transition: all 1s ease-in;
+        transition-delay: 0.25s;
+        height: 100vh;
+        background-size: 200px auto;
+    }
+}
+
+#login.open {
+    transition: all 1s ease-in;
+    transition-delay: 1.5s;
+    opacity: 0;
+}

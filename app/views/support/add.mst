@@ -1,0 +1,55 @@
+<h1><a class="back mdi mdi-arrow-left-circle-outline" href="/support/"></a>Создать обращение</h1>
+<hr>
+
+<div class="columns">
+  <div class="block">
+    <header>
+      <h2>
+        Обращение в отдел поддержки
+      </h2>
+    </header>
+      {{#if profile.role 'admin'}}
+          {{#autocomplete name='user_id' onsuggest='ticket.users.suggest' min=0 label='Пользователь' onchange='ticket.users.change'}}{{/autocomplete}}
+      {{/if}}
+    <label>Выберите тему обращения</label>
+    {{#select options=options onchange=onchange}}{{/select}}
+    <label>Тема вашего вопроса</label>
+    <input type="text" name="name">
+    <label>Сообщение</label>
+    <textarea name="text"></textarea>
+    {{#dropzone onupload='ticket.upload'}}{{/dropzone}}
+    <footer>
+      <button type="button" onclick="___mc.events.push('ticket.add')">Создать</button>
+    </footer>
+  </div>
+  <aside>
+    <div class="block">
+      <header>
+        <h2>Среднее время ответа</h2>
+      </header>
+      <table>
+        <tr>
+          <td>За последний час:</td>
+          <th>{{stats.common}} {{#numdecl stats.common}}["минута", "минуты", "минут"]{{/numdecl}}</th>
+        </tr>
+        <tr>
+          <td>На ваши обращения:</td>
+          <th>{{stats.my_tickets}} {{#numdecl stats.my_tickets}}["минута", "минуты", "минут"]{{/numdecl}}</th>
+        </tr>
+      </table>
+    </div>
+    <div class="block">
+      <header>
+        <h2>Как получить ответ быстрее</h2>
+      </header>
+      <ul>
+        <li>Предоставить данные доступа к серверу и сайту.</li>
+        <li>Описать последовательность действий, приводящих к проблеме.</li>
+        <li>Приложить скриншот</li>
+      </ul>
+    </div>
+  </aside>
+</div>
+
+
+

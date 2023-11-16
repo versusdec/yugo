@@ -1,0 +1,6 @@
+<tr>
+  <td title="Категория">{{category.name}}</td>
+  <td title="Кол-во лидов"><a class="link" href="/leads/#category={{category.id}}{{#if filter.start}}&start={{filter.start}}{{/if}}{{#if filter.finish}}&finish={{filter.finish}}{{/if}}">{{total}}</a></td>
+  <td title="Средняя цена лида">{{avg}}</td>
+  <td title="Сумма">{{amount}} ₽</td>
+</tr>

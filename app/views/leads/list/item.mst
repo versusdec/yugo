@@ -1,0 +1,37 @@
+<tr class="row_hover">
+    <td title="ID">{{id}}</td>
+    <td title="{{#i18n}}table.date{{/i18n}}">{{timestamp}}</td>
+    <td title="{{#i18n}}leads.offer{{/i18n}}">
+        {{#if profile.role 'webmaster'}}
+            {{offer}}
+        {{/if}}
+        {{#if profile.role 'merchant'}}
+            {{offer}}
+        {{/if}}
+
+        {{#if profile.role 'admin'}}
+            <a class="link" href="/sources/edit/{{source.id}}">{{offer}}</a>
+        {{/if}}
+    </td>
+    <td title="{{#i18n}}leads.record{{/i18n}}">
+        {{#if record}}
+
+            {{#player file=record classlist='mini'}}{{/player}}
+        {{/if}}
+    </td>
+    <td title="{{#i18n}}leads.phone{{/i18n}}">{{phone|phone}}</td>
+    <td title="{{#i18n}}leads.status{{/i18n}}">
+        {{status|status}}
+    </td>
+    <td title="{{#i18n}}leads.comment{{/i18n}}">
+        <div style="width: 130px;" class="text-ellipsis" title="{{comment}}">
+            {{comment}}
+        </div>
+    </td>
+    <td class="actions">
+        <a class="mdi mdi-database-edit-outline" title="{{#i18n}}actions.edit{{/i18n}}" href="/leads/details/{{id}}"></a>
+        {{#if profile.role 'admin'}}
+            <a class="mdi mdi-database-remove" title="Удалить" onclick="___mc.events.push('leads.remove', {{id}})"></a>
+        {{/if}}
+    </td>
+</tr>

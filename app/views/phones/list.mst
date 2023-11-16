@@ -1,0 +1,152 @@
+<h1><a class="back mdi mdi-arrow-left-circle-outline" href="/"></a>{{title}}</h1>
+<hr>
+
+{{#if profile.role 'admin'}}
+{{> phones/upload}}
+
+<div class="block">
+    <header>
+        <h2>Для отмеченных</h2>
+    </header>
+    <div class="row">
+        <label>Применить статус</label>
+        {{#select name='status' options=statuses onchange='phones.status.change'}}{{/select}}
+    </div>
+    <br><br>
+    <div class="buttons-wrapper">
+        <button onclick="___mc.events.push('phones.status.apply')">применить</button>
+        <button onclick="___mc.events.push('phones.chosen.remove')">удалить</button>
+        <button onclick="___mc.events.push('phones.webmaster.attach')">привязать веба</button>
+        <button onclick="___mc.events.push('phones.webmaster.detach')">отвязать веба</button>
+    </div>
+</div>
+{{/if}}
+
+<ul class="tabs">
+    <li class="active"><a href="#tab=active">Активные</a></li>
+    <li><a href="#tab=rented">Арендованные</a></li>
+    <li><a href="#tab=archived">Архивные</a></li>
+</ul>
+
+<div class="block" id="active" handler="controllers/phones/active">
+    <header>
+        <h2>Активные номера</h2>
+        {{#if profile.role 'admin'}}
+        <a href="/phones/edit/new" class="btn">Создать</a>
+        {{/if}}
+    </header>
+    {{#pagination}}{{/pagination}}
+    <table>
+        <thead>
+        <tr>
+            {{#if profile.role 'admin'}}
+            <th style="max-width: 100px">
+                <input type="checkbox" onchange="___mc.events.push('phones.check.all', this)">
+            </th>
+            {{/if}}
+            <th style="max-width: 100px">Дата/время</th>
+            <th>Номер</th>
+            {{#if profile.role 'admin'}}
+            <th>Вебмастер</th>
+            {{/if}}
+            <th>Статус</th>
+            <th style="width: 100px;">Действие</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td colspan="{{#if profile.role 'admin'}}6{{/if}}{{#if profile.role 'webmaster'}}4{{/if}}">
+                <div class="loader">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    {{#pagination}}{{/pagination}}
+</div>
+
+<div class="block hide" id="rented" handler="controllers/phones/rented">
+    <header>
+        <h2>Арендованные номера</h2>
+        {{#if profile.role 'admin'}}
+        <a href="/phones/edit/new" class="btn">Создать</a>
+        {{/if}}
+    </header>
+    {{#pagination}}{{/pagination}}
+    <table>
+        <thead>
+        <tr>
+            {{#if profile.role 'admin'}}
+            <th style="max-width: 100px">
+                <input type="checkbox" onchange="___mc.events.push('phones.check.all', this)">
+            </th>
+            {{/if}}
+            <th style="max-width: 100px">Дата/время</th>
+            <th>Номер</th>
+            {{#if profile.role 'admin'}}
+            <th>Вебмастер</th>
+            {{/if}}
+            <th>Статус</th>
+            <th style="width: 100px;">Действие</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td colspan="{{#if profile.role 'admin'}}6{{/if}}{{#if profile.role 'webmaster'}}4{{/if}}">
+                <div class="loader">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    {{#pagination}}{{/pagination}}
+</div>
+
+<div class="block hide" id="archived" handler="controllers/phones/archived">
+    <header>
+        <h2>Архивные номера</h2>
+        {{#if profile.role 'admin'}}
+        <a href="/phones/edit/new" class="btn">Создать</a>
+        {{/if}}
+    </header>
+    {{#pagination}}{{/pagination}}
+    <table>
+        <thead>
+        <tr>
+            {{#if profile.role 'admin'}}
+            <th style="max-width: 100px">
+                <input type="checkbox" onchange="___mc.events.push('phones.check.all', this)">
+            </th>
+            {{/if}}
+            <th style="max-width: 100px">Дата/время</th>
+            <th>Номер</th>
+            {{#if profile.role 'admin'}}
+            <th>Вебмастер</th>
+            {{/if}}
+            <th>Статус</th>
+            <th style="width: 100px;">Действие</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td colspan="{{#if profile.role 'admin'}}6{{/if}}{{#if profile.role 'webmaster'}}4{{/if}}">
+                <div class="loader">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    {{#pagination}}{{/pagination}}
+</div>

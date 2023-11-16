@@ -1,0 +1,8 @@
+<tr>
+    <td title="ID">{{id}}</td>
+    <td title="Дата/время">{{date}}</td>
+    <td title="Источник">{{source.name}}</td>
+    <td title="Регион">{{region.name}}</td>
+    <td title="Категория">{{category.name}}</td>
+    <td title="Телефон">{{phone}}</td>
+</tr>

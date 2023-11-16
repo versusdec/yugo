@@ -1,0 +1,298 @@
+<div class="heading">
+    <h1><a class="back mdi mdi-arrow-left-circle-outline" href="/offers/"></a>{{title}}</h1>
+    <ul class="tabs">
+        <li class="active"><a href="#tab=common">{{#i18n}}offers.edit.tabs.common{{/i18n}}</a></li>
+        <li{{#if id 'new'}} class="disabled"{{/if}}><a href="#tab=conditions">{{#i18n}}offers.edit.tabs.conditions{{/i18n}}</a></li>
+        <li{{#if id 'new'}} class="disabled"{{/if}}><a href="#tab=fields">{{#i18n}}offers.edit.tabs.fields{{/i18n}}</a></li>
+        <li{{#if id 'new'}} class="disabled"{{/if}}><a href="#tab=phones">{{#i18n}}offers.edit.tabs.phones{{/i18n}}</a></li>
+    </ul>
+    <div class="buttons-wrapper">
+        <a href="/offers/" class="btn secondary">{{#i18n}}button.cancel{{/i18n}}</a>
+        <button class="green">
+            {{#if id 'new'}}
+                <span class="mdi mdi-bookmark-plus-outline"></span>
+                {{#i18n}}button.create{{/i18n}}
+            {{/if}}
+            {{#unless id 'new'}}
+                <span class="mdi mdi-bookmark-check-outline"></span>
+                {{#i18n}}button.save{{/i18n}}
+            {{/unless}}
+        </button>
+
+    </div>
+</div>
+<hr>
+<div class="columns" id="common">
+    <div class="block">
+        <header>
+            {{#if id 'new'}}
+                <h2>{{#i18n}}profile.common{{/i18n}}</h2>
+            {{/if}}
+            {{#unless id 'new'}}
+                <h2>{{item.name}}</h2>
+            {{/unless}}
+        </header>
+
+        <div class="columns">
+            <div class="col-1-2">
+                <label>{{#i18n}}table.name{{/i18n}}</label>
+                <input type="text" name="name" value="{{item.name}}">
+            </div>
+            <div class="col-1-2">
+                {{#autocomplete name='category' onsuggest='categories.suggest' min=0 label='table.category' onchange=category_select value=item.category_id onset=category_set}}{{/autocomplete}}
+            </div>
+        </div>
+        <div class="columns">
+            <div class="col-1-2">
+                {{#autocomplete name='merchant' onsuggest=merchant_suggest min=0 label='table.merchant' onchange=merchant_select value=item.merchant_id onset=merchant_set}}{{/autocomplete}}
+            </div>
+            <div class="col-1-2">
+                <label>{{#i18n}}table.status{{/i18n}}</label>
+                {{#select options=statuses value=item.status onchange=status_change}}{{/select}}
+            </div>
+        </div>
+        <div class="columns">
+            <div class="col-1-2">
+                <label>{{#i18n}}offers.edit.method{{/i18n}}</label>
+                {{#select options=methods value=item.method onchange=method_change}}{{/select}}
+            </div>
+            <div class="col-1-2">
+                <label>{{#i18n}}table.tarification{{/i18n}}</label>
+                {{#select options=tarification.types value=item.tarification.type onchange=tarification_type_change}}{{/select}}
+            </div>
+        </div>
+
+        <footer class="buttons-wrapper">
+
+            <button data-type="next" class="secondary">{{#i18n}}button.next{{/i18n}}</button>
+
+        </footer>
+    </div>
+
+    <aside class="" id="wiki">
+        <div class="open ">
+            <a class="mdi mdi-comment-text-outline"></a>
+        </div>
+        <div class="block hide">
+            <a class="mdi mdi-close"></a>
+            <header><h2>Создание оффера</h2></header>
+            <hr>
+            <p>
+                Краткое описание представленного блока с указание последовательности действий для разъяснения процедуры создания оффера.
+            </p>
+            <p>
+                Допускается сноска на более подробное описание дополнительных процедур.
+            </p>
+            <div class="step">
+                <div class="img">
+                    <div class="mdi mdi-comment-edit-outline"></div>
+                    <!--                    <span class="num">1</span>-->
+                </div>
+                <div class="content">
+                    <b>Аренда номера</b>
+                    <p>
+                        Краткое описание действия с указанием наиболее
+                        важных моментов, которые следует учитывать
+                        в настройке и любая другая необходимая инфа.
+                    </p>
+                    <a class="link">
+                        Перейти в раздел инструкции
+                    </a>
+                </div>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<div class="columns hide" id="conditions">
+    <div class="block">
+        <header>
+            <h2>{{#i18n}}offers.edit.tabs.conditions{{/i18n}}</h2>
+        </header>
+
+        <div class="columns">
+            <div class="col-1-2">
+                <label>{{#i18n}}offers.edit.confirm{{/i18n}}</label>
+                <input type="number" name="autoapprove" value="{{item.tarification.autoapprove}}" >
+            </div>
+            <div class="col-1-2">
+                {{#autocomplete name='region' onsuggest='regions.suggest' min=0 label='table.region' onchange=region_select value=item.region_id onset=region_set}}{{/autocomplete}}
+            </div>
+        </div>
+        <div class="columns">
+            <div class="col-1-2">
+                <label> {{#i18n}}table.limits{{/i18n}} </label>
+                <label style="display:flex;align-items: center;gap:10px;margin-top: 0;">
+                    <input type="checkbox" class="default" name="limits" onchange="___mc.events.push('offers.input.change', this)">
+                    {{#i18n}}offers.edit.limits{{/i18n}}
+                </label>
+            </div>
+            <div class="col-1-2">
+                <label>{{#i18n}}offers.edit.time{{/i18n}}</label>
+                {{#select name='time' options=times value=item.time onchange='offers.select.change'}}{{/select}}
+            </div>
+        </div>
+        <div class="columns">
+            <div class="col-1-2">
+                <label>{{#i18n}}offers.edit.type{{/i18n}}</label>
+                {{#select options=types value=item.type onchange=type_change}}{{/select}}
+            </div>
+            <div class="col-1-2">
+                <label>{{#i18n}}offers.edit.value{{/i18n}}</label>
+                <input type="number" min="0" step="1" name="planned" value="{{item.planned}}">
+            </div>
+        </div>
+
+        <footer class="buttons-wrapper">
+
+            <button data-type="next" class="secondary">{{#i18n}}button.next{{/i18n}}</button>
+
+        </footer>
+    </div>
+
+    <aside class="" id="wiki">
+        <div class="open ">
+            <a class="mdi mdi-comment-text-outline"></a>
+        </div>
+        <div class="block hide">
+            <a class="mdi mdi-close"></a>
+            <header><h2>Создание оффера</h2></header>
+            <hr>
+            <p>
+                Краткое описание представленного блока с указание последовательности действий для разъяснения процедуры создания оффера.
+            </p>
+            <p>
+                Допускается сноска на более подробное описание дополнительных процедур.
+            </p>
+            <div class="step">
+                <div class="img">
+                    <div class="mdi mdi-comment-edit-outline"></div>
+                    <!--                    <span class="num">1</span>-->
+                </div>
+                <div class="content">
+                    <b>Аренда номера</b>
+                    <p>
+                        Краткое описание действия с указанием наиболее
+                        важных моментов, которые следует учитывать
+                        в настройке и любая другая необходимая инфа.
+                    </p>
+                    <a class="link">
+                        Перейти в раздел инструкции
+                    </a>
+                </div>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<div class="columns hide" id="fields">
+    <div class="block">
+        <header>
+            <h2>{{#i18n}}offers.edit.tabs.fields{{/i18n}}</h2>
+        </header>
+
+        <label>{{#i18n}}offers.edit.fields{{/i18n}}</label>
+        {{#select name='time' options=times value=item.time onchange='offers.select.change'}}{{/select}}
+        <br>
+        <div class="columns flex-center-center">
+            <input type="text" value="{{fields.name}}" placeholder="Имя" disabled>
+            <a class="mdi mdi-close " title="{{#i18n}}button.delete{{/i18n}}"></a>
+        </div>
+
+        <footer class="buttons-wrapper">
+
+            <button data-type="next" class="secondary">{{#i18n}}button.next{{/i18n}}</button>
+
+        </footer>
+    </div>
+
+    <aside class="" id="wiki">
+        <div class="open ">
+            <a class="mdi mdi-comment-text-outline"></a>
+        </div>
+        <div class="block hide">
+            <a class="mdi mdi-close"></a>
+            <header><h2>Создание оффера</h2></header>
+            <hr>
+            <p>
+                Краткое описание представленного блока с указание последовательности действий для разъяснения процедуры создания оффера.
+            </p>
+            <p>
+                Допускается сноска на более подробное описание дополнительных процедур.
+            </p>
+            <div class="step">
+                <div class="img">
+                    <div class="mdi mdi-comment-edit-outline"></div>
+                    <!--                    <span class="num">1</span>-->
+                </div>
+                <div class="content">
+                    <b>Аренда номера</b>
+                    <p>
+                        Краткое описание действия с указанием наиболее
+                        важных моментов, которые следует учитывать
+                        в настройке и любая другая необходимая инфа.
+                    </p>
+                    <a class="link">
+                        Перейти в раздел инструкции
+                    </a>
+                </div>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<!--<div class="block hide" id="tariffs">
+    <header>
+        <h2>Тарификация</h2>
+    </header>
+
+    <label>Тип тарификации</label>
+    {{#select options=tarification.types value=item.tarification.type onchange=tarification_type_change}}{{/select}}
+
+    <div class="{{#unless item.tarification.type 'call'}}hide{{/unless}}" id="duration">
+        <label>{{#i18n}}profile.phone{{/i18n}}</label>
+        <input type="text" name="phone" value="{{item.tarification.phone}}" class="col-1-1">
+
+        <label>Минимальная продолжительность звонка (секунд)</label>
+        <input type="text" name="duration"
+               value="{{#if item.tarification.duration}}{{item.tarification.duration}}{{/if}} {{#unless item.tarification.duration}}60{{/unless}}" class="col-1-1">
+    </div>
+
+    <label>Ценность для Веб-мастера</label>
+    <input type="number" name="webmaster_price" value="{{item.tarification.webmaster_price}}">
+
+    <label>Ценность для Рекламодателя</label>
+    <input type="number" name="merchant_price" value="{{item.tarification.merchant_price}}">
+
+    <label>Автоподтверждение (дней)</label>
+    <input type="number" name="autoapprove" value="{{item.tarification.autoapprove}}">
+
+    <label>Показывать звонки</label>
+    <input type="checkbox" name="calls" value="{{item.tarification.calls}}" {{#if item.tarification.calls}}checked{{/if}}>
+
+    <label>Плечо записи</label>
+    {{#select options=legs value=item.tarification.leg onchange=leg_change}}{{/select}}
+
+    <footer>
+        {{#unless id 'new'}}
+            <button data-type="update">{{#i18n}}button.save{{/i18n}}</button>
+        {{/unless}}
+    {{#if id 'new'}}
+            <button data-type="create">{{#i18n}}button.create{{/i18n}}</button>
+        {{/if}}
+    </footer>
+</div>-->
+
+<div class="block hide" id="phones">
+    <header>
+        <h2>{{#i18n}}offers.edit.phones{{/i18n}}</h2>
+        <a class="btn" onclick="___mc.events.push('offer.phone.add', this)">{{#i18n}}button.add{{/i18n}}</a>
+    </header>
+
+    <div id="phones-list">
+        {{#each item.phones}}
+            {{> offers/phone}}
+        {{/each}}
+    </div>
+
+</div>

@@ -1,0 +1,9 @@
+<tr data-id="{{id}}">
+    <td>{{id}}</td>
+    <td>{{label}}</td>
+    <td>{{name}}</td>
+    <td>{{type}}</td>
+    <td>
+        <a onclick="this.closest('tr').remove()" class="mdi mdi-delete" title="Удалить"></a>
+    </td>
+</tr>

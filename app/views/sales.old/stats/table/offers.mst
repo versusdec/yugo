@@ -1,0 +1,103 @@
+<header>
+    <h2>Офферы</h2>
+</header>
+<table>
+    <thead>
+    <tr>
+        <th style="white-space: nowrap">Оффер&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        {{#if user.role 'admin'}}
+            <th style="white-space: nowrap">Рекламодатель&nbsp;
+                <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+                <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+            <th style="white-space: nowrap">Цена&nbsp;
+                <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+                <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        {{/if}}
+        <th style="white-space: nowrap">Всего&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        <th style="white-space: nowrap">Новых&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        <th style="white-space: nowrap">В работе&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        <th style="white-space: nowrap">Hold&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        <th style="white-space: nowrap">Принято&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        <th style="white-space: nowrap">Отклонено&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        <th style="white-space: nowrap">Апелляция&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        <th style="white-space: nowrap">Процент целевых&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        <th style="white-space: nowrap">Расходы&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        {{#if user.role 'admin'}}
+        <th style="white-space: nowrap">Мес. план&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        {{/if}}
+    </tr>
+    </thead>
+    <tbody>
+    {{#each stats_offers.items}}
+        <tr>
+            <td>
+                <a class="link" href="/offers/details/{{offer.id}}">{{offer.name}}</a>
+            </td>
+            {{#if ../user.role 'admin'}}
+                <td><a class="link" href="/users/edit/{{merchant.id}}">{{merchant.name}}</a></td>
+                <td>{{offer.tarification.merchant_price}}</td>
+                <td><a class="link" href="/sales/#user_id={{merchant.id}}&offer_id={{offer.id}}{{#if ../filter_offers.start}}&start={{../filter_offers.start}}{{/if}}{{#if ../filter_offers.finish}}&finish={{../filter_offers.finish}}{{/if}}">{{total}}</a></td>
+                <td><a class="link" href="/sales/#user_id={{merchant.id}}&offer_id={{offer.id}}{{#if ../filter_offers.start}}&start={{../filter_offers.start}}{{/if}}{{#if ../filter_offers.finish}}&finish={{../filter_offers.finish}}{{/if}}&status=new">{{new}}</a></td>
+                <td><a class="link" href="/sales/#user_id={{merchant.id}}&offer_id={{offer.id}}{{#if ../filter_offers.start}}&start={{../filter_offers.start}}{{/if}}{{#if ../filter_offers.finish}}&finish={{../filter_offers.finish}}{{/if}}&status=inwork">{{inwork}}</a></td>
+                <td><a class="link" href="/sales/#user_id={{merchant.id}}&offer_id={{offer.id}}{{#if ../filter_offers.start}}&start={{../filter_offers.start}}{{/if}}{{#if ../filter_offers.finish}}&finish={{../filter_offers.finish}}{{/if}}&status=hold">{{hold}}</a></td>
+                <td><a class="link" href="/sales/#user_id={{merchant.id}}&offer_id={{offer.id}}{{#if ../filter_offers.start}}&start={{../filter_offers.start}}{{/if}}{{#if ../filter_offers.finish}}&finish={{../filter_offers.finish}}{{/if}}&status=approved">{{approved}}</a></td>
+                <td><a class="link" href="/sales/#user_id={{merchant.id}}&offer_id={{offer.id}}{{#if ../filter_offers.start}}&start={{../filter_offers.start}}{{/if}}{{#if ../filter_offers.finish}}&finish={{../filter_offers.finish}}{{/if}}&status=rejected">{{rejected}}</a></td>
+                <td><a class="link" href="/sales/#user_id={{merchant.id}}&offer_id={{offer.id}}{{#if ../filter_offers.start}}&start={{../filter_offers.start}}{{/if}}{{#if ../filter_offers.finish}}&finish={{../filter_offers.finish}}{{/if}}&status=appealed">{{appealed}}</a></td>
+            {{/if}}
+            {{#if ../user.role 'merchant'}}
+                <td><a class="link" href="/sales/#offer_id={{offer.id}}{{#if ../filter_offers.start}}&start={{../filter_offers.start}}{{/if}}{{#if ../filter_offers.finish}}&finish={{../filter_offers.finish}}{{/if}}">{{total}}</a></td>
+                <td><a class="link" href="/sales/#offer_id={{offer.id}}&status=new{{#if ../filter_offers.start}}&start={{../filter_offers.start}}{{/if}}{{#if ../filter_offers.finish}}&finish={{../filter_offers.finish}}{{/if}}">{{new}}</a></td>
+                <td><a class="link" href="/sales/#offer_id={{offer.id}}&status=inwork{{#if ../filter_offers.start}}&start={{../filter_offers.start}}{{/if}}{{#if ../filter_offers.finish}}&finish={{../filter_offers.finish}}{{/if}}">{{inwork}}</a></td>
+                <td><a class="link" href="/sales/#offer_id={{offer.id}}&status=hold{{#if ../filter_offers.start}}&start={{../filter_offers.start}}{{/if}}{{#if ../filter_offers.finish}}&finish={{../filter_offers.finish}}{{/if}}">{{hold}}</a></td>
+                <td><a class="link" href="/sales/#offer_id={{offer.id}}&status=approved{{#if ../filter_offers.start}}&start={{../filter_offers.start}}{{/if}}{{#if ../filter_offers.finish}}&finish={{../filter_offers.finish}}{{/if}}">{{approved}}</a></td>
+                <td><a class="link" href="/sales/#offer_id={{offer.id}}&status=rejected{{#if ../filter_offers.start}}&start={{../filter_offers.start}}{{/if}}{{#if ../filter_offers.finish}}&finish={{../filter_offers.finish}}{{/if}}">{{rejected}}</a></td>
+                <td><a class="link" href="/sales/#offer_id={{offer.id}}&status=appealed{{#if ../filter_offers.start}}&start={{../filter_offers.start}}{{/if}}{{#if ../filter_offers.finish}}&finish={{../filter_offers.finish}}{{/if}}">{{appealed}}</a></td>
+            {{/if}}
+            <td>{{rate}}</td>
+            <td>{{amount}}</td>
+            {{#if ../user.role 'admin'}}
+                <td>{{offer.planned}}</td>
+            {{/if}}
+        </tr>
+    {{/each}}
+    </tbody>
+    <tfoot>
+    <tr>
+        <td {{#if user.role 'admin'}}colspan="3"{{/if}}>Всего</td>
+        <td>{{stats_offers.summary.total}}</td>
+        <td>{{stats_offers.summary.new}}</td>
+        <td>{{stats_offers.summary.inwork}}</td>
+        <td>{{stats_offers.summary.hold}}</td>
+        <td>{{stats_offers.summary.approved}}</td>
+        <td>{{stats_offers.summary.rejected}}</td>
+        <td>{{stats_offers.summary.appealed}}</td>
+        <td>{{stats_offers.summary.rate}}</td>
+        <td>{{stats_offers.summary.amount}}</td>
+        {{#if user.role 'admin'}}
+            <td>{{stats_offers.summary.planned}}</td>
+        {{/if}}
+    </tr>
+    </tfoot>
+</table>

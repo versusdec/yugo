@@ -1,0 +1,16 @@
+<tr>
+  <td title="Дата">{{timestamp}}</td>
+    {{#if profile.role 'admin'}}
+  <td title="Рекламодатель">
+      <a href="/user/edit/{{user.id}}">{{user.surname}} {{user.name}}</a>
+  </td>
+    {{/if}}
+  <td title="Оффер">{{offer.name}}</td>
+  <td title="Комментарий">{{comment}}</td>
+  <td title="Вложения">
+      {{#each attachments}}
+          <a href="{{.}}" class="mdi mdi-download" target="_blank"></a>
+      {{/each}}
+  </td>
+  <td title="Статус">{{status}}</td>
+</tr>

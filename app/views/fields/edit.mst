@@ -1,0 +1,35 @@
+<h1>
+  <a class="back mdi mdi-arrow-left-circle-outline" href="/fields/"></a>{{title}}
+</h1>
+
+<div class="block">
+  <header>
+    <h2>{{title}}</h2>
+  </header>
+
+  <label>Переменная</label>
+  <input type="text" name="name" value="{{item.name}}" onchange="___mc.events.push('fields.name.check', this)">
+  <label>Название</label>
+  <input type="text" name="label" value="{{item.label}}">
+  <label>Тип</label>
+  {{#select class='type' options=options value=item.type onchange=onchange}}{{/select}}
+    <div class="type-options-wrapper {{#if item.type 'IN' 'string' 'int' 'boolean' 'date' 'time' 'datetime' 'phone' 'email'}}hide{{/if}}">
+      <fieldset style="padding: 8px;border: 1px solid var(--color__border_d);margin-top: 20px;">
+          <legend>Опции</legend>
+          <a onclick="___mc.events.push('fields.options.add')" class="btn" style="float: right; margin: 8px 0">Добавить</a>
+        <div id="options" class="flex">
+            {{#each item.options}}
+                {{> fields/option}}
+            {{/each}}
+        </div>
+      </fieldset>
+  </div>
+  <footer>
+    {{#unless id 'new'}}
+      <button data-type="update">сохранить</button>
+    {{/unless}}
+    {{#if id 'new'}}
+      <button data-type="create">создать</button>
+    {{/if}}
+  </footer>
+</div>

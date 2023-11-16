@@ -1,0 +1,11 @@
+<tr>
+  <td title="Оффер">{{offer}}</td>
+  <td title="Кол-во всего">{{total}}</td>
+  <td title="Новый">{{news}}</td>
+  <td title="В работе">{{active}}</td>
+  <td title="Одобрен">{{accepted}}</td>
+  <td title="Отклонен">{{declined}}</td>
+  <td title="Апеллирован">{{Апеллирован}}</td>
+  <td title="% целевых">{{целевых}}</td>
+  <td title="Сумма">{{amount}} ₽</td>
+</tr>

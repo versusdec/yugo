@@ -1,0 +1,111 @@
+.autocomplete {
+    position: relative;
+}
+
+.autocomplete input {
+    width: 100%;
+    padding-right: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.autocomplete input:focus {
+    box-shadow: none;
+}
+
+.autocomplete.open input {
+    border-bottom: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.autocomplete .options {
+    width: auto;
+    display: none;
+    flex-flow: column;
+    margin-bottom: 10px;
+    border: 1px solid var(--color__border_d);
+    border-top: none;
+    border-radius: var(--border-radius);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding: 0 10px;
+}
+
+.autocomplete.open .options {
+    display: flex;
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    background: white;
+}
+
+.autocomplete .options .selected, .autocomplete .options .selected:before {
+    color: var(--color__light_blue);
+}
+
+.autocomplete .options li {
+    position: relative;
+    width: auto;
+    padding: 5px 15px;
+    font-size: 14px;
+    text-align: left;
+    border-bottom: 1px dashed var(--color__border);
+    list-style: none;
+    cursor: pointer;
+    line-height: 32px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.autocomplete .options li.empty {
+    cursor: default;
+    text-align: center;
+    color: var(--color__light_blue);
+}
+
+.autocomplete .options li.empty:before {
+    display: none;
+}
+
+.autocomplete .options li.empty:hover {
+    color: black;
+}
+
+.autocomplete .options li:first-child {
+    border-top: 1px dashed var(--color__border);
+}
+
+.autocomplete .options li:last-child {
+    border-bottom: none;
+}
+
+.autocomplete .options li:before {
+    position: absolute;
+    content: '•';
+    font-weight: bold;
+    font-size: 1.5em;
+    color: var(--color__yellow);
+    left: 0;
+    line-height: inherit;
+}
+
+.autocomplete .options li:not(.selected):not(.empty):hover {
+    color: var(--color__yellow);
+}
+
+.autocomplete input + span.mdi-close {
+    position: absolute;
+    bottom: 6px;
+    right: 8px;
+    display: none;
+    color: var(--color__yellow);
+}
+
+.autocomplete input[data-value] + span.mdi-close {
+    display: block;
+}
+.mdi-close.disabled {
+    color: var(--color__light_blue);
+}

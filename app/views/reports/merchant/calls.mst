@@ -1,0 +1,96 @@
+
+<h3>{{#i18n}}table.amount{{/i18n}}</h3>
+<div class="calls_chart">
+
+</div>
+<div class="flex flex-center-center">
+    <button class="round blue3 btn_toggle_series" onclick="___mc.events.push('reports.merchant.stats.calls.toggle.series', {btn: this, name: this.innerText})">{{#i18n}}reports.calls.targeted{{/i18n}}</button>
+    <button class="round light_blue btn_toggle_series" onclick="___mc.events.push('reports.merchant.stats.calls.toggle.series', {btn: this, name: this.innerText})">{{#i18n}}reports.calls.not_targeted{{/i18n}}</button>
+    <button class="round select_bg btn_toggle_series" onclick="___mc.events.push('reports.merchant.stats.calls.toggle.series', {btn: this, name: this.innerText})">{{#i18n}}reports.calls.conversion{{/i18n}}</button>
+</div>
+<h3>{{#i18n}}reports.period{{/i18n}}</h3>
+<div class="table">
+    <table>
+        <thead>
+        <tr>
+            <th>{{#i18n}}table.date{{/i18n}}</th>
+            <th class="js_sortable">
+                <div>
+                    <div>
+                        {{#i18n}}table.amount{{/i18n}}
+                    </div>
+                    <div>
+                        <span class="mdi mdi-menu-up" onclick="___mc.events.push('reports.merchant.stats.calls.sort', [this, 'asc'])"></span>
+                        <span class="mdi mdi-menu-down" onclick="___mc.events.push('reports.merchant.stats.calls.sort', [this, 'desc'])"></span>
+                    </div>
+                </div>
+            </th>
+            <th class="js_sortable">
+                <div>
+                    <div>
+                        {{#i18n}}table.returns{{/i18n}}
+                    </div>
+                    <div>
+                        <span class="mdi mdi-menu-up" onclick="___mc.events.push('reports.merchant.stats.calls.sort', [this, 'asc'])"></span>
+                        <span class="mdi mdi-menu-down" onclick="___mc.events.push('reports.merchant.stats.calls.sort', [this, 'desc'])"></span>
+                    </div>
+                </div>
+            </th>
+            <th class="js_sortable">
+                <div>
+                    <div>
+                        {{#i18n}}table.cost{{/i18n}}
+                    </div>
+                    <div>
+                        <span class="mdi mdi-menu-up" onclick="___mc.events.push('reports.merchant.stats.calls.sort', [this, 'asc'])"></span>
+                        <span class="mdi mdi-menu-down" onclick="___mc.events.push('reports.merchant.stats.calls.sort', [this, 'desc'])"></span>
+                    </div>
+                </div>
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="row_hover">
+            <td>2021-11-25</td>
+            <td>14</td>
+            <td>13</td>
+            <td>2843 RUB</td>
+            <td class="actions">
+                <a class="mdi mdi-file-document-edit-outline" onclick="___mc.events.push('reports.test')"></a>
+                <a class="mdi mdi-dots-horizontal"></a>
+            </td>
+        </tr>
+        <tr class="row_hover">
+            <td>2021-11-24</td>
+            <td>1</td>
+            <td>1</td>
+            <td>2843 RUB</td>
+            <td class="actions">
+                <a class="mdi mdi-file-document-edit-outline"></a>
+                <a class="mdi mdi-dots-horizontal"></a>
+            </td>
+        </tr>
+        <tr class="row_hover">
+            <td>2021-11-23</td>
+            <td>48</td>
+            <td>32</td>
+            <td>2843 RUB</td>
+            <td class="actions">
+                <a class="mdi mdi-file-document-edit-outline"></a>
+                <a class="mdi mdi-dots-horizontal"></a>
+            </td>
+        </tr>
+        <tr class="row_hover">
+            <td>2021-11-22</td>
+            <td>16</td>
+            <td>12</td>
+            <td>2843 RUB</td>
+            <td class="actions">
+                <a class="mdi mdi-file-document-edit-outline"></a>
+                <a class="mdi mdi-dots-horizontal"></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

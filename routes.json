@@ -1,0 +1,406 @@
+{
+    "/": {
+        "controller": "dashboard/index",
+        "role": [
+            "merchant",
+            "admin",
+            "webmaster",
+            "bookkeeper",
+            "agency_manager",
+            "agency_admin"
+        ]
+    },
+    "/login": {
+        "controller": "login/index",
+        "role": [
+            "public"
+        ],
+        "layout": "login"
+    },
+    "/registration": {
+        "controller": "login/register",
+        "role": [
+            "public"
+        ],
+        "layout": "login"
+    },
+    "/forgot": {
+        "controller": "login/forgot",
+        "role": [
+            "public"
+        ],
+        "layout": "login"
+    },
+    "/password": {
+        "controller": "login/password",
+        "role": [
+            "public"
+        ],
+        "layout": "login"
+    },
+    "/404": {
+        "controller": "404",
+        "role": [
+            "public"
+        ],
+        "layout": "404"
+    },
+    "/acl/edit/:role": {
+        "controller": "acl/edit",
+        "role": [
+            "admin"
+        ]
+    },
+    "/acl/": {
+        "controller": "acl/list",
+        "role": [
+            "admin"
+        ]
+    },
+    "/networks/edit/:id": {
+        "controller": "networks/edit",
+        "role": [
+            "admin"
+        ]
+    },
+    "/networks/": {
+        "controller": "networks/list",
+        "role": [
+            "admin"
+        ]
+    },
+    "/agencies/edit/:id": {
+        "controller": "agencies/edit",
+        "role": [
+            "admin",
+            "network_owner",
+            "network_manager"
+        ]
+    },
+    "/agencies/": {
+        "controller": "agencies/list",
+        "role": [
+            "admin",
+            "network_owner",
+            "network_manager"
+        ]
+    },
+    "/news/details/:id": {
+        "controller": "news/details/index",
+        "role": [
+            "merchant",
+            "admin",
+            "webmaster",
+            "bookkeeper"
+        ]
+    },
+    "/news/": {
+        "controller": "news/list/index",
+        "role": [
+            "merchant",
+            "admin",
+            "webmaster",
+            "bookkeeper"
+        ]
+    },
+    "/news/edit/:id": {
+        "controller": "news/edit/index",
+        "role": [
+            "admin"
+        ]
+    },
+    "/regions/edit/:id": {
+        "controller": "regions/edit",
+        "role": [
+            "admin"
+        ]
+    },
+    "/regions/": {
+        "controller": "regions/list",
+        "role": [
+            "admin"
+        ]
+    },
+    "/categories/edit/:id": {
+        "controller": "categories/edit",
+        "role": [
+            "admin"
+        ]
+    },
+    "/categories/": {
+        "controller": "categories/list",
+        "role": [
+            "admin"
+        ]
+    },
+    "/sources/edit/:id": {
+        "controller": "sources/edit",
+        "role": [
+            "admin"
+        ]
+    },
+    "/sources/": {
+        "controller": "sources/list",
+        "role": [
+            "admin"
+        ]
+    },
+    "/fields/edit/:id": {
+        "controller": "fields/edit",
+        "role": [
+            "admin"
+        ]
+    },
+    "/fields/": {
+        "controller": "fields/list",
+        "role": [
+            "admin"
+        ]
+    },
+    "/tags/edit/:id": {
+        "controller": "tags/edit",
+        "role": [
+            "admin"
+        ]
+    },
+    "/tags/": {
+        "controller": "tags/list",
+        "role": [
+            "admin"
+        ]
+    },
+    "/campaigns/edit/:id": {
+        "controller": "campaigns/edit",
+        "role": [
+            "admin",
+            "webmaster"
+        ]
+    },
+    "/campaigns/": {
+        "controller": "campaigns/list",
+        "role": [
+            "admin",
+            "webmaster"
+        ]
+    },
+    "/phones/": {
+        "controller": "phones/list",
+        "role": [
+            "admin",
+            "webmaster"
+        ]
+    },
+    "/notifications/": {
+        "controller": "notifications/list",
+        "role": [
+            "merchant",
+            "admin",
+            "webmaster"
+        ]
+    },
+    "/notifications/list": {
+        "controller": "notifications/list",
+        "role": [
+            "merchant",
+            "admin",
+            "webmaster"
+        ]
+    },
+    "/notifications/id/:id": {
+        "controller": "notifications/item",
+        "role": [
+            "merchant",
+            "admin",
+            "webmaster"
+        ]
+    },
+    "/profile/": {
+        "controller": "profile/index",
+        "role": [
+            "merchant",
+            "admin",
+            "webmaster"
+        ]
+    },
+    "/profile/:type": {
+        "controller": "profile/index",
+        "role": [
+            "merchant",
+            "admin",
+            "webmaster"
+        ]
+    },
+    "/users/": {
+        "controller": "users/list",
+        "role": [
+            "admin"
+        ]
+    },
+    "/users/edit/:id": {
+        "controller": "users/edit",
+        "role": [
+            "admin"
+        ]
+    },
+    "/users/:type": {
+        "controller": "users/list",
+        "role": [
+            "admin"
+        ]
+    },
+    "/offers/": {
+        "controller": "offers/list",
+        "role": [
+            "admin",
+            "merchant",
+            "webmaster",
+            "agency_manager",
+            "agency_admin"
+        ]
+    },
+    "/offers/edit/:id": {
+        "controller": "offers/edit",
+        "role": [
+            "admin",
+            "agency_manager",
+            "agency_admin"
+        ]
+    },
+    "/offers/details/:id": {
+        "controller": "offers/details/index",
+        "role": [
+            "merchant",
+            "agency_manager",
+            "agency_admin"
+        ]
+    },
+    "/leads/": {
+        "controller": "leads/list/index",
+        "role": [
+            "admin",
+            "webmaster",
+            "merchant"
+        ]
+    },
+    "/leads/details/:id": {
+        "controller": "leads/edit/index",
+        "role": [
+            "admin",
+            "webmaster",
+            "merchant"
+        ]
+    },
+    "/calls/": {
+        "controller": "leads/list/index",
+        "role": [
+            "admin",
+            "webmaster",
+            "merchant"
+        ]
+    },
+    "/calls/details/:id": {
+        "controller": "leads/edit/index",
+        "role": [
+            "admin",
+            "webmaster",
+            "merchant"
+        ]
+    },
+    "/sales/stats/:tab": {
+        "controller": "sales/stats/index",
+        "role": [
+            "merchant",
+            "admin"
+        ]
+    },
+    "/sales/details/:id": {
+        "controller": "sales/edit/index",
+        "role": [
+            "admin",
+            "merchant"
+        ]
+    },
+    "/sales/": {
+        "controller": "sales/list/index",
+        "role": [
+            "merchant",
+            "admin",
+            "webmaster"
+        ]
+    },
+    "/billing/": {
+        "controller": "billing/index",
+        "role": [
+            "admin",
+            "agency_admin",
+            "agency_manager",
+            "network_manager",
+            "merchant",
+            "webmaster"
+        ]
+    },
+    "/billing/:page/": {
+        "controller": "billing/index",
+        "role": [
+            "admin",
+            "agency_admin",
+            "agency_manager",
+            "network_manager",
+            "merchant",
+            "webmaster"
+        ]
+    },
+    "/support/": {
+        "controller": "support/list/index",
+        "role": [
+            "merchant",
+            "admin",
+            "webmaster"
+        ]
+    },
+    "/support/:tab": {
+        "controller": "support/list/index",
+        "role": [
+            "merchant",
+            "admin",
+            "webmaster"
+        ]
+    },
+    "/support/add/": {
+        "controller": "support/add",
+        "role": [
+            "merchant",
+            "admin",
+            "webmaster"
+        ]
+    },
+    "/support/ticket/:id": {
+        "controller": "support/ticket/index",
+        "role": [
+            "merchant",
+            "admin",
+            "webmaster"
+        ]
+    },
+    "/reports/:tab/": {
+        "controller": "reports/index",
+        "role": [
+            "merchant",
+            "admin"
+        ]
+    },
+    "/merchants/": {
+        "controller": "merchants/list",
+        "role": [
+            "agency_manager",
+            "agency_admin"
+        ]
+    },
+    "/merchants/:id": {
+        "controller": "merchants/details",
+        "role": [
+            "agency_manager",
+            "agency_admin"
+        ]
+    }
+}

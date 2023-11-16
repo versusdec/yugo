@@ -1,0 +1,30 @@
+<h1><a class="back mdi mdi-arrow-left-circle-outline" href="/"></a>{{title}}</h1>
+
+<hr>
+
+<div id="offers">
+    <div class="block filters">
+        <header>
+            <h2>Фильтры</h2>
+        </header>
+        <div class="row">
+            <div class="col-1-4" title="По умолчанию за сегодня">
+                {{#datetimepicker type='date' name='start' value=filter_offers.start label='Период с' onchange='sales.stats.offers.range.start'}}{{/datetimepicker}}
+                {{#datetimepicker type='date' name='finish' value=filter_offers.finish label='Период по' onchange='sales.stats.offers.range.finish'}}{{/datetimepicker}}
+            </div>
+            <div class="col-1-4">
+                <input type="hidden" name="merchant" value="{{user.id}}" data-value="{{user.id}}">
+                {{#autocomplete name='offer_id' value=filter_offers.offer_id onset=offer_set onsuggest='offers.suggest' min=0 label='Оффер' onchange='sales.stats.offers.offer.change'}}{{/autocomplete}}
+            </div>
+        </div>
+        <br><br>
+        <div class="buttons-wrapper">
+            <button onclick="___mc.events.push('sales.stats.offers.filter.filter', this)">фильтровать</button>
+            <button onclick="___mc.events.push('sales.stats.offers.filter.reset', this)">сбросить</button>
+        </div>
+    </div>
+
+    <div class="block list">
+        {{> sales/stats/table/offers}}
+    </div>
+</div>

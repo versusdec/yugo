@@ -1,0 +1,113 @@
+.pagination {
+    display: flex;
+    /*line-height: 30px;*/
+    white-space: nowrap;
+    flex: auto;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.pagination ul {
+    display: inline-block;
+    list-style: none;
+    flex-grow: 1;
+}
+
+.pagination ul li, .pagination ul li a {
+    min-width: 18px;
+    padding: 0 2px;
+    height: 18px;
+    line-height: 18px;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    font-size: 14px;
+    color: black;
+}
+
+.pagination .mdi {
+    color: var(--color_element_icon);
+}
+
+.pagination ul li a:before {
+    /*width: 30px;*/
+    /*line-height: 28px;*/
+    text-align: center;
+    margin: 0;
+}
+
+.pagination ul li.current {
+    background: var(--color_element_icon);
+    color: white;
+    cursor: default;
+    border-radius: 50%;
+}
+
+.pagination ul li:hover a {
+    color: var(--color_element_icon);
+}
+
+.pagination .select {
+    width: 90px;
+    min-width: auto;
+}
+
+.pagination .select .option {
+    position: relative;
+}
+
+.pagination .select .option::before {
+    display: block;
+    position: absolute;
+    left: 6px;
+    top: 0;
+    font-family: 'Material Design Icons';
+    content: '\F0F59';
+    color: var(--color_element_icon);
+}
+
+.pagination .stats {
+    /*width: fit-content;*/
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.pagination.block > * {
+    width: auto;
+}
+
+.pagination-inner {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+@media only screen and (max-width: 767px) {
+    .pagination {
+        flex-flow: column;
+    }
+
+    .pagination ul li, .pagination ul li a {
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        font-size: 14px;
+    }
+
+    .pagination .stats {
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .pagination {
+        flex-flow: column;
+    }
+
+    .pagination-inner {
+        margin-left: 0;
+        justify-content: space-between;
+    }
+}

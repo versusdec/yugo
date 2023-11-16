@@ -1,0 +1,6 @@
+<tr>
+  <td title="Рекламодатель"><a class="link" href="/users/edit/{{id}}">{{surname}} {{name}} {{second_name}}</a></td>
+  <td title="Кол-во офферов"><a class="link" href="/offers/#user_id={{id}}">{{offers}}</a></td>
+  <td title="Кол-во денег"><a class="link" href="/billing/#user_id={{id}}{{#if filter.start}}&start={{filter.start}}{{/if}}{{#if filter.finish}}&finish={{filter.finish}}{{/if}}">{{amount}}</a></td>
+  <td title="Дата последнего действия">{{last_action}}</td>
+</tr>

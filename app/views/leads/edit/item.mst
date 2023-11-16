@@ -1,0 +1,25 @@
+<tr>
+  <td title="Дата">{{timestamp}}</td>
+  {{#if profile.role 'admin'}}
+  <td title="Рекламодатель">
+    <a href="/user/edit/{{user.id}}" class="link">{{user.surname}} {{user.name}}</a>
+  </td>
+  {{/if}}
+  <td title="Оффер">
+      <a href="/offers/details/{{offer_id}}" class="link">{{offer.name}}</a>
+  </td>
+  <td title="Комментарий">{{notes}}</td>
+  <td title="Вложения">
+      {{#each attachments}}
+          <a href="{{.}}" class="mdi mdi-download" target="_blank"></a>
+      {{/each}}
+  </td>
+  <td title="Статус">
+      {{#if status 'new'}}Новый{{/if}}
+      {{#if status 'inwork'}}В работе{{/if}}
+      {{#if status 'approved'}}Принят{{/if}}
+      {{#if status 'rejected'}}Отклонен{{/if}}
+      {{#if status 'appealed'}}Апелляция{{/if}}
+      {{#if status 'hold'}}Hold{{/if}}
+  </td>
+</tr>

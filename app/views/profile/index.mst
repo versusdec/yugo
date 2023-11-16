@@ -1,0 +1,19 @@
+<h1><a class="back mdi mdi-arrow-left-circle-outline" href="/"></a>{{title}}</h1>
+<ul class="tabs">
+  <li class="active"><a href="#tab=common">Общая информация</a></li>
+  <li><a href="#tab=notifications">Уведомления</a></li>
+  <li><a href="#tab=password">Сменить пароль</a></li>
+  <li><a href="#tab=integration">Интеграция</a></li>
+</ul>
+<hr>
+<div id="profile">
+
+  {{> profile/common}}
+
+  {{> profile/notifications}}
+
+  {{> profile/password}}
+
+  {{> profile/integration}}
+
+</div>

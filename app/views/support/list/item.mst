@@ -1,0 +1,64 @@
+<tr>
+  <td data-label="ID">{{id}}</td>
+  <td data-label="Создан">{{created}}</td>
+    {{#if profile.role 'admin'}}
+        <td data-label="Пользователь"><a class="link" href="/users/edit/{{user.id}}">{{user.surname}} {{user.name}}</a></td>
+    {{/if}}
+  <td data-label="Название">
+    <a href="/support/ticket/{{id}}" title="Перейти" class="link">
+      {{name}}
+    </a>
+  </td>
+  <td data-label="Тип">
+    {{#if theme 'tech'}}
+      Техническое
+    {{/if}}
+    {{#if theme 'finance'}}
+      Финансовое
+    {{/if}}
+  </td>
+
+  <td>
+    {{#if status 'new'}}
+      <a class="mdi mdi-comment-processing-outline"></a><span>На рассмотрении</span>
+    {{/if}}
+    {{#if status 'reopened'}}
+      <a class="mdi mdi-comment-processing-outline"></a><span>Есть ответ</span>
+    {{/if}}
+    {{#if status 'closed'}}
+      <a class="mdi mdi-comment-remove-outline secondary"></a><span>Закрыто</span>
+    {{/if}}
+    {{#if status 'archived'}}
+      <a class="mdi mdi-comment-eye-outline "></a><span>В архиве</span>
+    {{/if}}
+    {{#if status 'active'}}
+      <a class="mdi mdi-comment-alert-outline "></a><span>Открыто</span>
+    {{/if}}
+  </td>
+  <td>
+      <a href="/support/ticket/{{id}}" title="Перейти" class="mdi mdi-forum-outline"></a>
+      {{#if status 'closed'}}
+          <a onclick="___mc.events.push('ticket.reopen', {{id}})" title="Открыть"
+             class="mdi mdi-email-open-multiple-outline">
+          </a>
+          <a onclick="___mc.events.push('ticket.archive', {{id}})" title="Отправить в архив"
+             class="mdi mdi-archive-arrow-down-outline"></a>
+      {{/if}}
+      {{#if status 'active'}}
+          <a onclick="___mc.events.push('ticket.close', {{id}})" title="Закрыть"
+             class="mdi mdi-close"></a>
+      {{/if}}
+      {{#if status 'archived'}}
+          <!--<a onclick="___mc.events.push('ticket.reopen', {{id}})" title="Открыть"
+             class="mdi mdi-email-open-multiple-outline">
+          </a>
+          <a onclick="___mc.events.push('ticket.close', {{id}})" title="Закрыть"
+             class="mdi mdi-close"></a>-->
+          {{#if profile.role 'admin'}}
+              <a onclick="___mc.events.push('ticket.unarchive', {{id}})" title="Разархивировать"
+                 class="mdi mdi-archive-arrow-up-outline"></a>
+          {{/if}}
+      {{/if}}
+
+  </td>
+</tr>

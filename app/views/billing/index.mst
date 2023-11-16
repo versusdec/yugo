@@ -1,0 +1,27 @@
+<h1><a class="back mdi mdi-arrow-left-circle-outline" href="/"></a>
+    {{#i18n}}billing.title{{/i18n}}
+</h1>
+{{#if role 'IN' 'admin' 'network_manager' 'agency_manager' 'agency_admin'}}
+    <ul class="tabs">
+        <li class="{{#if page 'transactions'}}active{{/if}}"><a href="/billing/transactions/">{{#i18n}}billing.transactions.title{{/i18n}}</a></li>
+        <li class="{{#if page 'payments'}}active{{/if}}"><a href="/billing/payments/">{{#i18n}}billing.payments.title{{/i18n}}</a></li>
+        <li class="{{#if page 'topup'}}active{{/if}}"><a href="/billing/topup/">{{#i18n}}billing.topup.title{{/i18n}}</a></li>
+    </ul>
+{{/if}}
+<hr>
+
+{{#if page 'payments'}}
+    {{> billing/payments/index}}
+{{/if}}
+
+{{#if page 'transactions'}}
+    {{> billing/transactions/index}}
+{{/if}}
+
+{{#if page 'topup'}}
+    {{> billing/topup/index}}
+{{/if}}
+
+
+
+

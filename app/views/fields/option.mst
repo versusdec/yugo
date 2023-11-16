@@ -1,0 +1,13 @@
+<div class="option row" style="margin: 8px 0">
+  <div class="col-1-3">
+      <label>ID</label>
+      <input type="number" class="col-1-1" name="id" value="{{id}}">
+  </div>
+  <div class="col-1-3">
+      <label>Значение</label>
+      <input type="text" class="col-1-1" name="value" value="{{value}}">
+  </div>
+  <div class="col-1-5" style="display: flex; justify-content: flex-start; align-items: flex-end">
+    <a onclick="this.closest('.row').remove()" class="btn mdi mdi-delete" style="margin-left: 8px; color: #fff" title="Удалить"></a>
+  </div>
+</div>

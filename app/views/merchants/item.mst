@@ -1,0 +1,14 @@
+<tr class="row_hover">
+    <td title="ID">{{id}}</td>
+    <td title="{{#i18n}}user.name{{/i18n}}">{{timestamp}}</td>
+    <td title="{{#i18n}}user.email{{/i18n}}"></td>
+    <td title="{{#i18n}}table.balance{{/i18n}}"></td>
+    <td title="{{#i18n}}user.registered{{/i18n}}">
+
+    </td>
+    <td title="{{#i18n}}status.title{{/i18n}}">{{phone|phone}}</td>
+    <td class="actions">
+        <a class="mdi mdi-database-edit-outline" title="{{#i18n}}actions.edit{{/i18n}}" href="/merchants/{{id}}"></a>
+
+    </td>
+</tr>

@@ -1,0 +1,50 @@
+<h1><a class="back mdi mdi-arrow-left-circle-outline" href="/"></a>{{title}}</h1>
+<hr>
+
+<div class="block filters">
+    <header>
+        <h2>Фильтры</h2>
+    </header>
+    <div class="row">
+        <div class="col-1-3">
+            {{#autocomplete name='network_id' value=filter.network_id onset=network_set onsuggest='networks.suggest' min=0 label='Сеть' onchange='regions.network.change'}}{{/autocomplete}}
+        </div>
+        <div class="col-1-3">
+            {{#autocomplete name='agency_id' value=filter.agency_id onset=agency_set onsuggest='agencies.suggest' min=0 label='Агентство' onchange='regions.agency.change'}}{{/autocomplete}}
+        </div>
+    </div>
+    <div class="buttons-wrapper">
+        <button type="button" onclick="___mc.events.push('regions.filter.filter', $('#regions')[0])">фильтровать</button>
+        <button type="button" onclick="___mc.events.push('regions.filter.reset', $('#regions')[0])">сбросить</button>
+    </div>
+</div>
+
+<div id="regions" class="block" handler="controllers/regions/handler">
+    <header>
+        <h2>{{title}}</h2>
+        <a href="/regions/edit/new" class="btn">Создать</a>
+    </header>
+    {{#pagination}}{{/pagination}}
+    <table>
+        <thead>
+        <tr>
+            <th style="max-width: 100px">ID</th>
+            <th>Название</th>
+            <th style="width: 100px;">Действие</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td colspan="3">
+                <div class="loader">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    {{#pagination}}{{/pagination}}
+</div>

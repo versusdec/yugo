@@ -1,0 +1,281 @@
+<h1>Рабочий стол</h1>
+<hr>
+<div class=" dashboard">
+<div class="row reverse">
+  <div class="col-1-2">
+    <div handler="controllers/dashboard/admin/categories/handler">
+      <div class="block ">
+        <header>
+          <h2>Категории</h2>
+        </header>
+        <div class="table ">
+          <table>
+            <thead>
+            <tr>
+              <th>Название</th>
+              <th>Кол-во офферов</th>
+              <th>Кол-во лидов в хабе</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td colspan="3">
+                <div class="loader">
+                  <span></span><span></span><span></span><span></span>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-1-2">
+    <div handler="controllers/dashboard/admin/stats/handler">
+      <div class="block ">
+      <div class="row">
+        <header>
+          <h2>Статистика</h2>
+        </header>
+
+        <ul class="tabs">
+          <li class="active"><a href="#tab=stats-day">День</a></li>
+          <li><a href="#tab=stats-week">Неделя</a></li>
+          <li><a href="#tab=stats-month">Месяц</a></li>
+        </ul>
+      </div>
+      <div class=" stats-wrapper">
+        <div id="stats-day" class="row">
+            <div class="loader">
+                <span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+        <div id="stats-week" class="row hide">
+            <div class="loader">
+                <span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+        <div id="stats-month" class="row hide">
+            <div class="loader">
+                <span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div id="merchants" handler="controllers/dashboard/admin/merchants/handler">
+  <div class="block ">
+    <header style="margin-bottom: 0;">
+      <h2>Рекламодатели</h2>
+    </header>
+    <div class="row">
+      <div class="col">
+        {{#datetimepicker type='date' label='Период с' onchange='dashboard:admin.merchants.filter.start'}}{{/datetimepicker}}
+      </div>
+      <div class="col">
+        {{#datetimepicker type='date' label='Период по' onchange='dashboard:admin.merchants.filter.finish'}}{{/datetimepicker}}
+      </div>
+      <div class="col">
+        {{#autocomplete onsuggest='dashboard:admin.merchants.suggest' min=0 label='Рекламодатель' onchange='dashboard:admin.merchants.filter.change'}}{{/autocomplete}}
+      </div>
+      <div class="col" id="merchants-stats">
+        <label>Найдено: </label>
+        <br><br>
+        <b style="min-width: 100px;display:inline-block;">Всего: </b><span data-total></span><br><br>
+      </div>
+    </div>
+    <footer>
+      <button onclick="___mc.events.push('dashboard:admin.merchants.filter', $('#merchants')[0])">фильтровать</button>
+    </footer>
+    <br>
+    <div class="table ">
+      <table>
+        <thead>
+        <tr>
+          <th>Рекламодатель</th>
+          <th>Кол-во офферов</th>
+          <th>Кол-во денег</th>
+          <th>Дата последнего действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td colspan="4">
+            <div class="loader">
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div id="webmasters" handler="controllers/dashboard/admin/webmasters/handler">
+  <div class="block ">
+    <header style="margin-bottom: 0;">
+      <h2>Веб-мастера</h2>
+    </header>
+    <div class="row">
+      <div class="col">
+        {{#datetimepicker type='date' label='Период с' onchange='dashboard:admin.webmasters.filter.start'}}{{/datetimepicker}}
+      </div>
+      <div class="col">
+        {{#datetimepicker type='date' label='Период по' onchange='dashboard:admin.webmasters.filter.finish'}}{{/datetimepicker}}
+      </div>
+      <div class="col">
+        {{#autocomplete onsuggest='dashboard:admin.webmasters.suggest' min=0 label='Вебмастер' onchange='dashboard:admin.webmasters.filter.change'}}{{/autocomplete}}
+      </div>
+      <div class="col" id="webmasters-stats">
+        <label>Найдено: </label>
+        <br><br>
+        <b style="min-width: 100px;display:inline-block;">Всего: </b><span data-total></span><br><br>
+      </div>
+    </div>
+    <footer>
+      <button onclick="___mc.events.push('dashboard:admin.webmasters.filter', $('#webmasters')[0])">фильтровать</button>
+    </footer>
+    <br>
+    <div class="table ">
+      <table>
+        <thead>
+        <tr>
+          <th>Категория</th>
+          <th>Веб-мастер</th>
+          <th>Новые</th>
+          <th>В работе</th>
+          <th>Hold</th>
+          <th>Отказ</th>
+          <th>Приняты</th>
+          <th>% принятия</th>
+          <th>Денег вебу</th>
+          <th>Комиссия</th>
+          <th>Дата последней отгрузки</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td colspan="11">
+            <div class="loader">
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="dashboard">
+  <div class="row">
+    <div class="col-1-2" style="padding-left: 0" handler="controllers/dashboard/admin/new_users/handler" data-role="merchant">
+      <div class="block ">
+        <header>
+          <h2>Новые рекламодатели</h2>
+        </header>
+        <div class="table ">
+          <table>
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>E-mail</th>
+              <th>ФИО</th>
+              <th>Баланс</th>
+              <th>Статус</th>
+              <!--<th>Действие</th>-->
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td colspan="5">
+                <div class="loader">
+                  <span></span><span></span><span></span><span></span>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <footer>
+          <button onclick="___mc.router.go('/users/merchants')">смотреть все</button>
+        </footer>
+      </div>
+    </div>
+
+    <div class="col-1-2" style="padding-right: 0" handler="controllers/dashboard/admin/new_users/handler" data-role="webmaster">
+      <div class="block ">
+        <header>
+          <h2>Новые веб-мастера</h2>
+        </header>
+        <div class="table ">
+          <table>
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>E-mail</th>
+              <th>ФИО</th>
+              <th>Баланс</th>
+              <th>Статус</th>
+              <!--<th>Действие</th>-->
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td colspan="5">
+                <div class="loader">
+                  <span></span><span></span><span></span><span></span>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <footer>
+          <button onclick="___mc.router.go('/users/webmasters')">смотреть все</button>
+        </footer>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div handler="controllers/dashboard/support/handler">
+  <div class="block ">
+    <header>
+      <h2>Обращения</h2>
+    </header>
+    <div class="table ">
+      <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Создан</th>
+            <th>Пользователь</th>
+            <th>Название</th>
+            <th>Тип</th>
+            <th>Статус</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td colspan="7">
+            <div class="loader">
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

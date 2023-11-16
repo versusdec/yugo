@@ -1,0 +1,89 @@
+<div>
+<h1><a class="back mdi mdi-arrow-left-circle-outline" href="/leads/"></a>Лид ID: {{item.id}}</h1>
+<h1 style="float: right"><a class="mdi mdi-phone" style="font-size: 28px" href="tel:+{{item.phone}}">{{item.phone}}</a></h1>
+</div>
+<hr>
+
+{{#if item.calls}}
+    <div class="columns">
+        <div class="block">
+            <header>
+                <h2>Записи</h2>
+            </header>
+            {{#each item.calls}}
+                <div class="record-row">
+                    <span class="col-1-5"><span class="mdi mdi-phone-outgoing"></span>&nbsp;{{timestamp}}</span>
+                    <audio controls class="col-4-5" preload="none">
+                        <source src="https://broker.botto.ru{{record}}" type="audio/mpeg">
+                    </audio>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+{{/if}}
+
+<div class="columns lead-wrapper">
+  <div class="block " id="lead-fields">
+    <header>
+      <h2>Основные</h2>
+    </header>
+
+
+    {{#autocomplete classlist='region' onsuggest=region_suggest min=0 label='Регион' onchange=region_select value=item.region onset=region_set disabled='disabled'}}{{/autocomplete}}
+    {{#autocomplete classlist='category' onsuggest=category_suggest min=0 label='Категория' onchange=category_select value=item.category onset=category_set disabled='disabled'}}{{/autocomplete}}
+    {{#autocomplete classlist='source' onsuggest=source_suggest min=0 label='Источник' onchange=source_select value=item.source onset=source_set disabled='disabled'}}{{/autocomplete}}
+
+
+    <div id="lead-fields-list">
+        {{#each item.fields}}
+            {{> leads/edit/field}}
+        {{/each}}
+    </div>
+
+    {{#autocomplete classlist='tags' onsuggest=tag_suggest min=0 label='Тэги' onchange=tag_select onset=tag_set}}{{/autocomplete}}
+    <div id="lead-tags" style="padding: 20px 0">
+        {{#each item.tags}}
+            {{> leads/edit/tag}}
+        {{/each}}
+    </div>
+      <label>Комментарий</label>
+      <textarea rows="5" style="resize: vertical" readonly>{{item.comment}}</textarea>
+    <footer>
+      <button type="button" class="btn" onclick="___mc.events.push('leads.update')">Сохранить</button>
+    </footer>
+  </div>
+
+  <div class="block" handler="controllers/leads/edit/handler" data-lead="{{item.id}}">
+    <header>
+      <h2>История</h2>
+    </header>
+    <div class="table">
+    {{#pagination}}{{/pagination}}
+      <table>
+        <thead>
+        <tr>
+            <th>Дата</th>
+            <th>Рекламодатель</th>
+            <th>Оффер</th>
+            <th>Комментарий</th>
+            <th>Вложения</th>
+            <th>Статус</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td colspan="6">
+            <div class="loader">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    {{#pagination}}{{/pagination}}
+    </div>
+  </div>
+</div>

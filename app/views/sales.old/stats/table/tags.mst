@@ -1,0 +1,73 @@
+<header>
+    <h2>Теги</h2>
+</header>
+<table>
+    <thead>
+    <tr>
+        <th style="white-space: nowrap">Тег&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        <th style="white-space: nowrap">Рекламодатель&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        <th style="white-space: nowrap">Всего&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        <th style="white-space: nowrap">Новых&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        <th style="white-space: nowrap">В работе&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        <th style="white-space: nowrap">Hold&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        <th style="white-space: nowrap">Принято&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        <th style="white-space: nowrap">Отклонено&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        <th style="white-space: nowrap">Апелляция&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        <th style="white-space: nowrap">Процент целевых&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        <th style="white-space: nowrap">Расходы&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each stats_tags.items}}
+        <tr>
+            <td>{{tag.name}}</td>
+            <td><a class="link" href="/users/edit/{{merchant.id}}">{{merchant.name}}</a></td>
+            <td><a class="link" href="/sales/#user_id={{merchant.id}}&tag={{tag.id}}{{#if ../filter_tags.start}}&start={{../filter_tags.start}}{{/if}}{{#if ../filter_tags.finish}}&finish={{../filter_tags.finish}}{{/if}}">{{total}}</a></td>
+            <td><a class="link" href="/sales/#user_id={{merchant.id}}&tag={{tag.id}}{{#if ../filter_tags.start}}&start={{../filter_tags.start}}{{/if}}{{#if ../filter_tags.finish}}&finish={{../filter_tags.finish}}{{/if}}&status=new">{{new}}</a></td>
+            <td><a class="link" href="/sales/#user_id={{merchant.id}}&tag={{tag.id}}{{#if ../filter_tags.start}}&start={{../filter_tags.start}}{{/if}}{{#if ../filter_tags.finish}}&finish={{../filter_tags.finish}}{{/if}}&status=inwork">{{inwork}}</a></td>
+            <td><a class="link" href="/sales/#user_id={{merchant.id}}&tag={{tag.id}}{{#if ../filter_tags.start}}&start={{../filter_tags.start}}{{/if}}{{#if ../filter_tags.finish}}&finish={{../filter_tags.finish}}{{/if}}&status=hold">{{hold}}</a></td>
+            <td><a class="link" href="/sales/#user_id={{merchant.id}}&tag={{tag.id}}{{#if ../filter_tags.start}}&start={{../filter_tags.start}}{{/if}}{{#if ../filter_tags.finish}}&finish={{../filter_tags.finish}}{{/if}}&status=approved">{{approved}}</a></td>
+            <td><a class="link" href="/sales/#user_id={{merchant.id}}&tag={{tag.id}}{{#if ../filter_tags.start}}&start={{../filter_tags.start}}{{/if}}{{#if ../filter_tags.finish}}&finish={{../filter_tags.finish}}{{/if}}&status=rejected">{{rejected}}</a></td>
+            <td><a class="link" href="/sales/#user_id={{merchant.id}}&tag={{tag.id}}{{#if ../filter_tags.start}}&start={{../filter_tags.start}}{{/if}}{{#if ../filter_tags.finish}}&finish={{../filter_tags.finish}}{{/if}}&status=appealed">{{appealed}}</a></td>
+            <td>{{rate}}</td>
+            <td>{{amount}}</td>
+        </tr>
+    {{/each}}
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="2">Всего</td>
+        <td>{{stats_tags.summary.total}}</td>
+        <td>{{stats_tags.summary.new}}</td>
+        <td>{{stats_tags.summary.inwork}}</td>
+        <td>{{stats_tags.summary.hold}}</td>
+        <td>{{stats_tags.summary.approved}}</td>
+        <td>{{stats_tags.summary.rejected}}</td>
+        <td>{{stats_tags.summary.appealed}}</td>
+        <td>{{stats_tags.summary.rate}}</td>
+        <td>{{stats_tags.summary.amount}}</td>
+    </tr>
+    </tfoot>
+</table>

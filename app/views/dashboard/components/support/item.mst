@@ -1,0 +1,39 @@
+<tr>
+    <td data-label="ID">{{id}}</td>
+    <td data-label="Создан">{{created}}</td>
+    {{#if profile.role 'admin'}}<td data-label="Пользователь"><a class="link" href="/users/edit/{{user.id}}">{{user.surname}} {{user.name}}</a></td>{{/if}}
+    <td data-label="Название">
+        <a href="/support/ticket/{{id}}" title="Перейти" class="link">
+            {{name}}
+        </a>
+    </td>
+    <td data-label="Тип">
+        {{#if theme 'tech'}}
+            <a class="link" href="/support/">Техническое</a>
+        {{/if}}
+        {{#if theme 'finance'}}
+            <a class="link" href="/support/finance">Финансовое</a>
+        {{/if}}
+    </td>
+
+    <td>
+        {{#if status 'new'}}
+            <a class="mdi mdi-comment-processing-outline"></a><span>На рассмотрении</span>
+        {{/if}}
+        {{#if status 'reopened'}}
+            <a class="mdi mdi-comment-processing-outline"></a><span>Есть ответ</span>
+        {{/if}}
+        {{#if status 'closed'}}
+            <a class="mdi mdi-comment-remove-outline secondary"></a><span>Закрыто</span>
+        {{/if}}
+        {{#if status 'archived'}}
+            <a class="mdi mdi-comment-eye-outline "></a><span>В архиве</span>
+        {{/if}}
+        {{#if status 'active'}}
+            <a class="mdi mdi-comment-alert-outline "></a><span>Открыто</span>
+        {{/if}}
+    </td>
+    <td>
+        <a href="/support/ticket/{{id}}" title="Перейти" class="mdi mdi-forum-outline"></a>
+    </td>
+</tr>

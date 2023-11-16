@@ -1,0 +1,119 @@
+<h1><a class="back mdi mdi-arrow-left-circle-outline" href="/offers/"></a>{{#i18n}}filter.offer{{/i18n}}: {{name}}</h1>
+<hr>
+
+<div class=" offer-wrapper">
+    <div class="columns">
+        <div class="block " handler="controllers/offers/details/handler" data-id="{{id}}" style="overflow: auto">
+            <header>
+                <h2>{{#i18n}}button.details{{/i18n}}</h2>
+            </header>
+            <div class="">
+                <div>
+
+
+                    <!--
+                    <button type="button" onclick="___mc.events.push('offers.details.filter.filter', $(this).closest('.block'))">
+                        <span class="mdi mdi-clipboard-check-outline"></span>
+                        {{#i18n}}button.apply{{/i18n}}</button>
+                    <button class="secondary" type="button" onclick="___mc.events.push('offers.details.filter.reset', $(this).closest('.block'))">{{#i18n}}button.reset{{/i18n}}</button>
+-->
+                </div>
+                <br>
+                <div class="columns wrap_1300">
+                    <div style="" class="col">
+                        <div style="max-width: 465px">
+                            {{#datetimepicker name='period' value=filter.start type='period' onchange='offer.details.filter.range.change'}}{{/datetimepicker}}
+                        </div>
+                        <div id="legend-container">
+                            <div class="no-data-placeholder hide"><p>{{#i18n}}chart.nodata{{/i18n}}</p></div>
+                            <hr style="margin: 10% 0 30px;">
+                        </div>
+                    </div>
+                    <div style="flex-grow: 0" class="col">
+                        <canvas id="chart" style=""></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="table">
+                <table>
+                    <thead>
+                    <tr class="nowrap">
+                        <th>{{#i18n}}table.amount{{/i18n}}</th>
+                        <th>{{#i18n}}table.new{{/i18n}}</th>
+                        <th>{{#i18n}}status.inwork{{/i18n}}</th>
+                        <th>{{#i18n}}status.approved{{/i18n}}</th>
+                        <th>{{#i18n}}status.rejected{{/i18n}}</th>
+                        <th>{{#i18n}}status.appealed{{/i18n}}</th>
+                        <th>% {{#i18n}}table.ptl{{/i18n}}</th>
+                        <th>{{#i18n}}table.total{{/i18n}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td colspan="8">
+                            <div class="loader"><span></span><span></span><span></span><span></span></div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <aside>
+            <div class="block ">
+                <header>
+                    <h2>{{#i18n}}table.common{{/i18n}}</h2>
+                </header>
+                <hr>
+                <div class="dash_stat_headings">
+                    {{#i18n}}table.merchant{{/i18n}}
+                </div>
+                <div class="dash_stat_digits">
+                    {{tarification.merchant_price}}
+                </div>
+                <br>
+                <div class="table ">
+                    <table class="">
+                        <tbody>
+                        <tr>
+                            <td class="dash_stat_headings device desktop">ID</td>
+                            <td title="ID">{{id}}</td>
+                        </tr>
+                        <tr>
+                            <td class="dash_stat_headings device desktop">{{#i18n}}table.category{{/i18n}}</td>
+                            <td style="white-space: unset;" title="{{#i18n}}table.category{{/i18n}}"><a class="link" href="/categories/details/{{category.id}}">{{category.name}}</a></td>
+                        </tr>
+                        <tr>
+                            <td class="dash_stat_headings device desktop">{{#i18n}}table.merchant{{/i18n}}</td>
+                            <td style="white-space: unset;" title="{{#i18n}}table.merchant{{/i18n}}">{{merchant.name}} {{merchant.surname}}</td>
+                        </tr>
+                        <tr>
+                            <td class="dash_stat_headings device desktop">{{#i18n}}table.tarification{{/i18n}}</td>
+                            <td title="{{#i18n}}table.tariffication{{/i18n}}">{{tarification.type|status}}</td>
+                        </tr>
+                        <tr>
+                            <td class="dash_stat_headings device desktop">{{#i18n}}offers.autoapprove{{/i18n}}</td>
+                            <td title="{{#i18n}}offers.autoapprove{{/i18n}}">{{tarification.autoapprove}}
+                                {{#numdecl tarification.autoapprove}}["{{#i18n}}numdecl.days.n1{{/i18n}}", "{{#i18n}}numdecl.days.n2{{/i18n}}", "{{#i18n}}numdecl.days.n5{{/i18n}}"]{{/numdecl}}</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                {{#if profile.role 'admin'}}
+                    <div class="columns">
+                        <div class="col-1-2"><b>{{#i18n}}{{/i18n}}:</b></div>
+                        <div class="col-1-2"><a class="link" href="/categories/edit/{{category.id}}">{{category.name}}</a></div>
+                    </div>
+                    <div class="columns">
+                        <div class="col-1-2"><b>Рекламодатель:</b></div>
+                        <div class="col-1-2"><a class="link" href="/users/edit/{{merchant.id}}">{{merchant.name}} {{merchant.surname}} ({{merchant.email}})</a></div>
+                    </div>
+                {{/if}}
+                <footer>
+                    <a href="/offers/edit/{{id}}" class="btn">
+                       <span class="mdi mdi-clipboard-edit-outline"></span> {{#i18n}}actions.edit{{/i18n}}</a>
+                </footer>
+            </div>
+        </aside>
+    </div>
+</div>

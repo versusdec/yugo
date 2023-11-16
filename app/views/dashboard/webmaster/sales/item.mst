@@ -1,0 +1,9 @@
+<tr>
+    <td title="Дата">{{date}}</td>
+    <td title="Лидов">{{leads}}</td>
+    <td title="Продажи звонки">{{calls_sales}}</td>
+    <td title="CR">{{calls_cr}}</td>
+    <td title="Продажи лиды">{{leads_sales}}</td>
+    <td title="CR">{{leads_cr}}</td>
+    <td title="Денег по продажам">{{amount}} ₽</td>
+</tr>

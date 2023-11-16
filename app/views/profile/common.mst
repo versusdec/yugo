@@ -1,0 +1,61 @@
+<div class="columns" id="common">
+  <div>
+    <div class="block">
+      <header>
+        <h2>Общая информация</h2>
+      </header>
+      <label>Фамилия</label>
+      <input type="text" name="surname" value="{{user.surname}}">
+      <label>Имя</label>
+      <input type="text" name="name" value="{{user.name}}">
+      <label>Отчество</label>
+      <input type="text" name="second_name" value="{{user.second_name}}">
+      <label>Пол</label>
+      {{#select options=genders value=user.gender onchange=gender_change}}{{/select}}
+      <label>E-mail</label>
+      <input type="email" name="email" value="{{user.email}}">
+      <label>Телефон</label>
+      <input type="tel" class="{{#unless user.phone.verified}}danger{{/unless}}" name="phone"
+             value="{{#if user.phone}}+{{/if}}{{user.phone}}">
+
+      {{#if user.phone}}
+        {{#unless user.phone.verified}}
+          <div>
+            <p>
+              Подтвердите номер телефона, чтобы получить доступ ко всем возможностям платформы
+            </p>
+            <a class="btn"
+               onclick="___mc.events.push('phone.verify')">Подтвердить</a>
+          </div>
+        {{/unless}}
+      {{/if}}
+
+        <label>Telegram</label>
+        <input type="text" name="telegram" value="{{user.telegram}}">
+      <footer>
+        <button type="button">сохранить</button>
+      </footer>
+    </div>
+  </div>
+  <aside>
+    <div class="block">
+      <div class="avatar">
+        <a class="mdi mdi-close" onclick="___mc.events.push('avatar.remove')"></a>
+        <img src="/img/ava.png" alt="" class="">
+      </div>
+      <div>
+        <input type="file" id="fileinput" style="display: none"
+               accept="image/png, image/jpeg, image/jpg"
+        onchange="___mc.events.push('avatar.update', this)" />
+        <a class="btn" onclick="___mc.events.push('avatar.select')">изменить</a>
+      </div>
+      <div>
+        <p><b>{{user.email}}</b></p>
+
+        <p>{{user.name}} {{user.surname}}</p>
+
+      </div>
+    </div>
+  </aside>
+
+</div>

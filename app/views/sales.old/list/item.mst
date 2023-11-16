@@ -1,0 +1,46 @@
+<tr>
+  <td style="max-width: 100px">
+    <input type="checkbox" name="check" value="{{item.id}}" data-lead="{{item.id}}" data-offer="{{item.offer.id}}" data-user="{{item.user_id}}">
+  </td>
+  <td title="ID">{{item.id}}</td>
+  <td title="Дата/время">{{item.timestamp}}</td>
+    <td title="Оффер">
+        <a class="link" href="/offers/details/{{item.offer.id}}">{{item.offer.name}}</a>
+    </td>
+  <td title="Телефон">{{item.phone}}</td>
+  <td title="Запись" class="record-row">
+      {{#if item.record}}
+      <audio controls class="" preload="none">
+          <source src="https://broker.botto.ru{{item.record}}" type="audio/mpeg">
+      </audio>
+      {{/if}}
+  </td>
+  <td title="Статус">
+    {{#locale item.status}}{{/locale}}
+  </td>
+  <td title="Комментарий">{{item.notes}}</td>
+  <td title="Вложения">
+      {{#each item.attachments}}
+          <a href="{{.}}" class="mdi mdi-download" target="_blank"></a>
+      {{/each}}
+  </td>
+  <td class="actions">
+    {{#if user.role 'IN' 'admin' 'merchant'}}
+      <a href="/sales/details/{{item.id}}" class="mdi mdi-database-edit-outline" title="{{#i18n}}button.details{{/i18n}}"></a>
+    {{/if}}
+    {{#if user.role 'merchant'}}
+      {{#if item.status 'new'}}
+            <a class="mdi mdi-lock-open" title="{{#i18n}}actions.inwork{{/i18n}}"
+               onclick="___mc.events.push('sales.set.status', {item: { lead_id: {{item.id}}, offer_id: {{item.offer.id}}, user_id: {{item.user_id}} }, status: 'inwork'})"></a>
+      {{/if}}
+      {{#if item.status 'inwork'}}
+            <a class="mdi mdi-check" title="{{#i18n}}actions.accept{{/i18n}}"
+               onclick="___mc.events.push('sales.set.status', {item: { lead_id: {{item.id}}, offer_id: {{item.offer.id}}, user_id: {{item.user_id}} }, status: 'approved'})"></a>
+            <a class="mdi mdi-bookmark-remove-outline" title="{{#i18n}}actions.decline{{/i18n}}"
+               onclick="___mc.events.push('sales.set.status', {item: { lead_id: {{item.id}}, offer_id: {{item.offer.id}}, user_id: {{item.user_id}} }, status: 'rejected'})"></a>
+      {{/if}}
+    {{/if}}
+      <a class="mdi mdi-lock" title="Hold"
+         onclick="___mc.events.push('sales.set.status', {item: { lead_id: {{item.id}}, offer_id: {{item.offer.id}}, user_id: {{item.user_id}} }, status: 'hold'})"></a>
+  </td>
+</tr>

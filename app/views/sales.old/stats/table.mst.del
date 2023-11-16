@@ -1,0 +1,69 @@
+<table>
+    <thead>
+    <tr>
+        <th style="white-space: nowrap">Оффер&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        {{#if user.role 'admin'}}
+        <th style="white-space: nowrap">Рекламодатель&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        {{/if}}
+        <th style="white-space: nowrap">Всего&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        <th style="white-space: nowrap">Новых&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        <th style="white-space: nowrap">В работе&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        <th style="white-space: nowrap">Принято&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        <th style="white-space: nowrap">Отклонено&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        <th style="white-space: nowrap">Апелляция&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        <th style="white-space: nowrap">Процент целевых&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+        <th style="white-space: nowrap">Расходы&nbsp;
+            <span class="mdi mdi-arrow-up" onclick="___mc.events.push('sales.stats.sort', [this, 'asc'])"></span>
+            <span class="mdi mdi-arrow-down" onclick="___mc.events.push('sales.stats.sort', [this, 'desc'])"></span></th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each stats.items}}
+        <tr>
+            <td>{{offer.name}}</td>
+            {{#if ../user.role 'admin'}}
+            <td>{{merchant.name}}</td>
+            {{/if}}
+            <td>{{total}}</td>
+            <td>{{new}}</td>
+            <td>{{inwork}}</td>
+            <td>{{approved}}</td>
+            <td>{{rejected}}</td>
+            <td>{{appealed}}</td>
+            <td>{{rate}}</td>
+            <td>{{amount}}</td>
+        </tr>
+    {{/each}}
+    </tbody>
+    <tfoot>
+    <tr>
+        <td {{#if user.role 'admin'}}colspan="2"{{/if}}>Всего</td>
+        <td>{{stats.summary.total}}</td>
+        <td>{{stats.summary.new}}</td>
+        <td>{{stats.summary.inwork}}</td>
+        <td>{{stats.summary.approved}}</td>
+        <td>{{stats.summary.rejected}}</td>
+        <td>{{stats.summary.appealed}}</td>
+        <td>{{stats.summary.rate}}</td>
+        <td>{{stats.summary.amount}}</td>
+    </tr>
+    </tfoot>
+</table>

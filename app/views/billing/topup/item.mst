@@ -1,0 +1,34 @@
+<tr>
+  <td title="ID">{{id}}</td>
+  <td title="Дата">{{created}}</td>
+  {{#if profile.role 'IN' 'admin' 'bookkeeper'}}
+      <td title="Пользователь"><a class="link" href="/users/edit/{{user.id}}">{{user.surname}} {{user.name}}</a></td>
+  {{/if}}
+  <td title="Сумма">{{amount}}</td>
+  <td title="Описание">{{comment}}</td>
+  <td>
+    {{#if status 'new'}}
+      <a class="mdi mdi-chevron-down-circle-outline"></a><span>Новая</span>
+    {{/if}}
+    {{#if status 'pending'}}
+      <a class="mdi mdi-alert-circle-outline"></a><span>Ожидание</span>
+    {{/if}}
+    {{#if status 'succeeded'}}
+      <a class="mdi mdi-chevron-down-circle-outline"></a><span>Успешно</span>
+    {{/if}}
+    {{#if status 'canceled'}}
+      <a class="mdi mdi-close-circle-outline"></a><span>Отменена</span>
+    {{/if}}
+  </td>
+  {{#unless profile.role 'admin'}}
+    <td>
+      {{#unless status 'succeeded'}}
+        {{#unless status 'canceled'}}
+          <a class="mdi mdi-check-box-outline" onclick="___mc.events.push('payments.pay', {{id}})" title="Оплатить"></a>
+          <a class="mdi mdi-close-box-outline" onclick="___mc.events.push('payments.cancel', {{id}})"
+             title="Отменить"></a>
+        {{/unless}}
+      {{/unless}}
+    </td>
+  {{/unless}}
+</tr>

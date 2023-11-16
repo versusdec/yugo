@@ -1,0 +1,17 @@
+<div class="block">
+  <header>
+    <h2><a class="hover" href="/news/details/{{id}}">{{title}}</a></h2>
+    <div>
+        <span style="margin-right: 20px">{{date}}</span>
+        {{#if role 'admin'}}
+            <span>
+                <a class="mdi mdi-pencil" title="Редактировать" href="/news/edit/{{id}}"></a>
+            </span>
+            <span>
+                <a class="mdi mdi-delete" title="Удалить" onclick="___mc.events.push('news.remove', {{id}})"></a>
+            </span>
+        {{/if}}
+    </div>
+  </header>
+  {{description}}
+</div>

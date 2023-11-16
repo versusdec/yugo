@@ -1,0 +1,36 @@
+<div class="pagination block">
+    <div class="stats">
+        {{#each stats}}
+            <span>{{name}}: {{value}}</span>
+        {{/each}}
+    </div>
+    <div class="pagination-inner">
+        {{#if total_pages '>' 1}}
+            <ul>
+                {{#if prev}}
+                    <li><a href="{{prev}}" class="mdi mdi-chevron-left"></a></li>
+                {{/if}}
+
+                {{#each pages}}
+                    <li{{#if page ../current}} class="current"{{/if}}>
+                        {{#if uri}}
+                        <a href="{{uri}}">
+                        {{/if}}
+                        {{page}}
+                        {{#if uri}}
+                        </a>
+                        {{/if}}
+                    </li>
+                {{/each}}
+                {{#if next}}
+                    <li><a href="{{next}}" class="mdi mdi-chevron-right"></a></li>
+                {{/if}}
+            </ul>
+        {{/if}}
+        <div>
+            {{#select options=limits value=limit onchange=limit_change}}{{/select}}
+        </div>
+    </div>
+
+</div>
+

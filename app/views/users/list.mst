@@ -1,0 +1,40 @@
+<h1><a class="back mdi mdi-arrow-left-circle-outline" href="/"></a>{{title}}</h1>
+<ul class="tabs">
+    <li{{#unless type}} class="active"{{/unless}}><a href="/users/">Все пользователи</a></li>
+    <li{{#if type 'webmasters'}} class="active"{{/if}}><a href="/users/webmasters">Вебмастера</a></li>
+    <li{{#if type 'merchants'}} class="active"{{/if}}><a href="/users/merchants">Рекламодатели</a></li>
+</ul>
+<hr>
+<div class="block" handler="controllers/users/handler" data-type="{{type}}">
+    <header>
+        <h2>{{title}}</h2>
+        <a href="/users/edit/new" class="btn">Создать</a>
+    </header>
+    {{#pagination}}{{/pagination}}
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>E-mail</th>
+            <th>ФИО</th>
+            <th>Баланс</th>
+            <th>Роль</th>
+            <th>Статус</th>
+            <th style="width: 100px;">Действие</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td colspan="7">
+                <div class="loader">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    {{#pagination}}{{/pagination}}
+</div>

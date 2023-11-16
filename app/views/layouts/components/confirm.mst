@@ -1,0 +1,11 @@
+<div class="confirm">
+    <div class="block conf">
+        <h2>{{title}}</h2>
+        <p>{{{text}}}</p>
+
+        <div style="text-align: center">
+            <a data-answer="false" class="btn">отмена</a>
+            <a data-answer="true" class="btn">ок</a>
+        </div>
+    </div>
+</div>

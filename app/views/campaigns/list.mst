@@ -1,0 +1,67 @@
+<h1><a class="back mdi mdi-arrow-left-circle-outline" href="/"></a>{{title}}</h1>
+<hr>
+
+<div class="block filters">
+    <header>
+        <h2>Фильтры</h2>
+    </header>
+    <div class="row">
+        <div class="col-1-3">
+            <label>Название</label>
+            <input class="col-1-1" type="text" name="name" value="{{filter.name}}" onchange="___mc.events.push('campaigns.filter.name.change', this)">
+            {{#autocomplete name='category_id' value=filter.category_id onset=category_set onsuggest='categories.suggest' min=0 label='Категория' onchange='campaigns.filter.category.change'}}{{/autocomplete}}
+        </div>
+        <div class="col-1-3">
+            {{#if profile.role 'admin'}}
+                {{#autocomplete name='webmaster_id' value=filter.webmaster_id onset=webmaster_set onsuggest='webmasters.suggest' min=0 label='Вебмастер' onchange='campaigns.filter.webmasters.change'}}{{/autocomplete}}
+            {{/if}}
+            <input type="hidden" name="merchant" value="">
+            {{#autocomplete name="offer_id" value=filter.offer_id onset=offer_set onsuggest='offers.suggest' min=0 label='Оффер' onchange='campaigns.filter.offer.change'}}{{/autocomplete}}
+            <label>Статус</label>
+            {{#select name='status' value=filter.status options=statuses onchange='campaigns.filter.status.change'}}{{/select}}
+        </div>
+        <div class="col-1-3" id="campaigns-stats">
+            <label>Найдено: </label>
+            <br><br>
+            <b style="min-width: 100px;display:inline-block;">Всего: </b><span data-total></span><br><br>
+        </div>
+    </div>
+    <div class="buttons-wrapper">
+        <button type="button" onclick="___mc.events.push('campaigns.filter.filter', $('#campaigns')[0])">фильтровать</button>
+        <button type="button" onclick="___mc.events.push('campaigns.filter.reset', $('#campaigns')[0])">сбросить</button>
+    </div>
+</div>
+
+<div id="campaigns" class="block" handler="controllers/campaigns/handler">
+    <header>
+        <h2>{{title}}</h2>
+        <a href="/campaigns/edit/new" class="btn">Создать</a>
+    </header>
+    {{#pagination}}{{/pagination}}
+    <table>
+        <thead>
+        <tr>
+            <th style="max-width: 100px">ID</th>
+            <th>Название</th>
+            {{#if profile.role 'admin'}}<th>Вебмастер</th>{{/if}}
+            <th>Категория</th>
+            <th>Оффер</th>
+            <th>Статус</th>
+            <th style="width: 100px;">Действие</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td colspan="{{#if profile.role 'admin'}}7{{/if}}{{#if profile.role 'webmaster'}}6{{/if}}">
+                <div class="loader">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    {{#pagination}}{{/pagination}}
+</div>

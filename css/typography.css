@@ -1,0 +1,351 @@
+h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color__blue_bg);
+    cursor: pointer;
+}
+
+a[disabled] {
+    pointer-events: none;
+    color: var(--color__light_blue) !important;
+}
+
+a.hover {
+    color: var(--color__blue);
+}
+
+p {
+    margin: 5px 0 15px 0;
+}
+
+.light_blue {
+    color: var(--color__light_blue);
+}
+
+a.mdi {
+    color: var(--color__yellow);
+    font-size: 1.1em;
+}
+
+a.mdi:before {
+    margin-right: 10px;
+}
+
+table a.mdi {
+    color: var(--color_element_icon);
+}
+
+table a.mdi:hover {
+    color: var(--color__yellow);
+}
+
+a.mdi > span {
+    color: var(--color__blue_bg);
+    margin-left: 5px;
+}
+
+a.back, a.forward {
+    font-size: 26px;
+    color: var(--color__light_blue);
+    margin-right: 22px;
+}
+
+a.forward {
+    margin-right: 0;
+    margin-left: 22px;
+}
+
+a.link {
+    color: var(--color__blue);
+}
+
+a.link:hover {
+    /*color: var(--color__red);*/
+    color: var(--color__yellow);
+}
+
+.hover:hover {
+    color: var(--color__yellow);
+}
+
+.text-danger, .mdi.danger {
+    color: var(--color__red);
+}
+
+.text-warning, .mdi.warning {
+    color: var(--color__yellow);
+}
+
+.text-success, .mdi.success {
+    color: var(--color__green2);
+}
+
+.text-info, .mdi.info {
+    color: var(--color__blue);
+}
+
+.text-secondary, .mdi.secondary {
+    color: var(--color__light_blue);
+}
+
+h2 {
+    font-size: 25px;
+    line-height: 34px;
+    font-weight: normal;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: normal;
+    margin: 15px 0;
+}
+
+br {
+    margin: 5px 0 15px 0;
+    display: block;
+    content: "";
+}
+
+hr {
+    width: 100%;
+    height: 1px;
+    border: none;
+    border-top: 1px solid var(--color__border);
+    margin-top: -1px;
+}
+
+.table {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 3px;
+    width: 100%;
+}
+
+table th, table td {
+    text-align: left;
+    white-space: pre-line;
+    padding: 10px;
+    height: 40px;
+    margin: 0;
+}
+
+table td:not(:first-child) {
+    /*text-align: end;*/
+}
+
+table td {
+    position: relative;
+}
+
+table td::before, table td::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 1px;
+    height: 150%;
+    top: -50%;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color__cell_hover);
+    /*border-left: 1px solid var(--color__cell_hover);*/
+    /*border-right: 1px solid var(--color__cell_hover);*/
+}
+
+table td::after {
+    right: 0;
+    left: auto;
+}
+
+table td:first-child::before {
+    display: none;
+}
+
+table td:last-child::after {
+    display: none;
+}
+
+table th {
+    font-size: 13px;
+    line-height: 18px;
+    color: var(--color__light_blue);
+    font-weight: normal;
+}
+
+table th span.sorted {
+    color: var(--color__red);
+}
+
+table th span.mdi-arrow-down,
+table th span.mdi-arrow-up {
+    cursor: pointer;
+}
+
+table tbody tr, .chat .message {
+    background: var(--color__cell1);
+}
+
+table tr > td:first-child, table tr > th:first-child {
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+    padding-left: 30px;
+}
+
+table tr > td:last-child, table tr > th:last-child {
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    padding-right: 30px;
+    /*text-align: right;*/
+    min-width: 130px;
+    white-space: nowrap;
+}
+
+table tbody tr:nth-child(2n), .chat .message:nth-child(2n) {
+    background: var(--color__cell2);
+}
+
+table tr.row_hover:hover {
+    background: var(--color__cell_hover);
+}
+
+table tr.row_hover .actions .mdi {
+    opacity: 0;
+    visibility: hidden;
+}
+
+table tr.row_hover:hover .actions .mdi {
+    opacity: 1;
+    visibility: visible;
+}
+
+table td.actions {
+    width: 116px;
+    text-align: right;
+    justify-content: flex-end;
+}
+
+table tfoot td {
+    font-weight: bold;
+}
+
+tr[onclick]:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table th.js_sortable {
+    white-space: nowrap;
+}
+
+table th.js_sortable > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+table th.js_sortable > div:last-child {
+    justify-content: flex-end;
+}
+
+table th.js_sortable > div > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+table th.js_sortable span {
+    cursor: pointer;
+}
+
+/*table tbody tr:last-child:first-child {
+    background: transparent;
+}*/
+
+li::marker {
+    color: var(--color__yellow);
+}
+
+table.default tbody tr {
+    background: transparent;
+}
+
+table.default td::before, table.default td::after {
+    display: none;
+}
+
+table.default tr > td:first-child, table.default tr > th:first-child, table.default tr > td:last-child, table.default tr > th:last-child {
+    padding: 10px;
+}
+
+table.default tr > td:last-child {
+    text-align: left;
+}
+
+table.default td:not(:first-child) {
+    text-align: left;
+}
+
+table.default tr > td:last-child, table.default tr > th:last-child {
+    min-width: auto;
+}
+
+.text-right{
+    text-align: right;
+}
+
+@media only screen and (max-width: 767px) {
+    table thead {
+        display: none;
+    }
+
+    table tr {
+        display: flex;
+        flex-flow: column;
+    }
+
+    table tr > td {
+        padding-left: 50% !important;
+        width: 100%;
+        height: auto;
+        position: relative;
+        text-align: end;
+    }
+
+    table tr td::before, table td:first-child::before {
+        content: attr(title);
+        position: absolute;
+        top: 5px;
+        left: 0;
+        max-width: 45%;
+        width: 100%;
+        text-align: left;
+        padding: 10px;
+        white-space: pre-line;
+        font-weight: bold;
+        vertical-align: top;
+    }
+
+    table tr td.actions {
+        margin-top: 15px;
+        padding-top: 20px;
+        border-top: 1px solid var(--color__border);
+    }
+
+    table tr td.actions a {
+        font-size: 20px;
+    }
+}

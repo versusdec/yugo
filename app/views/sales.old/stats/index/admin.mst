@@ -1,0 +1,76 @@
+<h1><a class="back mdi mdi-arrow-left-circle-outline" href="/"></a>{{title}}</h1>
+
+<ul class="tabs">
+    <li {{#if tab 'offers'}}class="active"{{/if}}><a href="/sales/stats/offers">По офферам</a></li>
+    <li {{#if tab 'tags'}}class="active"{{/if}}><a href="/sales/stats/tags">По тегам</a></li>
+</ul>
+
+<hr>
+
+<div class="{{#if tab 'tags'}}hide{{/if}}" id="offers">
+    <div class="block filters">
+        <header>
+            <h2>Фильтры</h2>
+        </header>
+        <div class="row">
+            <div class="col-1-3">
+                {{#autocomplete name='region' value=filter_offers.region onset=region_set onsuggest='regions.suggest' min=0 label='Регион' onchange='sales.stats.offers.region.change'}}{{/autocomplete}}
+                {{#autocomplete name='category' value=filter_offers.category onset=category_set onsuggest='categories.suggest' min=0 label='Категория' onchange='sales.stats.offers.category.change'}}{{/autocomplete}}
+                {{#autocomplete name='source' value=filter_offers.source onset=source_set onsuggest='sources.suggest' min=0 label='Источник' onchange='sales.stats.offers.source.change'}}{{/autocomplete}}
+            </div>
+            <div class="col-1-3">
+                {{#autocomplete name='user_id' value=filter_offers.user_id onset=user_set onsuggest='webmasters.suggest' min=0 label='Вебмастер' onchange='sales.stats.offers.webmaster.change'}}{{/autocomplete}}
+                {{#autocomplete name='merchant' value=filter_offers.merchant_id onset=user_set onsuggest='merchants.suggest' min=0 label='Рекламодатель' onchange='sales.stats.offers.merchant.change'}}{{/autocomplete}}
+                {{#autocomplete name='offer_id' value=filter_offers.offer_id onset=offer_set onsuggest='offers.suggest' min=0 label='Оффер' onchange='sales.stats.offers.offer.change'}}{{/autocomplete}}
+            </div>
+            <div class="col-1-3" title="По умолчанию за сегодня">
+                {{#datetimepicker type='date' name='start' value=filter_offers.start label='Период с' onchange='sales.stats.offers.range.start'}}{{/datetimepicker}}
+                {{#datetimepicker type='date' name='finish' value=filter_offers.finish label='Период по' onchange='sales.stats.offers.range.finish'}}{{/datetimepicker}}
+                {{#autocomplete name='tag' value=filter_offers.tag onset=tag_set onsuggest='tags.suggest' min=0 label='Тэг' onchange='sales.stats.offers.tag.change'}}{{/autocomplete}}
+            </div>
+        </div>
+        <br><br>
+        <div class="buttons-wrapper">
+            <button onclick="___mc.events.push('sales.stats.offers.filter.filter', this)">фильтровать</button>
+            <button onclick="___mc.events.push('sales.stats.offers.filter.reset', this)">сбросить</button>
+        </div>
+    </div>
+
+    <div class="block list">
+        {{> sales/stats/table/offers}}
+    </div>
+</div>
+<div class="{{#if tab 'offers'}}hide{{/if}}" id="tags">
+    <div class="block filters">
+        <header>
+            <h2>Фильтры</h2>
+        </header>
+        <div class="row">
+            <div class="col-1-3">
+                {{#autocomplete name='region' value=filter_tags.region onset=region_set onsuggest='regions.suggest' min=0 label='Регион' onchange='sales.stats.tags.region.change'}}{{/autocomplete}}
+                {{#autocomplete name='category' value=filter_tags.category onset=category_set onsuggest='categories.suggest' min=0 label='Категория' onchange='sales.stats.tags.category.change'}}{{/autocomplete}}
+                {{#autocomplete name='source' value=filter_tags.source onset=source_set onsuggest='sources.suggest' min=0 label='Источник' onchange='sales.stats.tags.source.change'}}{{/autocomplete}}
+            </div>
+            <div class="col-1-3">
+                {{#autocomplete name='user_id' value=filter_tags.user_id onset=user_set onsuggest='webmasters.suggest' min=0 label='Вебмастер' onchange='sales.stats.tags.webmaster.change'}}{{/autocomplete}}
+                {{#autocomplete name='merchant' value=filter_tags.merchant_id onset=user_set onsuggest='merchants.suggest' min=0 label='Рекламодатель' onchange='sales.stats.tags.merchant.change'}}{{/autocomplete}}
+                {{#autocomplete name='offer_id' value=filter_tags.offer_id onset=offer_set onsuggest='offers.suggest' min=0 label='Оффер' onchange='sales.stats.tags.offer.change'}}{{/autocomplete}}
+            </div>
+            <div class="col-1-3" title="По умолчанию за сегодня">
+                {{#datetimepicker type='date' name='start' value=filter_tags.start label='Период с' onchange='sales.stats.tags.range.start'}}{{/datetimepicker}}
+                {{#datetimepicker type='date' name='finish' value=filter_tags.finish label='Период по' onchange='sales.stats.tags.range.finish'}}{{/datetimepicker}}
+                {{#autocomplete name='tag' value=filter_tags.tag onset=tag_set onsuggest='tags.suggest' min=0 label='Тэг' onchange='sales.stats.tags.tag.change'}}{{/autocomplete}}
+            </div>
+        </div>
+        <br><br>
+        <div class="buttons-wrapper">
+            <button onclick="___mc.events.push('sales.stats.tags.filter.filter', this)">фильтровать</button>
+            <button onclick="___mc.events.push('sales.stats.tags.filter.reset', this)">сбросить</button>
+        </div>
+    </div>
+
+    <div class="block list">
+        {{> sales/stats/table/tags}}
+    </div>
+</div>
+

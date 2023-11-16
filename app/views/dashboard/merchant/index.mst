@@ -1,0 +1,312 @@
+<div class="flex flex-space-between-center" handler="controllers/dashboard/merchant/index">
+    <h1>{{#i18n}}dashboard.title{{/i18n}}</h1>
+    <div style="margin-left: auto;">
+        {{#datetimepicker classlist='flex no-label-margin' type='period' name='period' value=period onchange='dashboard.merchant.stats.filter.range.change'}}{{/datetimepicker}}
+    </div>
+</div>
+<hr>
+<div class="dashboard">
+    <div class="block wallet device">
+        <header>
+            <h2>{{#i18n}}wallet.balance{{/i18n}}</h2>
+            <sub><a href="/billing/transactions/" class="link">{{#i18n}}wallet.history{{/i18n}}</a></sub>
+        </header>
+        <h1>{{user.balance.RUB}} {{#i18n}}currency{{/i18n}}</h1>
+    </div>
+    <div class="columns reverse ">
+        <aside>
+            <div class="block wallet desktop">
+                <header class="flex flex-space-between-center">
+                    <h2>{{#i18n}}wallet.balance{{/i18n}}</h2>
+                    <a href="#" class="btn" style=""><span class="mdi mdi-clipboard-edit-outline">&nbsp;{{#i18n}}wallet.button{{/i18n}}</span></a>
+                    <!--<sub><a href="/billing/" class="link">Смотреть историю баланса</a></sub>-->
+                </header>
+                <hr>
+                <div>
+                    <h1>{{user.balance.RUB}} {{#i18n}}currency{{/i18n}}</h1>
+                    <p style="margin-top: 18px"><span class="light_blue">{{#i18n}}tariff.title{{/i18n}}: </span><span>{{user.tariff.name}}</span></p>
+                </div>
+            </div>
+
+            <div class="block manager">
+                <header class="flex flex-space-between-center">
+                    <h2>{{#i18n}}manager.title{{/i18n}}</h2>
+                    <a href="#" class="btn green" style=""><span class="mdi mdi-clipboard-edit-outline">&nbsp;{{#i18n}}manager.message{{/i18n}}</span></a>
+                </header>
+                <hr>
+                <div class="flex-start-center">
+                    <div>
+                        <div class="image square">
+                            <img src="{{user.settings.manager.avatar}}{{#unless user.settings.manager.avatar}}/img/ava.png{{/unless}}" alt="">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="name">
+                            {{user.settings.manager.name}} {{user.settings.manager.surname}}
+                        </div>
+
+                        <div class="flex">
+                            <div class="">
+                                <div class="">
+                                    <!--<b>e-mail:</b>-->
+                                    <span class="mdi mdi-email-send-outline light_blue"></span>
+                                </div>
+                                {{#if user.settings.manager.telegram}}
+                                    <div>
+                                        <!--<b>telegram:</b>-->
+                                        <span class="mdi mdi-telegram light_blue"></span>
+                                    </div>
+                                {{/if}}
+                                {{#unless user.settings.manager.telegram}}
+                                    <div>
+                                        <!--<b>телефон:</b>-->
+                                        <span class="mdi mdi-phone-forward-outline light_blue"></span>
+                                    </div>
+                                {{/unless}}
+                            </div>
+                            <div class="">
+                                <div><a class="link external light_blue" href="mailto:{{user.settings.manager.email}}">{{user.settings.manager.email}}</a></div>
+                                {{#if user.settings.manager.telegram}}
+                                    <div>
+                                        <a class="link external light_blue" href="https://t.me/{{user.settings.manager.telegram}}" target="_blank">
+                                            {{user.settings.manager.telegram}}
+                                        </a>
+                                    </div>
+                                {{/if}}
+                                {{#unless user.settings.manager.telegram}}
+                                    <div><a class="link external light_blue" href="tel:{{user.settings.manager.phone}}">{{user.settings.manager.phone}}</a></div>
+                                {{/unless}}
+                            </div>
+                        </div>
+                        <!--
+                {{#if user.settings.manager.telegram}}
+                    <div>
+                        <a class="btn external" href="tg://resolve?domain={{user.settings.manager.telegram}}" target="_blank">
+                            Написать
+                        </a>
+                    </div>
+                {{/if}}
+                -->
+                        <!--
+                {{#unless user.settings.manager.telegram}}
+                    <a class="btn external" href="tel:{{user.settings.manager.phone}}">Позвонить</a>
+                {{/unless}}
+                -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="block dash-news" handler="controllers/dashboard/notifications/handler">
+                <header>
+                    <h2>{{#i18n}}system.notifications{{/i18n}}</h2>
+                </header>
+                <hr>
+                <div class="list">
+                    <div class="loader">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="block dash-news" handler="controllers/dashboard/news/handler">
+                <header>
+                    <h2>{{#i18n}}news.title{{/i18n}}</h2>
+                </header>
+                <hr>
+                <div class="list">
+                    <div class="loader">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+            </div>
+
+        </aside>
+        <div class="aside-wrapper">
+            <div class="block">
+                <header>
+                    <h2>{{#i18n}}dashboard.merchant.stats{{/i18n}}</h2>
+                </header>
+                <hr>
+                <div class="row flex-wrap flex-space-between-center">
+                    <div class="">
+                        <div class="">
+                            <table class="default">
+                                <tr>
+                                    <td style="width: 30px;"></td>
+                                    <td>
+                                        <div class="dash_stat_headings">
+                                            {{#i18n}}dashboard.merchant.spent{{/i18n}}
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 30px;">
+                                        <div class="dash_stat_digits">
+                                            <span class="mdi mdi-chart-arc"></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="dash_stat_digits">
+                                            {{summary.spent.current.RUB}} RUB
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 30px;"></td>
+                                    <td>
+                                        <div class="dash_stat_diff">
+                                            <span class="{{#if summary.spent.changes.RUB '>' 0}}diff_inc{{/if}} {{#if summary.spent.changes.RUB '<' 0}}diff_dec{{/if}}">{{summary.spent.changes.RUB}}%
+                                                {{#if summary.spent.changes.RUB '>' 0}}<span class="mdi mdi-menu-up"></span>{{/if}}
+                                                {{#if summary.spent.changes.RUB '<' 0}}<span class="mdi mdi-menu-down"></span>{{/if}}
+                                            </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="">
+                            <table class="default">
+                                <tr>
+                                    <td style="width: 30px;"></td>
+                                    <td>
+                                        <div class="dash_stat_headings">
+                                            {{#i18n}}dashboard.merchant.calls{{/i18n}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="dash_stat_headings">
+                                            {{#i18n}}dashboard.merchant.target{{/i18n}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="dash_stat_headings">
+                                            CR
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 30px;">
+                                        <div class="dash_stat_digits">
+                                            <span class="mdi mdi-chart-donut"></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="dash_stat_digits">
+                                            {{summary.calls.current.total}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="dash_stat_digits">
+                                            {{summary.calls.current.target}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="dash_stat_digits">
+                                            {{summary.calls.current.cr}}%
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 30px;"></td>
+                                    <td>
+                                        <div class="dash_stat_diff">
+                                            <span class="{{#if summary.calls.changes.total '>' 0}}diff_inc{{/if}} {{#if summary.calls.changes.total '<' 0}}diff_dec{{/if}}">
+                                                {{summary.calls.changes.total}}%
+                                                {{#if summary.calls.changes.total '>' 0}}<span class="mdi mdi-menu-up"></span>{{/if}}
+                                                {{#if summary.calls.changes.total '<' 0}}<span class="mdi mdi-menu-down"></span>{{/if}}
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="dash_stat_diff">
+                                            <span class="{{#if summary.calls.changes.target '>' 0}}diff_inc{{/if}} {{#if summary.calls.changes.target '<' 0}}diff_dec{{/if}}">
+                                                {{summary.calls.changes.target}}%
+                                                {{#if summary.calls.changes.target '>' 0}}<span class="mdi mdi-menu-up"></span>{{/if}}
+                                                {{#if summary.calls.changes.target '<' 0}}<span class="mdi mdi-menu-down"></span>{{/if}}
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="">
+                            <table class="default">
+                                <tr>
+                                    <td style="width: 30px;"></td>
+                                    <td>
+                                        <div class="dash_stat_headings">
+                                            {{#i18n}}dashboard.merchant.leads{{/i18n}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="dash_stat_headings">
+                                            {{#i18n}}dashboard.merchant.target{{/i18n}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="dash_stat_headings">
+                                            CR
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 30px;">
+                                        <div class="dash_stat_digits">
+                                            <span class="mdi mdi-chart-pie"></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="dash_stat_digits">
+                                            {{summary.leads.current.total}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="dash_stat_digits">
+                                            {{summary.leads.current.target}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="dash_stat_digits">
+                                            {{summary.leads.current.cr}}%
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 30px;"></td>
+                                    <td>
+                                        <div class="dash_stat_diff">
+                                            <span class="{{#if summary.leads.changes.total '>' 0}}diff_inc{{/if}} {{#if summary.leads.changes.total '<' 0}}diff_dec{{/if}}">
+                                                {{summary.leads.changes.total}}%
+                                                {{#if summary.leads.changes.total '>' 0}}<span class="mdi mdi-menu-up"></span>{{/if}}
+                                                {{#if summary.leads.changes.total '<' 0}}<span class="mdi mdi-menu-down"></span>{{/if}}
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="dash_stat_diff">
+                                            <span class="{{#if summary.leads.changes.target '>' 0}}diff_inc{{/if}} {{#if summary.leads.changes.target '<' 0}}diff_dec{{/if}}">
+                                                {{summary.leads.changes.target}}%
+                                                {{#if summary.leads.changes.target '>' 0}}<span class="mdi mdi-menu-up"></span>{{/if}}
+                                                {{#if summary.leads.changes.target '<' 0}}<span class="mdi mdi-menu-down"></span>{{/if}}
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{> dashboard/merchant/expenses}}
+            {{> dashboard/merchant/calls}}
+            {{> dashboard/merchant/leads}}
+        </div>
+    </div>
+
+</div>

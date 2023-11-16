@@ -1,0 +1,10 @@
+<h3>Отклонить?</h3>
+<p>Обязательно укажите причину отклонения</p>
+<div><textarea id="notes" class="col-1-1" rows="3" onchange="___mc.events.push('sales.notes.set', this.value)"></textarea></div>
+<p>Вложения</p>
+{{#dropzone onupload='sales.upload.file'}}{{/dropzone}}
+<ul id="attachments-list" style="margin: 20px"></ul>
+
+<footer>
+    <button class="mdi mdi-bookmark-remove" onclick="___mc.events.push('sales.reject')">Отклонить</button>
+</footer>

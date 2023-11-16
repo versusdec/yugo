@@ -1,0 +1,84 @@
+<div class="columns">
+    <div style="overflow: auto">
+        {{#pagination}}{{/pagination}}
+        <div class="block list" handler="controllers/billing/transactions/handler">
+            <header class="head flex wrap">
+                <h2>{{#i18n}}billing.transactions.title{{/i18n}}</h2>
+                {{#if role 'IN' 'admin' 'agency_admin' 'agency_manager'}}
+                    <a onclick="___mc.events.push('transactions.show')" class="btn">{{#i18n}}button.create{{/i18n}}</a>
+                {{/if}}
+            </header>
+            {{#if role 'IN' 'admin' 'agency_admin' 'agency_manager'}}
+                <div class="hide" id="transaction">
+                    <h3>
+                        {{#i18n}}billing.transactions.create{{/i18n}}
+                    </h3>
+                    <label>{{#i18n}}billing.transactions.enter_sum{{/i18n}}</label>
+                    <input type="number" name="amount" class="col-1-1">
+                    {{#autocomplete onsuggest='users.suggest' min=0 label='billing.transactions.select_user' onchange='transactions.user.change'}}{{/autocomplete}}
+                    <label>{{#i18n}}table.comment{{/i18n}}</label>
+                    <textarea name="comment" class="col-1-1"></textarea>
+                    <footer>
+                        <button type="button" onclick="___mc.events.push('topup.accept')">{{#i18n}}button.create{{/i18n}}</button>
+                    </footer>
+                </div>
+                <br>
+            {{/if}}
+
+            <div class="table">
+                <table>
+                    <thead>
+                    <tr>
+                        <!--                        <th>ID</th>-->
+                        <th>{{#i18n}}table.date{{/i18n}}</th>
+                        <th>{{#i18n}}billing.transactions.balance.before{{/i18n}}</th>
+                        <th>{{#i18n}}billing.transactions.balance.sum{{/i18n}}</th>
+                        <th>{{#i18n}}billing.transactions.balance.after{{/i18n}}</th>
+                        <th>{{#i18n}}billing.transactions.event{{/i18n}}</th>
+                        <!--                        <th></th>-->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td colspan="100%">
+                            <div class="loader">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {{#pagination}}{{/pagination}}
+    </div>
+    <aside>
+        <div class="block filters">
+            <header>
+                <h2>{{#i18n}}filter.title{{/i18n}}</h2>
+            </header>
+
+            {{#datetimepicker type='period' name='period' value=filter.period onchange='transactions.filter.period.change'}}{{/datetimepicker}}
+
+            {{#if role 'admin'}}
+                {{#autocomplete name='network_id' value=filter.network_id onset=network_set onsuggest='networks.suggest' min=0 label='table.network' onchange='transactions.filter.change'}}{{/autocomplete}}
+            {{/if}}
+
+            {{#if role 'IN' 'admin' 'network_manager'}}
+                {{#autocomplete name='agency_id' value=filter.agency_id onset=agency_set onsuggest='agencies.suggest' min=0 label='table.agency' onchange='transactions.filter.change'}}{{/autocomplete}}
+            {{/if}}
+
+            {{#if role 'IN' 'admin' 'network_manager' 'agency_manager' 'agency_admin'}}
+                {{#autocomplete name='user_id' value=filter.user_id onset=user_set onsuggest='users.suggest' min=0 label='user.title' onchange='transactions.filter.change'}}{{/autocomplete}}
+            {{/if}}
+
+            <footer>
+                <button onclick="___mc.events.push('transactions.filter.filter', $('div.list[handler]')[0])"><span class="mdi mdi-clipboard-check-outline"></span>{{#i18n}}button.apply{{/i18n}}</button>
+                <button class="secondary" onclick="___mc.events.push('transactions.filter.reset', this)">{{#i18n}}button.reset{{/i18n}}</button>
+            </footer>
+        </div>
+    </aside>
+</div>

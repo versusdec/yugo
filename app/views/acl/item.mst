@@ -1,0 +1,6 @@
+<tr>
+    <td title="Роль">{{role}}</td>
+    <td class="actions">
+        <a href="/acl/edit/{{role}}" class="mdi mdi-database-edit-outline" title="Редактировать"></a>
+    </td>
+</tr>

@@ -1,0 +1,26 @@
+<tr>
+    <td title="ID">{{id}}</td>
+    <td title="Название">{{name}}</td>
+    {{#if profile.role 'admin'}}
+        <td title="Вебмастер">
+            <a class="link" href="/users/edit/{{webmaster.id}}">{{webmaster.name}} {{webmaster.surname}} ({{webmaster.email}})</a>
+        </td>
+    {{/if}}
+    <td title="Категория">
+        {{#if profile.role 'webmaster'}}{{category.name}}{{/if}}
+        {{#if profile.role 'admin'}}<a class="link" href="/categories/edit/{{category.id}}">{{category.name}}</a>{{/if}}
+
+    </td>
+    <td title="Оффер">
+        {{#if profile.role 'webmaster'}}{{offer.name}}{{/if}}
+        {{#if profile.role 'admin'}}<a class="link" href="/offers/edit/{{offer.id}}">{{offer.name}}</a>{{/if}}
+    </td>
+    <td title="Статус">
+        {{#if status 'active'}}активный{{/if}}
+        {{#if status 'inactive'}}неактивный{{/if}}
+    </td>
+    <td class="actions">
+        <a href="/campaigns/edit/{{id}}" class="mdi mdi-pencil" title="Редактировать"></a>
+        <a class="mdi mdi-delete" title="Удалить" onclick="___mc.events.push('campaigns.remove', {id: {{id}}, name:'{{name}}' })"></a>
+    </td>
+</tr>

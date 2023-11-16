@@ -1,0 +1,5 @@
+<tr>
+  <td title="Название"><a class="link" href="/categories/edit/{{id}}">{{name}}</a></td>
+  <td title="Кол-во офферов"><a class="link" href="/offers/#category={{id}}">{{offers}}</a></td>
+  <td title="Кол-во лидов в хабе"><a class="link" href="/leads/#category={{id}}">{{leads}}</a></td>
+</tr>

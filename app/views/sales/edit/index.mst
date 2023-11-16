@@ -1,0 +1,91 @@
+<div class="heading">
+    <h1><a class="back mdi mdi-arrow-left-circle-outline" href="/sales/"></a>ID: {{item.id}}</h1>
+    <div class="buttons-wrapper">
+        {{#if item.status 'IN' 'inwork' 'approved'}}
+            <button class=" secondary" onclick="___mc.events.push('sales.change.status', {id: {{item.id}}, status: 'rejected'})">{{#i18n}}button.reject{{/i18n}}</button>
+        {{/if}}
+        <button class=" green" onclick="___mc.events.push('sales.change.status', {id: {{item.id}}, status: 'approved'})"><span class="mdi mdi-bookmark-check-outline"></span>{{#i18n}}button.approve{{/i18n}}</button>
+    </div>
+    <!--    <h1 style="float: right"><a class="mdi mdi-phone" style="font-size: 28px" href="tel:+{{item.phone}}">{{item.phone}}</a></h1>-->
+</div>
+<hr>
+
+<div class="columns ">
+    <div style="overflow: auto;">
+        {{#pagination}}{{/pagination}}
+        <div class="block" handler="controllers/sales/edit/handler" data-lead="{{item.id}}">
+            <header>
+                <h2>{{#i18n}}leads.history{{/i18n}}</h2>
+            </header>
+            <div class="table">
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th>{{#i18n}}table.date{{/i18n}}</th>
+                        {{#if profile.role 'admin'}}
+                            <th>{{#i18n}}table.agency{{/i18n}}</th>
+                        {{/if}}
+                        {{#if profile.role "IN" 'admin' 'agency_manager' 'agency_admin'}}
+                            <th>{{#i18n}}table.merchant{{/i18n}}</th>
+                        {{/if}}
+                        <th>{{#i18n}}table.webmaster{{/i18n}}</th>
+                        <th>{{#i18n}}table.offer{{/i18n}}</th>
+                        <th>{{#i18n}}leads.comment{{/i18n}}</th>
+                        <th>{{#i18n}}table.attachments{{/i18n}}</th>
+                        <th>{{#i18n}}table.status{{/i18n}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td colspan="{{#if profile.role 'admin'}}8{{/if}}{{#if profile.role "IN" 'agency_manager' 'agency_admin'}}7{{/if}}
+                            {{#if profile.role 'merchant'}}6{{/if}}">
+                            <div class="loader">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        {{#pagination}}{{/pagination}}
+    </div>
+    <aside>
+        <div class="block " id="lead-fields">
+            {{#if item.calls}}
+                <div class="columns">
+                    <div class="block">
+                        <header>
+                            <h2>{{#i18n}}dashboard.calls{{/i18n}}</h2>
+                        </header>
+                        {{#each item.records}}
+                            <div class="">
+                                <label class="mdi mdi-phone-outgoing">&nbsp;{{timestamp}}</label>
+                                {{#player classlist='mini' file=record}}{{/player}}
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+            {{/if}}
+            <header>
+                <h2>Основные</h2>
+            </header>
+
+            <div id="lead-fields-list">
+                {{#each item.fields}}
+                    {{> leads/edit/field}}
+                {{/each}}
+            </div>
+            <label>Комментарий</label>
+            <textarea rows="5" style="resize: vertical" disabled>{{item.comment}}</textarea>
+            <footer>
+                <!--<button type="button" class="btn" onclick="___mc.events.push('sales.update')">Сохранить</button>-->
+            </footer>
+        </div>
+    </aside>
+</div>

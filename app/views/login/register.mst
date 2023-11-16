@@ -1,0 +1,35 @@
+<header>
+    <h1>Регистрация</h1>
+    <div class="error invisible"> На указанный email уже зарегистрирован аккаунт </div>
+</header>
+
+<label>Введите e-mail:</label>
+<span class="mdi mdi-email-outline">
+    <input type="text" name="email">
+</span>
+
+<label>Введите телефон: </label>
+<span class="mdi mdi-phone-outline">
+    <input class="masked" type="text" name="phone" placeholder="+7 (912) 345 - 67 - 89" mask="+7 (999) 999 - 99 - 99">
+</span>
+
+<label>Пароль:</label>
+<span class="mdi mdi-lock-outline">
+    <input type="password" name="password">
+</span>
+
+<br>
+
+<button class="register" onclick="___mc.events.push('register')">Зарегистрировать</button>
+<sup> Нажимая на кнопку, вы принимаете <a href="https://botto.ru/policy/" target="_blank">Положение</a> и <a href="https://botto.ru/persagreement/" target="_blank">Согласие на обработку персональных данных</a> и <a href="https://botto.ru/agreement/" target="_blank">правила</a> работы с сервисом </sup>
+
+<p>Или зарегистрируйтесь с помощью:
+    <button class="social vk" onclick="___mc.events.push('login.vk')">Войти через <img src="/img/icons/vk-white.svg" alt=""></button>
+</p>
+
+
+<p>Уже есть аккаунт? <a href="/login">Войти</a></p>
+
+<p>Проблемы со входом? <a href="mailto:support@botto.ru">Техническая поддержка</a></p>
+
+<div class="copy"> © 2021 Yugo Platform. Все права защищены. </div>

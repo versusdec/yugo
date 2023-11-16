@@ -1,0 +1,55 @@
+<h1><a class="back mdi mdi-arrow-left-circle-outline" href="/"></a>{{title}}</h1>
+
+<ul class="tabs">
+    <li class="active"><a href="#tab=offers">По офферам</a></li>
+    <li><a href="#tab=tags">По тегам</a></li>
+</ul>
+
+<hr>
+
+<div class="block" id="offers">
+    <div class="block filters">
+        <header>
+            <h2>Фильтры</h2>
+        </header>
+        <div class="row">
+            {{#if user.role 'admin'}}
+                <div class="col-1-4">
+                    {{#autocomplete name='region' onsuggest='regions.suggest' min=0 label='Регион' onchange='sales.stats.region.change'}}{{/autocomplete}}
+                    {{#autocomplete name='category' onsuggest='categories.suggest' min=0 label='Категория' onchange='sales.stats.category.change'}}{{/autocomplete}}
+                    {{#autocomplete name='source' onsuggest='sources.suggest' min=0 label='Источник' onchange='sales.stats.source.change'}}{{/autocomplete}}
+                </div>
+            {{/if}}
+            <div class="col-1-4">
+                {{#if user.role 'admin'}}
+                    {{#autocomplete name='user_id' onsuggest='webmasters.suggest' min=0 label='Вебмастер' onchange='sales.stats.webmaster.change'}}{{/autocomplete}}
+                    {{#autocomplete name='merchant' onsuggest='merchants.suggest' min=0 label='Рекламодатель' onchange='sales.stats.merchant.change'}}{{/autocomplete}}
+                {{/if}}
+                {{#if user.role 'merchant'}}
+                    <input type="hidden" name="merchant" value="{{user.id}}" data-value="{{user.id}}">
+                {{/if}}
+                {{#autocomplete name='offer_id' onsuggest='offers.suggest' min=0 label='Оффер' onchange='sales.stats.offer.change'}}{{/autocomplete}}
+            </div>
+            <div class="col-1-4" title="По умолчанию за сегодня">
+                {{#datetimepicker type='date' name='start' label='Период с' onchange='sales.stats.range.start'}}{{/datetimepicker}}
+                {{#datetimepicker type='date' name='finish' label='Период по' onchange='sales.stats.range.finish'}}{{/datetimepicker}}
+                {{#if user.role 'admin'}}
+                    {{#autocomplete name='tag' onsuggest='tags.suggest' min=0 label='Тэг' onchange='sales.stats.tag.change'}}{{/autocomplete}}
+                {{/if}}
+            </div>
+        </div>
+        <br><br>
+        <div class="buttons-wrapper">
+            <button onclick="___mc.events.push('sales.stats.filter', this)">фильтровать</button>
+            <button onclick="___mc.events.push('sales.stats.filter.reset', this)">сбросить</button>
+        </div>
+    </div>
+
+    <div class="block list">
+        {{> sales/stats/table}}
+    </div>
+</div>
+<div class="block hide" id="tags">
+
+</div>
+

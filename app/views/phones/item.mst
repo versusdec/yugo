@@ -1,0 +1,30 @@
+<tr>
+    {{#if profile.role 'admin'}}
+    <td style="max-width: 100px">
+        <input type="checkbox" name="check" value="{{phone}}">
+    </td>
+    {{/if}}
+    <td title="Дата и время">{{timestamp}}</td>
+    <td title="Номер">{{phone}}</td>
+    {{#if profile.role 'admin'}}
+    <td title="Вебмастер">{{webmaster.surname}} {{webmaster.name}}</td>
+    {{/if}}
+    <td title="Статус">
+        {{#if status 'active'}}активный{{/if}}
+        {{#if status 'rented'}}арендованный{{/if}}
+        {{#if status 'archived'}}архивный{{/if}}
+    </td>
+    <td class="actions">
+    {{#if profile.role 'admin'}}
+        <a class="mdi mdi-delete" title="Удалить" onclick="___mc.events.push('phones.remove', '{{phone}}')"></a>
+    {{/if}}
+    {{#if profile.role 'webmaster'}}
+        {{#if status 'active'}}
+            <a class="mdi mdi-step-forward" title="Арендовать" onclick="___mc.events.push('phones.webmaster.rent', '{{phone}}')"></a>
+        {{/if}}
+        {{#if status 'rented'}}
+            <a class="mdi mdi-step-backward" title="Освободить" onclick="___mc.events.push('phones.webmaster.return', '{{phone}}')"></a>
+        {{/if}}
+    {{/if}}
+    </td>
+</tr>
